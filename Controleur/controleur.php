@@ -1,45 +1,38 @@
-
 <?php
+    include ("Modele/modele.php");
+
+
+class Controleur
+{
+    private $unModele;
     
-    include("modele/modele.php");
-    class Controleur
-    {
+    public function __construct($serveur, $bdd, $user, $mdp, $table){
         
-        private $unModele;
+        $this->unModele = new Modele($serveur, $bdd, $user, $mdp);
+        $this->unModele->setTable($table);
         
-        public function __construct($server, $bdd, $user, $mdp, $table)
-        {
-           $this->unModele = new Modele ($server, $bdd, $user, $mdp);
-            $this->unModele->setTable($table);  
-        }
-        
-        public function selectAll ()
-        {
-
-            if($this->unModele->getPdo() != null)
-            {
-               return $this->unModele->selectAll();
-
-            }
-            else{
-                return null;
-            }
-        }
-        
-        public function insert($unEleve)
-        {
-            //traitement des infos
-            $tab = $unEleve->serialiser();
-            $this->unModele->insert($tab);
-        }
     }
-
-
-
-
-
-
-      
     
+    public function selectAll(){
+        
+        if($this->unModele->getPdo() != null){
+            
+            return $this->unModele->selectAll();
+            
+        }
+        
+    }
+    
+    public function setTable($table){
+        $this->unModele->setTable($table);
+    }
+    
+    public function insert($unTiers){
+        $this->unModele->insert($unTiers->serialiser());
+    }
+    
+}
+
+
     
 ?>

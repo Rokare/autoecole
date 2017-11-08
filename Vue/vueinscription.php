@@ -23,12 +23,14 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputAddress">Telephone</label>
-    <input type="text" class="form-control" id="inputAdresse" name="telephone" placeholder="Ex: 01-55-06-08-33">
+    <input type="text" class="form-control" id="inputAdresse" name="telephone" placeholder="Ex: 0155060833">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress">Code Lieu</label>
+    <input type="text" class="form-control" id="inputAdresse" name="id_lieu" placeholder="Ex: 1215">
   </div>
   </div>
-   <div class="form-group col-md-6">
-    
-  </div>
+ 
   <button type="submit" name="inscription" class="btn btn-primary">S'inscrire</button>
   
   </div>
