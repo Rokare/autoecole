@@ -30,8 +30,17 @@
     <input type="text" class="form-control" id="inputAdresse" name="telephone" placeholder="Ex: 0155060833" pattern="[0-9]{10}">
   </div>
   <div class="form-group col-md-6">
+<<<<<<< HEAD
     <label for="inputAddress">Code Lieu</label>
     <input type="text" class="form-control" id="inputAdresse" name="id_lieu" placeholder="Ex: 1215" pattern="[0-9]{5}">
+=======
+    <label for="inputAddress">Code Postal</label>
+    <input type="text" class="form-control" id="inputAdresse" name="cp" placeholder="Ex: 75000">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress">Email</label>
+    <input type="email" class="form-control" id="inputAdresse" name="email" placeholder="Ex: nom.prenom@exemple.com">
+>>>>>>> bebefd32d75a0312b33dbc5384e21678b1630f85
   </div>
   </div>
  

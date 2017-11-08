@@ -26,6 +26,7 @@ class Controleur
     public function setTable($table){
         $this->unModele->setTable($table);
     }
+
     
     public function insert($unTiers){
         $this->unModele->insert($unTiers->serialiser());
