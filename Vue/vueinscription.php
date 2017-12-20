@@ -7,17 +7,17 @@
    <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nom</label>
-      <input type="text" class="form-control" id="inputNom4" name="nom" placeholder="Nom" pattern="[a-zA-Z].{4,}">
+      <input type="text" class="form-control" id="inputNom4" name="nom" placeholder="Nom" pattern="[a-zA-Z].{4,}" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Prenom</label>
-      <input type="text" class="form-control" id="inputPrenom4" name="prenom" placeholder="Prenom" pattern="[a-zA-Z].{4,}">
+      <input type="text" class="form-control" id="inputPrenom4" name="prenom" placeholder="Prenom" pattern="[a-zA-Z].{4,}" required>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Date de naissance</label>
-      <input type="date" class="form-control" id="inputEmail4" name="date_naissance" placeholder="Date format AAAA-MM-JJ">
+      <input type="date" class="form-control" id="inputEmail4" name="date_naissance" placeholder="Date format AAAA-MM-JJ" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
@@ -27,21 +27,16 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputAddress">Telephone</label>
-    <input type="text" class="form-control" id="inputAdresse" name="telephone" placeholder="Ex: 0155060833" pattern="[0-9]{10}">
+    <input type="text" class="form-control" id="inputAdresse" name="telephone" placeholder="Ex: 0155060833" pattern="0[0-9]{9}" required>
   </div>
   <div class="form-group col-md-6">
-<<<<<<< HEAD
+
     <label for="inputAddress">Code Lieu</label>
-    <input type="text" class="form-control" id="inputAdresse" name="id_lieu" placeholder="Ex: 1215" pattern="[0-9]{5}">
-=======
-    <label for="inputAddress">Code Postal</label>
-    <input type="text" class="form-control" id="inputAdresse" name="cp" placeholder="Ex: 75000">
+    <input type="text" class="form-control" id="inputAdresse" name="id_lieu" placeholder="Ex: 1215" pattern="[0-9]{5}" required>
+
+   
   </div>
-  <div class="form-group col-md-6">
-    <label for="inputAddress">Email</label>
-    <input type="email" class="form-control" id="inputAdresse" name="email" placeholder="Ex: nom.prenom@exemple.com">
->>>>>>> bebefd32d75a0312b33dbc5384e21678b1630f85
-  </div>
+
   </div>
  
   <button type="submit" name="inscription" class="btn btn-primary">S'inscrire</button>
