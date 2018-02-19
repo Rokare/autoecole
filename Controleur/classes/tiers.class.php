@@ -10,7 +10,7 @@ class Tiers
         $this->prenom = "";
         $this->dateNaissance = "";
         $this->telephone = "";
-        $this->codeLieu = 1;
+        $this->codeLieu = 0;
         
     }
     
