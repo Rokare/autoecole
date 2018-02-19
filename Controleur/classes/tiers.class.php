@@ -2,10 +2,11 @@
 
 class Tiers
 {
-    private $nom, $prenom, $dateNaissance, $telephone, $codeLieu;
+    protected $codeTiers, $nom, $prenom, $dateNaissance, $telephone, $codeLieu;
     
     public function __construct(){
         
+        $this->codeTiers = "";
         $this->nom = "";
         $this->prenom = "";
         $this->dateNaissance = "";
@@ -39,6 +40,10 @@ class Tiers
     }
     
     /* GETTERS*/
+    public function getCodeTiers(){
+        return $this->codeTiers;
+    }
+
     public function getNom(){
         
         return $this->nom;
@@ -71,6 +76,10 @@ class Tiers
     
     
     /* SETTERS */
+    public function setCodeTiers($codeTiers){
+        $this->codeTiers = $codeTiers
+    }
+
     public function setNom($nom){
         
         $this->nom = $nom;
