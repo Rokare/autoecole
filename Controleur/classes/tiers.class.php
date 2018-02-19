@@ -85,7 +85,7 @@ class Tiers
 
     public function setDateNaissance($dateNaissance){
         
-        $this->DateNaissanceTelephone = $dateNaissance;
+        $this->DateNaissance = $dateNaissance;
         
     }
     
