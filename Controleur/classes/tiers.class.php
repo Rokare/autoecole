@@ -77,7 +77,7 @@ class Tiers
     
     /* SETTERS */
     public function setCodeTiers($codeTiers){
-        $this->codeTiers = $codeTiers
+        $this->codeTiers = $codeTiers;
     }
 
     public function setNom($nom){
