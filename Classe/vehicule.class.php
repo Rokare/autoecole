@@ -44,7 +44,7 @@ class vehicule
 
     
     /* GETTERS*/
-    public function getidVehicule(){
+    public function getIdVehicule(){
         return $this->idVehicule;
     }
 
@@ -85,7 +85,7 @@ class vehicule
     
     
     /* SETTERS */
-    public function setidVehicule($idVehicule){
+    public function setIdVehicule($idVehicule){
         $this->idVehicule = $idVehicule;
     }
 
