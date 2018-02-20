@@ -3,12 +3,12 @@
 
 class Mois 
 {
-    protected $idMois, $Annee;
+    protected $idMois, $annee;
 
     public function __construct()
     {
         $this->idMois = 0;
-        $this->Annee = "";
+        $this->annee = "";
     }
 
     public function getidMois()
@@ -26,9 +26,9 @@ class Mois
         $this->idMois = $idMois;
     }
 
-    public function setAnnee($Annee)
+    public function setAnnee($annee)
     {
-        $this->Anne = $Annee;
+        $this->annee = $annee;
     }
 
 

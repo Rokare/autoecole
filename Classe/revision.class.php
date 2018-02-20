@@ -19,7 +19,7 @@ class Revision
 
 
     public function getIdVehicule(){
-        return $this->vehicule->getIdVehicule;
+        return $this->vehicule->getIdVehicule();
     }
 
     public function getidRevision()
@@ -42,7 +42,7 @@ class Revision
     }
     public function setVehicule($idVehicule){
         $this->vehicule->setIdVehicule = $idVehicule->getIdVehicule;
-       
+       //$this->vehicule->setIdVehicule($idVehicule);
     }
 
     public function setidRevision($idRevision)
