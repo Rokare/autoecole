@@ -2,7 +2,7 @@
 
 <?php
     include "controleur/controleur.php";
-    include "controleur/tiers.class.php";
+    include "controleur/classes/tiers.class.php";
 ?>
 
 <html lang="fr">
