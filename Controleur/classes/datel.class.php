@@ -9,7 +9,7 @@ class Datel
     public function __construct()
     {
         $this->dhd = 0;
-       
+
     }
 
     public function getDhd()
@@ -17,13 +17,13 @@ class Datel
         return $this->dhd;
     }
 
-
+  
 
     public function setDhd($dhd)
     {
         $this->dhd = $dhd;
     }
-   
+
 }
 
 ?>

@@ -17,7 +17,7 @@ class Examen
         return $this->lieu->getIdLieu();
     }
 
-   
+
     public function getType()
     {
         return $this->type->getIdType();

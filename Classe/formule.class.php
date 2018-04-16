@@ -29,7 +29,7 @@ class Formule
     {
         return $this->tarif;
     }
-   
+
 
     public function getDescription()
     {
@@ -65,7 +65,7 @@ class Formule
     {
         $this->description = $description;
     }
-    
+
     public function setDateDebut($date_debut)
     {
         $this->dateDebut = $date_debut;

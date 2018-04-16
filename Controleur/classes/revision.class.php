@@ -4,64 +4,61 @@
 
 class Revision
 {
-    protected $idRevision,$idVehicule, $Libelle, $Motif, $DateRevision;
+    protected $id_revision, $lesvehicules, $libelle, $motif, $date_revision;
+
     public function __construct()
     {
-    $this->vehicule = new Vehicule;
-    $this->idRevision = 0;
-    $this->Libelle = "";
-    $this->Motif = "";
-    $this->DateRevision = "";
-    
+    $this->lesvehicules = array();
+    $this->id_revision = 0;
+    $this->libelle = "";
+    $this->motif = "";
+    $this->date_revision = "";
     }
 
-
-
-
-    public function getIdVehicule(){
-        return $this->vehicule->getIdVehicule();
+    public function getLesVehicule(){
+        return $this->lesvehicules;
     }
 
-    public function getidRevision()
+    public function getIdRevision()
     {
-        return $this->idRevision;
+        return $this->id_revision;
     }
 
     public function getLibelle()
     {
-        return $this->Libelle;
+        return $this->libelle;
     }
     public function getMotif()
     {
-        return $this->Motif;
+        return $this->motif;
     }
 
-    public function getDateRevision()
+    public function getDate_Revision()
     {
-        return $this->DateRevision;
+        return $this->date_revision;
     }
-    public function setVehicule($idVehicule){
-        $this->vehicule->setIdVehicule = $idVehicule->getIdVehicule;
+    public function setVehicule($lesvehicules){
+        $this->lesvehicules = $lesvehicules;
        //$this->vehicule->setIdVehicule($idVehicule);
     }
 
-    public function setidRevision($idRevision)
+    public function setidRevision($id_revision)
     {
-        $this->idRevision = $idRevision;
+        $this->id_revision = $id_revision;
     }
-    
-    public function setLibelle($Libelle)
+
+    public function setLibelle($libelle)
     {
-        $this->Libelle = $Libelle;
+        $this->libelle = $libelle;
     }
-    
-    public function setMotif($Motif)
+
+    public function setMotif($motif)
     {
-        $this->Motif= $Motif;
+        $this->motif= $motif;
     }
-    public function setDateRevision($DateRevision)
+    public function setDateRevision($date_revision)
     {
-        $this->idDateRevision = $DateRevision;
+        $this->date_revision = $date_revision;
     }
 }
 
