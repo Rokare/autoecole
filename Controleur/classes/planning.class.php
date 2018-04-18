@@ -3,47 +3,58 @@
 class Planning
 {
 
-    private $lesVehicules, $lesMoniteurs, $lesLecons, $lesCandidats;
-    
-    public function __construct($lesVehicules, $lesMoniteurs, $lesLecons, $lesCandidats){
-        
-        $this->lesVehicules = $lesVehicules;
-        $this->lesMoniteurs = $lesMoniteurs;
-        $this->lesLecons = $lesLecons;
-        $this->lesCandidats = $lesCandidats;
-        
+    private $vehicule, $moniteur, $lecon, $candidat;
+
+    public function __construct(){
+
+        $this->vehicule = new Vehicule;
+        $this->moniteur = new Moniteur;
+        $this->lecon = new Lecon;
+        $this->candidat = new Candidat;
+
     }
-    
-    public function getLesVehicules(){
-        return $this->lesVehicules;
+
+    public function getVehicule()
+    {
+      return $this->vehicule;
     }
-    
-    public function setLesVehicules($lesVehicules){
-        $this->lesVehicules = lesVehicules;
+
+    public function setVehicule($vehicule)
+    {
+      $this->vehicule = $vehicule;
     }
-    
-    public function getLesMoniteurs(){
-        return $this->lesMoniteurs;
+
+    public function getMoniteur()
+    {
+      return $this->moniteur;
     }
-    
-    public function setLesMoniteurs($lesMoniteurs){
-        $this->lesMoniteurs = $lesMoniteurs;
+
+    public function setMoniteur($moniteur)
+    {
+      $this->moniteur = $moniteur;
     }
-    
-    public function getLesLecons(){
-        return $this->lesLecons;
+
+    public function getLecon()
+    {
+      return $this->lecon;
     }
-    
-    public function setLesLecons($lesLecons){
-        $this->lesLecons = $lesLecons;
+
+
+    public function setLecon($lecon)
+    {
+      $this->lecon = $lecon;
     }
-    
-    public function getLesCandidats(){
-        return $this->lesCandidats;
+
+
+    public function getCandidat()
+    {
+      return $this->candidat;
     }
-    
-    public function setLesCanidats(){
-        $this->lesCandidats = $lesCandidats;
+
+
+    public function setCandidat($candidat)
+    {
+      $this->candidat = $candidat;
     }
 
 }

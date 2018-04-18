@@ -17,7 +17,7 @@ class Moto extends Vehicule
 
     public function getPuissance()
     {
-        return $this->getPuissance;
+        return $this->puissance;
     }
 
 

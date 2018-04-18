@@ -4,24 +4,24 @@
 
 class Revision
 {
-    protected $id_revision, $lesvehicules, $libelle, $motif, $date_revision;
+    private $idRevision, $vehicule, $libelle, $motif, $dateRevision;
 
     public function __construct()
     {
-    $this->lesvehicules = array();
-    $this->id_revision = 0;
+    $this->vehicule = new Vehicule;
+    $this->idRevision = 0;
     $this->libelle = "";
     $this->motif = "";
-    $this->date_revision = "";
+    $this->dateRevision = "";
     }
 
-    public function getLesVehicule(){
-        return $this->lesvehicules;
+    public function getVehicule(){
+        return $this->vehicule;
     }
 
     public function getIdRevision()
     {
-        return $this->id_revision;
+        return $this->idRevision;
     }
 
     public function getLibelle()
@@ -33,18 +33,18 @@ class Revision
         return $this->motif;
     }
 
-    public function getDate_Revision()
+    public function getDateRevision()
     {
-        return $this->date_revision;
+        return $this->dateRevision;
     }
-    public function setVehicule($lesvehicules){
-        $this->lesvehicules = $lesvehicules;
-       //$this->vehicule->setIdVehicule($idVehicule);
+    public function setVehicule($vehicule){
+        $this->vehicule = $vehicule;
+
     }
 
-    public function setidRevision($id_revision)
+    public function setidRevision($idRevision)
     {
-        $this->id_revision = $id_revision;
+        $this->idRevision = $idRevision;
     }
 
     public function setLibelle($libelle)
@@ -56,9 +56,9 @@ class Revision
     {
         $this->motif= $motif;
     }
-    public function setDateRevision($date_revision)
+    public function setDateRevision($dateRevision)
     {
-        $this->date_revision = $date_revision;
+        $this->dateRevision = $dateRevision;
     }
 }
 

@@ -3,7 +3,7 @@
 
 class Examen_Code
 {
-    protected $idType, $idExam, $idTiers, $date_c, $resultat_c ;
+    protected $type, $exam, $candidat, $dateC, $resultatC ;
 
     public function __construct()
     {
@@ -14,20 +14,20 @@ class Examen_Code
         $this->resultatC = "";
     }
 
-    public function getCodeTiers()
+    public function getCandidat()
     {
-        return $this->candidat->getCodeTiers();
+        return $this->candidat;
     }
 
-    public function getIdType()
+    public function getType()
     {
-        return $this->type->getIdType();
+        return $this->type;
     }
 
-   
-    public function getIdExam()
+
+    public function getExam()
     {
-        return $this->exam->getIdExam();
+        return $this->exam;
     }
 
     public function getDateC()
@@ -39,30 +39,30 @@ class Examen_Code
     {
         return $this->resultatC;
     }
-    public function setIdExam($idExam)
+    public function setExam($exam)
     {
-        $this->exam->setIdExam($idExam);
+        $this->exam = $exam;
     }
 
-    public function setCodeTiers($idTiers)
+    public function setCandidat($candidat)
     {
-        $this->candidat->setCodeTiers($idTiers);
+        $this->candidat = $candidat);
     }
-    public function setType($idType)
+    public function setType($type)
     {
-        $this->type->setIdType($idType);
-    }
-
-    public function setDateP($date_c)
-    {
-        $this->dateC = $date_c;
+        $this->type = $type;
     }
 
-    public function setResultatP($resultat_c)
+    public function setDateC($dateC)
     {
-        $this->resultatC = $resultat_c;
+        $this->dateC = $dateC;
     }
-  
+
+    public function setResultatC($resultatC)
+    {
+        $this->resultatC = $resultatC;
+    }
+
 
 
 }

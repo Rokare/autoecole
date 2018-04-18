@@ -3,7 +3,7 @@
 
 class Ville
 {
-    protected $idVille, $cp, $ville;
+    private $idVille, $cp, $ville;
 
     public function __construct()
     {
@@ -35,7 +35,7 @@ class Ville
     {
         $this->idVille = $idVille;
     }
-    
+
     public function setCp($cp)
     {
         $this->cp = $cp;

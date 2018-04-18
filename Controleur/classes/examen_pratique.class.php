@@ -3,66 +3,68 @@
 
 class Examen_Pratique
 {
-    protected $idType, $idExam, $idTiers, $date_p, $resultat_p ;
+  protected $type, $exam, $candidat, $dateP, $resultatP ;
 
-    public function __construct()
-    {
-        $this->exam = new Examen;
-        $this->type = new Type;
-        $this->candidat = new Candidat;
-        $this->dateP = "";
-        $this->resultatP = "";
-    }
+  public function __construct()
+  {
+      $this->exam = new Examen;
+      $this->type = new Type;
+      $this->candidat = new Candidat;
+      $this->dateP = "";
+      $this->resultatP = "";
+  }
 
-    public function getCodeTiers()
-    {
-        return $this->candidat->getCodeTiers();
-    }
+  public function getCandidat()
+  {
+      return $this->candidat;
+  }
 
-    public function getIdType()
-    {
-        return $this->type->getIdType();
-    }
+  public function getType()
+  {
+      return $this->type;
+  }
 
-   
-    public function getIdExam()
-    {
-        return $this->exam->getIdExam();
-    }
 
-    public function getDateP()
-    {
-        return $this->dateP;
-    }
+  public function getExam()
+  {
+      return $this->exam;
+  }
 
-    public function getResultatP()
-    {
-        return $this->resultatP;
-    }
-    public function setIdExam($idExam)
-    {
-        $this->exam->setIdExam($idExam);
-    }
+  public function getDateP()
+  {
+      return $this->dateP;
+  }
 
-    public function setCodeTiers($idTiers)
-    {
-        $this->candidat->setCodeTiers($idTiers);
-    }
-    public function setType($idType)
-    {
-        $this->type->setIdType($idType);
-    }
+  public function getResultatP()
+  {
+      return $this->resultatP;
+  }
+  public function setExam($exam)
+  {
+      $this->exam = $exam;
+  }
 
-    public function setDateP($date_p)
-    {
-        $this->dateP = $date_p;
-    }
+  public function setCandidat($candidat)
+  {
+      $this->candidat = $candidat);
+  }
+  public function setType($type)
+  {
+      $this->type = $type;
+  }
 
-    public function setResultatP($resultat_p)
-    {
-        $this->resultatP = $resultat_p;
-    }
-  
+  public function setDateP($dateP)
+  {
+      $this->dateP = $dateP;
+  }
+
+  public function setResultatP($resultatP)
+  {
+      $this->resultatP = $resultatP;
+  }
+
+
+
 
 
 }
