@@ -1,45 +1,41 @@
 <?php
 
 
-class Lieu
+class Ville
 {
-    protected $idLieu, $cp, $ville, $adresse;
+    protected $idVille, $cp, $ville;
 
     public function __construct()
     {
-        $this->idLieu = 0;
+        $this->idVille = 0;
         $this->cp = "";
         $this->ville ="";
-        $this->adresse = "";
     }
 
-    public function getidLieu()
+
+/* GETTERS */
+    public function getIdVille()
     {
-        return $this->idLieu;
+        return $this->idVille;
     }
 
     public function getCp()
     {
         return $this->cp;
     }
-    public function getAnnee()
-    {
-        return $this->annee;
-    }
+
     public function getVille()
     {
         return $this->ville;
     }
 
-    public function setIdMois($idLieu)
-    {
-        $this->idLieu = $idLieu;
-    }
 
-    public function setAdresse($adresse)
+/* SETTERS */
+    public function setIdVille($idVille)
     {
-        $this->adresse = $adresse;
+        $this->idVille = $idVille;
     }
+    
     public function setCp($cp)
     {
         $this->cp = $cp;

@@ -3,24 +3,24 @@
 
 class Examen
 {
-    protected $idType, $idExam, $idLieu ;
+    private $idExam, $type, $ville ;
 
     public function __construct()
     {
         $this->idExam = 0;
-        $this->lieu = new Lieu;
-        $this->type = new Type;
+        $this->ville = new Ville;
+        $this->type = new TypeExamen;
     }
 
-    public function getIdLieu()
+    public function getVille()
     {
-        return $this->lieu->getIdLieu();
+        return $this->ville;
     }
 
-   
+
     public function getType()
     {
-        return $this->type->getIdType();
+        return $this->type;
     }
 
     public function getIdExam()
@@ -33,18 +33,15 @@ class Examen
         $this->idExam = $idExam;
     }
 
-    public function setIdLieu($idLieu)
+    public function setUneVille($uneVille)
     {
-        $this->lieu->setIdLieu($idLieu);
+        $this->uneVille = $uneVille;
     }
-    public function setType($idType)
+    public function setUnType($unType)
     {
-        $this->type->setIdType($idType);
+        $this->unType = $unType;
     }
-    public function setVille($ville)
-    {
-        $this->ville = $ville;
-    }
+
 
 
 }
