@@ -11,7 +11,7 @@ class Modele
         try{
 
           $this->pdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);
-          
+
 
         }
         catch(Exception $exp){
@@ -65,7 +65,19 @@ class Modele
 
     }
 
+    public function delete ()
+       {
+           $requete = "delete from ".$this->table." where ".$this->delid." = ".$this->delid2 ;
 
+           $select = $this->pdo->prepare($requete);
+           if($this->pdo != null) //si la connexion n'est pas nullle
+           {
+               $select->execute();
+           }
+           else{
+               return null;
+           }
+       }
 
     public function getPdo(){
 
