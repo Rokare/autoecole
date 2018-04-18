@@ -37,7 +37,6 @@
                             //INSERTION D'UN NOUVEAU TIERS
                             $unTiers = new Tiers();
                             $unTiers->renseigner($_POST);
-
                             $unControleur->insert($unTiers);
                             echo "<br> Insertion réussie <br>";
                         }

@@ -27,7 +27,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Date de naissance</label>
-      <input type="date" class="form-control" id="inputEmail4" name="date_naissance" placeholder="Date format AAAA-MM-JJ" required>
+      <input type="date" class="form-control" id="inputEmail4" name="date_n" placeholder="Date format AAAA-MM-JJ" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
@@ -48,7 +48,7 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label for="inputAddress">Code Postale</label>
-    <input type="text" class="form-control" id="inputAdresse" name="id_lieu" placeholder="Ex: 1215" pattern="[0-9]{5}" required>
+    <input type="text" class="form-control" id="inputAdresse" name="id_ville" placeholder="Ex: 1215" pattern="[0-9]{5}" required>
   </div>
   <div class="form-group col-md-6">
     <label for="inputAddress">Telephone</label>

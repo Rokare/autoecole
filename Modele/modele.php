@@ -1,4 +1,5 @@
 <?php
+include("./Controleur/function.php");
 class Modele
 {
     private $pdo, $table;
@@ -39,6 +40,7 @@ class Modele
         }
     }
 
+
     public function insert($donnee){
 
         if($this->pdo != null){
@@ -55,8 +57,9 @@ class Modele
 
             //explode : sépare une chaine de caractère en tableau
             //implode : concatène un tableau
+            $matricule = matricule();
             $listeChamps = implode(",", $champs);
-            $requete = "insert into ".$this->table." values (null,".$listeChamps.");";
+            $requete = "insert into ".$this->table." values (".$matricule.",".$listeChamps.");";
 
             $insert = $this->pdo->prepare($requete);
             $insert->execute($donnees);

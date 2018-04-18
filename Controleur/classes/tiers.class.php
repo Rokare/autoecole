@@ -16,6 +16,7 @@ class Tiers
         $this->email = "";
         $this->telephone = "";
         $this->niveau = 0;
+        $this->id_ville = 0;
         $this->ville = new Ville;
 
     }
@@ -24,13 +25,14 @@ class Tiers
 
         $this->nom = $tab['nom'];
         $this->prenom = $tab['prenom'];
-        $this->dateNaissance = $tab['date_naissance'];
+        $this->dateNaissance = $tab['date_n'];
         $this->adresse = $tab['adresse'];
         $this->login = $tab['login'];
         $this->mdp = $tab['mdp'];
         $this->email = $tab['email'];
         $this->telephone = $tab['telephone'];
-        $this->ville = $tab['ville'];
+        $this->id_ville = $tab['id_ville'];
+
 
     }
 
@@ -39,12 +41,16 @@ class Tiers
 
         $tab = array();
 
-        $tab['id_lieu'] = $this->codeLieu;
+
         $tab['nom'] = $this->nom ;
         $tab['prenom'] = $this->prenom;
-        $tab['date_naissance'] = $this->dateNaissance;
+        $tab['date_n'] = $this->dateNaissance;
+        $tab['adresse'] = $this->adresse;
+        $tab['login'] = $this->login;
+        $tab['mdp'] = $this->mdp;
+        $tab['email'] =$this->email;
         $tab['telephone'] = $this->telephone;
-
+        $tab['id_ville'] = $this->id_ville;
         return($tab);
     }
 
