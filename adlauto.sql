@@ -176,7 +176,7 @@ CREATE TABLE voiture(
 	nb_kilo_ini float,
 	etat varchar(8) not null,
 	conso varchar(8),
-	nb_places int,
+	nb_places int(2),
 	FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
 	PRIMARY KEY(id_vehicule)
 );
@@ -189,8 +189,8 @@ CREATE TABLE moto(
 	date_achat date not null,
 	nb_kilo_ini float,
 	etat varchar(8) not null,
-	cylindres int,
-	puissance int,
+	cylindres int(3),
+	puissance int(8),
 	FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
 	PRIMARY KEY(id_vehicule)
 );
