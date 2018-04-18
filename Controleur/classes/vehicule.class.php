@@ -1,127 +1,127 @@
 <?php
 
-class vehicule 
+class vehicule
 
     {
-    protected $idVehicule, $NumImmatri, $NomMod, $AnneeMod, $DateAchat, $NbKiloIni, $Etat;
+    protected $id_vehicule, $num_immatri, $nom_mod, $annee_mod, $date_achat, $nb_kilo_ini, $etat;
     public function __construct()
     {
-        $this->idVehicule = 0;
-        $this->NumImmatri = "";
-        $this->NomMod = "";
-        $this->AnneeMod = "";
-        $this->DateAchat = "";
-        $this->NbKiloIni = 0;
-        $this->Etat = "";
+        $this->idvehicule = 0;
+        $this->num_immatri = "";
+        $this->nom_mod = "";
+        $this->annee_mod = "";
+        $this->date_achat = "";
+        $this->nb_kilo_ini = 0;
+        $this->etat = "";
     }
 
 
 
 
     public function renseigner($tab){
-            
-        $this->NumImmatri = $tab['num_immatri'];
-        $this->NomMod = $tab['nom_mod'];
-        $this->AnneeMod = $tab['annne_mod'];
-        $this->DateAchat = $tab['date_achat'];
-        $this->NbKiloIni = $tab['nb_kilo_ini'];
-        $this->Etat = $tab['etat'];
-        
+
+        $this->num_immatri = $tab['num_immatri'];
+        $this->nom_mod = $tab['nom_mod'];
+        $this->annee_mod = $tab['annne_mod'];
+        $this->date_achat = $tab['date_achat'];
+        $this->nb_kilo_ini = $tab['nb_kilo_ini'];
+        $this->etat = $tab['etat'];
+
     }
 
     //Methode qui permet de serialiser l'objet -> tableau
     public function serialiser(){
-        
+
         $tab = array();
-        $tab['num_immatri'] = $this->NumImmatri;
-        $tab['nom_mod'] = $this->NomMod ;
-        $tab['annne_mod'] =  $this->AnneeMod ;
-        $tab['date_achat'] = $this->DateAchat;
-        $tab['nb_kilo_ini'] = $this->NbKiloIni;
-        $tab['etat'] = $this->Etat;
+        $tab['num_immatri'] = $this->num_immatri;
+        $tab['nom_mod'] = $this->nom_mod ;
+        $tab['annne_mod'] =  $this->annee_mod ;
+        $tab['date_achat'] = $this->date_achat;
+        $tab['nb_kilo_ini'] = $this->nb_kilo_ini;
+        $tab['etat'] = $this->etat;
         return($tab);
     }
 
     
     /* GETTERS*/
-    public function getIdVehicule(){
-        return $this->idVehicule;
+    public function getId_Vehicule(){
+        return $this->id_vehicule;
     }
 
-    public function getNumImmatri(){
-        
-        return $this->NumImmatri;
-        
-    }
-    
-    public function getNomMod(){
-        
-        return $this->NomMod;
-        
+    public function getNum_Immatri(){
+
+        return $this->num_immatri;
+
     }
 
-    public function getAnneeMod(){
-        
-        return $this->AnneeMod;
-        
+    public function getNom_Mod(){
+
+        return $this->nom_mod;
+
     }
-    
+
+    public function getAnnee_Mod(){
+
+        return $this->annee_mod;
+
+    }
+
     public function getDateAchat(){
-        
-        return $this->DateAchat;
-        
+
+        return $this->date_achat;
+
     }
-    
-    public function getNbKiloIni(){
-        
-        return $this->NbKiloIni;
-        
+
+    public function getNb_Kilo_Ini(){
+
+        return $this->nb_kilo_ini;
+
     }
 
     public function getEtat(){
-        return $this->Etat;
+        return $this->etat;
     }
-    
-    
-    
+
+
+
     /* SETTERS */
-    public function setIdVehicule($idVehicule){
-        $this->idVehicule = $idVehicule;
+    public function setId_Vehicule($id_vehicule){
+        $this->id_vehicule = $id_vehicule;
     }
 
-    public function setNumImmatri($NumImmatri){
-        
-        $this->NumImmatri = $NumImmatri;
-        
-    }
-    
-    public function setNomMod($NomMod){
-        
-        $this->NomMod = $NomMod;
-        
+    public function setNum_Immatri($num_immatri){
+
+        $this->num_immatri = $num_immatri;
+
     }
 
-    public function setAnneeMod($AnneeMod){
-        
-        $this->AnneeMod = $AnneeMod;
-        
-    }
-    
-    public function setDateAchat($DateAchat){
-        
-        $this->DateAchat = $DateAchat;
-        
-    }
-    
-    public function setNbKiloIni($NbKiloIni){
-        
-        $this->NbKiloIni = $NbKiloIni;
-        
+    public function setNom_Mod($nom_mod){
+
+        $this->nom_mod = $nom_mod;
+
     }
 
-    public function setEtat($Etat)
+    public function setAnnee_Mod($annne_mod){
+
+        $this->annne_mod = $annne_mod;
+
+    }
+
+    public function setDate_Achat($date_achat){
+
+        $this->date_achat = $date_achat;
+
+    }
+
+    public function setNb_Kilo_Ini($nb_kilo_ini){
+
+        $this->nb_kilo_ini = $nb_kilo_ini;
+
+    }
+
+    public function setEtat($etat)
     {
-        $this->Etat = $Etat;
+        $this->etat = $etat;
     }
 
 }
