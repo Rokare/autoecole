@@ -2,7 +2,7 @@
 
 class TypeExamen
 {
-    protected $idType, $libelle;
+    private $idType, $libelle;
 
     public function __construct()
     {

@@ -3,7 +3,7 @@
 
 class Formule
 {
-    protected $idFormule, $libelle, $tarif, $description, $dateDebut, $dateFin ;
+    private $idFormule, $libelle, $tarif, $description, $dateDebut, $dateFin ;
 
     public function __construct()
     {

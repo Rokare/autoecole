@@ -2,10 +2,10 @@
 
 class Candidat extends Tiers{
 
-    protected $dateInscription, $modeFacturation;
+    private $dateInscription, $modeFacturation;
 
     public function __construct(){
-        
+
         parent::__construct();
         $this->dateInscription = "";
         $this->modeFacturation = "";
