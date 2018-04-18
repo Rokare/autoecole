@@ -26,7 +26,7 @@
     <body>
         <?php
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
-                $unControleur = new Controleur("localhost","","root","","tiers");
+                $unControleur = new Controleur("localhost","adlauto","root","","tiers");
                 include "Vue/vueBarreNavigation.php";
 
                 switch($page)
@@ -38,7 +38,13 @@
                             $unTiers = new Tiers();
                             $unTiers->renseigner($_POST);
                             $unControleur->insert($unTiers);
+                            if($unControleur->insert($unTiers))
+                            {
                             echo "<br> Insertion réussie <br>";
+                            }
+                            else {
+                              echo "erreur d'insertion";
+                            }
                         }
                     break;
                     case 2:

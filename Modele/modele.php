@@ -44,7 +44,7 @@ class Modele
     public function insert($donnee){
 
         if($this->pdo != null){
-
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $donnees = array();
             $champs = array();
 
@@ -59,7 +59,7 @@ class Modele
             //implode : concatène un tableau
             $matricule = matricule();
             $listeChamps = implode(",", $champs);
-            $requete = "insert into ".$this->table." values (".$matricule.",".$listeChamps.");";
+            $requete = "insert into ".$this->table." values ('$matricule',".$listeChamps.");";
 
             $insert = $this->pdo->prepare($requete);
             $insert->execute($donnees);
