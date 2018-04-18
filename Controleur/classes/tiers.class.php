@@ -1,5 +1,5 @@
 <?php
-
+include("ville.class.php");
 class Tiers
 {
     protected $matricule, $nom, $prenom, $dateNaissance, $adresse, $login, $mdp, $email, $telephone, $niveau, $ville;
