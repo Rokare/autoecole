@@ -1,8 +1,8 @@
 <?php
 
-class Type_Examen
+class TypeExamen
 {
-    protected $idType, $libelle; 
+    protected $idType, $libelle;
 
     public function __construct()
     {

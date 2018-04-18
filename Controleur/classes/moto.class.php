@@ -2,17 +2,17 @@
 
 class Moto extends Vehicule
 {
-    protected $Cylindre, $Puissance;
+    private $cylindre, $puissance;
     public function __construct()
     {
         parent::__construct();
-        $this->Cylindre = "";
-        $this->Puissance = "";
+        $this->cylindre = "";
+        $this->puissance = "";
     }
 
     public function getCylindre()
     {
-        return $this->Cylindre;
+        return $this->cylindre;
     }
 
     public function getPuissance()
@@ -21,14 +21,14 @@ class Moto extends Vehicule
     }
 
 
-    public function setConso($Cylindre)
+    public function setConso($cylindre)
     {
-        $this->Cylindre = $Cylindre;
+        $this->cylindre = $cylindre;
     }
 
-    public function setPuisssance($Puissance)
+    public function setPuisssance($puissance)
     {
-        $this->Puissance = $Puissance;
+        $this->puissance = $puissance;
     }
 
 }
