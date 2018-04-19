@@ -36,6 +36,7 @@ BEFORE INSERT ON etudiant
 FOR EACH ROW
     BEGIN
    	declare nb int;
+	declare nb2 int;
 	
     SELECT count(*) into nb 
 	from etudiant 
@@ -43,7 +44,13 @@ FOR EACH ROW
 	or login = new.login 
 	or matricule = new.matricule;
 	
-    IF nb > 0 
+	SELECT count(*) into nb2 
+	from tiers 
+	where email = new.email 
+	or login = new.login 
+	or matricule = new.matricule;
+	
+    IF nb > 0 or nb2 > 0
     THEN  
         SIGNAL SQLSTATE '42000'
         SET MESSAGE_TEXT = " erreur d'insertion dans la table etudiant ";
@@ -86,4 +93,96 @@ DELIMITER ;
 
 
 
-insert into etudiant values("grxegr", "grxegeg", "grerx", "0000-05-03", "gxegrg","grxer", "gxrg", "gxrre", "grxeg", 4444, "0000-02-02","gexgg",25, 25);
+DROP TRIGGER IF EXISTS insertMoniteur;
+
+DELIMITER //
+
+CREATE TRIGGER insertMoniteur
+BEFORE INSERT ON moniteur
+FOR EACH ROW
+    BEGIN
+   	declare nb int;
+	declare nb2 int;
+	
+    SELECT count(*) into nb 
+	from moniteur
+	where email = new.email 
+	or login = new.login 
+	or matricule = new.matricule;
+	
+	SELECT count(*) into nb2 
+	from tiers
+	where email = new.email 
+	or login = new.login 
+	or matricule = new.matricule;
+	
+    IF nb > 0 or nb2 > 0
+    THEN  
+        SIGNAL SQLSTATE '42000'
+        SET MESSAGE_TEXT = " erreur d'insertion dans la table moniteur ";
+	ELSE
+		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.telephone, new.id_ville);
+    END IF;
+	
+
+    END //
+DELIMITER ;
+
+
+
+
+DROP TRIGGER IF EXISTS insertPersonnel;
+
+DELIMITER //
+
+CREATE TRIGGER insertPersonnel
+BEFORE INSERT ON personnel
+FOR EACH ROW
+    BEGIN
+   	declare nb int;
+	declare nb2 int;
+	
+    SELECT count(*) into nb 
+	from personnel
+	where email = new.email 
+	or login = new.login 
+	or matricule = new.matricule;
+	
+	SELECT count(*) into nb2 
+	from tiers
+	where email = new.email 
+	or login = new.login 
+	or matricule = new.matricule;
+	
+    IF nb > 0 or nb2 > 0
+    THEN  
+        SIGNAL SQLSTATE '42000'
+        SET MESSAGE_TEXT = " erreur d'insertion dans la table personnel ";
+	ELSE
+		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.telephone, new.id_ville);
+    END IF;
+	
+
+    END //
+DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+SELECT count(*) 
+	from tiers
+	where email = "grxeg" 
+	or login = "gxrg" 
+	or matricule = "grxegr";
+
+
+
+
+
+insert into moniteur values("grxegr", "grxegeg", "grerx", "0000-05-03", "gxegrg", "gxrg", "gxrre", "grxeg","4544",44444, "0000-02-02","0000-02-02");
