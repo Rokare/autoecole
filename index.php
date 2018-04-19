@@ -38,13 +38,8 @@
                             $unTiers = new Tiers();
                             $unTiers->renseigner($_POST);
                             $unControleur->insert($unTiers);
-                            if($unControleur->insert($unTiers))
-                            {
                             echo "<br> Insertion réussie <br>";
-                            }
-                            else {
-                              echo "erreur d'insertion";
-                            }
+
                         }
                     break;
                     case 2:
