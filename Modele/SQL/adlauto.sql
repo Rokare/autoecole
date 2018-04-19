@@ -4,26 +4,31 @@ CREATE DATABASE IF NOT EXISTS adlauto;
 USE adlauto;
 
 CREATE TABLE ville(
-	id_ville int(4) not null auto_increment,
+	id_ville int(8) not null auto_increment,
 	cp varchar(5) not null,
 	ville varchar(128) not null,
 	PRIMARY KEY(id_ville)
-)engine = innoDB;
+);
+
+CREATE TABLE datel(
+	dhd datetime not null,
+	PRIMARY KEY(dhd)
+);
 
 CREATE TABLE type_examen(
-	id_type int(4) not null ,
+	id_type int(4) not null auto_increment,
 	libelle varchar(70) not null,
 	PRIMARY KEY(id_type)
-)engine = innoDB;
+);
 
 CREATE TABLE examen(
 	id_exam int(6) not null auto_increment,
 	id_type int(4) not null,
-	id_ville int(4) not null,
+	id_ville int(8) not null,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
 	FOREIGN KEY(id_type) REFERENCES type_examen(id_type),
 	PRIMARY KEY(id_exam)
-)engine = innoDB;
+);
 
 CREATE TABLE formule(
 	id_formule int(4) not null auto_increment,
@@ -36,7 +41,7 @@ CREATE TABLE formule(
 );
 
 CREATE TABLE tiers(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -45,13 +50,14 @@ CREATE TABLE tiers(
 	mdp varchar(32) not null,
 	email varchar(128) not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	niveau int not null,
+	id_ville int(8) not null,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
 	PRIMARY KEY(matricule)
 );
 
 CREATE TABLE moniteur(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -60,7 +66,8 @@ CREATE TABLE moniteur(
 	mdp varchar(32) not null,
 	email varchar(128) not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	niveau int not null,
+	id_ville int(8) not null,
 	date_e date not null,
 	date_fe date,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
@@ -69,7 +76,7 @@ CREATE TABLE moniteur(
 );
 
 CREATE TABLE personnel(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -77,8 +84,9 @@ CREATE TABLE personnel(
 	login varchar(32) not null,
 	mdp varchar(32) not null,
 	email varchar(128) not null,
+	niveau int not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	id_ville int(8) not null,
 	date_e date not null,
 	date_fe date,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
@@ -87,7 +95,7 @@ CREATE TABLE personnel(
 );
 
 CREATE TABLE candidat(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -95,8 +103,9 @@ CREATE TABLE candidat(
 	login varchar(32) not null,
 	mdp varchar(32) not null,
 	email varchar(128) not null,
+	niveau int not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	id_ville int(8) not null,
 	date_i date not null,
 	mode_fact varchar(32) not null,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
@@ -105,7 +114,7 @@ CREATE TABLE candidat(
 );
 
 CREATE TABLE etudiant(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -113,8 +122,9 @@ CREATE TABLE etudiant(
 	login varchar(32) not null,
 	mdp varchar(32) not null,
 	email varchar(128) not null,
+	niveau int not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	id_ville int(8) not null,
 	date_i date not null,
 	mode_fact varchar(32) not null,
 	niv_etu int not null,
@@ -125,7 +135,7 @@ CREATE TABLE etudiant(
 );
 
 CREATE TABLE salarie(
-	matricule varchar(7) not null,
+	matricule varchar(9) not null,
 	nom varchar(32) not null,
 	prenom varchar(32) not null,
 	date_n date not null,
@@ -133,8 +143,9 @@ CREATE TABLE salarie(
 	login varchar(32) not null,
 	mdp varchar(32) not null,
 	email varchar(128) not null,
+	niveau int not null,
 	telephone varchar(10) not null,
-	id_ville int(4) not null,
+	id_ville int(8) not null,
 	date_i date not null,
 	mode_fact varchar(32) not null,
 	nom_entrep varchar(128),
@@ -170,7 +181,7 @@ CREATE TABLE voiture(
 	nb_kilo_ini float,
 	etat varchar(8) not null,
 	conso varchar(8),
-	nb_places int,
+	nb_places int(2),
 	FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
 	PRIMARY KEY(id_vehicule)
 );
@@ -183,8 +194,8 @@ CREATE TABLE moto(
 	date_achat date not null,
 	nb_kilo_ini float,
 	etat varchar(8) not null,
-	cylindres int,
-	puissance int,
+	cylindres int(3),
+	puissance int(8),
 	FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
 	PRIMARY KEY(id_vehicule)
 );
@@ -220,13 +231,15 @@ CREATE TABLE planning(
 	date_hf date,
 	id_lecon int not null,
 	id_vehicule int(4) not null,
+	dhd datetime not null,
 	mat_m varchar(7) not null,
 	mat_c varchar(7) not null,
 	FOREIGN KEY(id_lecon) REFERENCES lecon(id_lecon),
 	FOREIGN KEY(id_vehicule) REFERENCES vehicule(id_vehicule),
 	FOREIGN KEY(mat_m) REFERENCES moniteur(matricule),
 	FOREIGN KEY(mat_c) REFERENCES candidat(matricule),
-	PRIMARY KEY(id_lecon, id_vehicule, mat_m, mat_c)
+	FOREIGN KEY(dhd) REFERENCES datel(dhd),
+	PRIMARY KEY(id_lecon, id_vehicule, mat_m, mat_c, dhd)
 );
 
 CREATE TABLE choisir(
@@ -269,5 +282,10 @@ FROM examen_pratique
 WHERE 1 = 2;
 
 
+source C:\Users\user\Downloads\villes_france.sql
 
+INSERT INTO ville(id_ville, cp, ville)
+SELECT ville_id, ville_code_postal,ville_nom
+FROM villes_france_free;
 
+DROP TABLE villes_france_free;
