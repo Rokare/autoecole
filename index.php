@@ -35,9 +35,9 @@
                         include "Vue/vueInscription.php";
                         if(isset($_POST['inscription'])){
                             //INSERTION D'UN NOUVEAU TIERS
-                            $unTiers = new Tiers();
-                            $unTiers->renseigner($_POST);
-                            $unControleur->insert($unTiers);
+                            $unCandidat = new Candidat();
+                            $unCandidat->renseigner($_POST);
+                            $unControleur->insert($unCandidat);
                             echo "<br> Insertion réussie <br>";
 
                         }

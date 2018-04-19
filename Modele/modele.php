@@ -69,18 +69,42 @@ class Modele
     }
 
     public function delete ()
-       {
-           $requete = "delete from ".$this->table." where ".$this->delid." = ".$this->delid2 ;
+     {
+         $requete = "delete from ".$this->table." where ".$this->delid." = ".$this->delid2 ;
 
-           $select = $this->pdo->prepare($requete);
-           if($this->pdo != null) //si la connexion n'est pas nullle
-           {
-               $select->execute();
-           }
-           else{
-               return null;
-           }
-       }
+         $select = $this->pdo->prepare($requete);
+         if($this->pdo != null) //si la connexion n'est pas nullle
+         {
+             $select->execute();
+         }
+         else{
+             return null;
+         }
+     }
+
+
+    public function verifmatricule($matricule)
+    {
+        if($this->pdo == null){
+
+            return null;
+
+        }else{
+
+            $requete = "select matricule from tiers where matricule = ".$matricule."  ;";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultats = $select->fetchAll();
+            if(empty($resultats))
+            {
+              return true;
+            }
+            else {
+              return false;
+            }
+        }
+
+    }
 
     public function getPdo(){
 
