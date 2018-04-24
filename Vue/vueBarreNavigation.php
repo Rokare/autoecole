@@ -5,12 +5,6 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     
-
-    
-      
-    
-    
-    
       
       <ul class="nav navbar-nav navbar-right ml-auto">
       <li class="nav-item">			
