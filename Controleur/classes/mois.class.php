@@ -1,9 +1,9 @@
 <?php
 
 
-class Mois 
+class Mois
 {
-    protected $idMois, $annee;
+    private $idMois, $annee;
 
     public function __construct()
     {

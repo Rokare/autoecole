@@ -4,13 +4,14 @@
 class Lecon
 {
 
-    public $idLecon, $intitule, $duree;
+    public $idLecon, $intitule, $duree, $dateHd;
 
     public function __construct()
     {
         $this->idLecon = 0;
         $this->intitule = "";
         $this->duree = "";
+        $this->dateHd = "";
     }
 
     public function getIdLecon()
@@ -28,6 +29,10 @@ class Lecon
         return $this->duree;
     }
 
+    public function getDateHD(){
+        return $this->dateHd;
+    }
+
 
     public function setIdLecon($idLecon)
     {
@@ -41,7 +46,9 @@ class Lecon
     {
         $this->duree = $duree;
     }
-
+    public function setDateHd($dateHd){
+        $this->dateHd = $dateHd;
+    }
 }
 
 ?>

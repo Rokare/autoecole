@@ -3,14 +3,14 @@
 
 class Formule
 {
-    protected $idFormule, $idTiers, $date_souscription ;
+    private $idFormule, $idTiers, $date_souscription ;
 
     public function __construct()
     {
         $this->formule = new Formule;
         $this->candidat = new Candidat;
         $this->dateSouscription = "";
- 
+
     }
 
 
@@ -26,7 +26,7 @@ class Formule
     {
         return $this->dateSouscription;
     }
-   
+
 
 
     public function setIdFormule($idFormule)
@@ -44,7 +44,7 @@ class Formule
         $this->dateSouscription =  $date_souscription;
     }
 
-   
+
 
 }
 

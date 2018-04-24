@@ -1,59 +1,84 @@
-<?php 
+<?php
 
-class Formule{
 
-    private $idFormule, $libelle, $tarif, $description, $dateDebut, $dateFin;
+class Formule
+{
+    private $idFormule, $libelle, $tarif, $description, $dateDebut, $dateFin ;
 
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->idFormule = 0;
         $this->libelle = "";
         $this->tarif = 0.0;
         $this->description = "";
         $this->dateDebut = "";
         $this->dateFin = "";
-
     }
 
 
-    /*GETTERS*/
-    public function getIdFormule(){
+    public function getIdFormule()
+    {
         return $this->idFormule;
     }
-    public function getLibelle(){
+    public function getLibelle()
+    {
         return $this->libelle;
     }
-    public function getTarif(){
+    public function getTarif()
+    {
         return $this->tarif;
     }
-    public function getDescription(){
+
+    public function getDescription()
+    {
         return $this->description;
     }
-    public function getDateDebut(){
+
+    public function getDateDebut()
+    {
         return $this->dateDebut;
     }
-    public function getDateFin(){
+
+    public function getDateFin()
+    {
         return $this->dateFin;
     }
-    /*SETTERS*/
-    public function setIdFormule($idFormule){
+
+    public function setIdFormule($idFormule)
+    {
         $this->idFormule = $idFormule;
     }
-    public function setLibelle($libelle){
+
+    public function setLibelle($libelle)
+    {
         $this->libelle = $libelle;
     }
-    public function setTarif($tarif){
-        $this->tarif = $tarif;
+
+    public function setTarif($tarif)
+    {
+        $this->tarif =  $tarif;
     }
-    public function setDescription($description){
+
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
-    public function setDateDebut($dateDebut){
+
+    public function setDateDebut($dateDebut)
+    {
         $this->dateDebut = $dateDebut;
     }
-    public function setDateFin($dateFin){
+
+    public function setDateFin($dateFin)
+    {
         $this->dateFin = $dateFin;
     }
+
+
 }
+
+
+
+
 
 ?>

@@ -2,33 +2,33 @@
 
 class Voiture extends Vehicule
 {
-    protected $Conso, $NbPlace;
+    private $conso, $nbPlace;
     public function __construct()
     {
         parent::__construct();
-        $this->Conso = "";
-        $this->NbPlace = "";
+        $this->conso = "";
+        $this->nbPlace = "";
     }
 
     public function getConso()
     {
-        return $this->Conso;
+        return $this->conso;
     }
 
     public function getNbPlace()
     {
-        return $this->NbPlace;
+        return $this->nbPlace;
     }
 
 
-    public function setConso($Conso)
+    public function setConso($conso)
     {
-        $this->Conso = $Conso;
+        $this->conso = $conso;
     }
 
-    public function setNbPlace($NbPlace)
+    public function setNbPlace($nbPlace)
     {
-        $this->NbPlace = $NbPlace;
+        $this->nbPlace = $nbPlace;
     }
 
 }

@@ -4,64 +4,61 @@
 
 class Revision
 {
-    protected $idRevision,$idVehicule, $Libelle, $Motif, $DateRevision;
+    private $idRevision, $vehicule, $libelle, $motif, $dateRevision;
+
     public function __construct()
     {
     $this->vehicule = new Vehicule;
     $this->idRevision = 0;
-    $this->Libelle = "";
-    $this->Motif = "";
-    $this->DateRevision = "";
-    
+    $this->libelle = "";
+    $this->motif = "";
+    $this->dateRevision = "";
     }
 
-
-
-
-    public function getIdVehicule(){
-        return $this->vehicule->getIdVehicule();
+    public function getVehicule(){
+        return $this->vehicule;
     }
 
-    public function getidRevision()
+    public function getIdRevision()
     {
         return $this->idRevision;
     }
 
     public function getLibelle()
     {
-        return $this->Libelle;
+        return $this->libelle;
     }
     public function getMotif()
     {
-        return $this->Motif;
+        return $this->motif;
     }
 
     public function getDateRevision()
     {
-        return $this->DateRevision;
+        return $this->dateRevision;
     }
-    public function setVehicule($idVehicule){
-        $this->vehicule->setIdVehicule = $idVehicule->getIdVehicule;
-       //$this->vehicule->setIdVehicule($idVehicule);
+    public function setVehicule($vehicule){
+        $this->vehicule = $vehicule;
+
     }
 
     public function setidRevision($idRevision)
     {
         $this->idRevision = $idRevision;
     }
-    
-    public function setLibelle($Libelle)
+
+    public function setLibelle($libelle)
     {
-        $this->Libelle = $Libelle;
+        $this->libelle = $libelle;
     }
-    
-    public function setMotif($Motif)
+
+    public function setMotif($motif)
     {
-        $this->Motif= $Motif;
+        $this->motif= $motif;
     }
-    public function setDateRevision($DateRevision)
+    public function setDateRevision($dateRevision)
     {
-        $this->idDateRevision = $DateRevision;
+        $this->dateRevision = $dateRevision;
     }
 }
 
