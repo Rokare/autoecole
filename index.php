@@ -56,6 +56,9 @@
                     case 2:
                         include "Vue/tarif.php";
                     break;
+                    case 3:
+                          include "Vue/vueCandidat.php";
+                        break;
                 }
             ?>
     </body>
