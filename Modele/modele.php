@@ -22,6 +22,39 @@ class Modele
         }
     }
 
+
+    public function connexion($login, $mdp)
+    {
+
+					$requete = $bdd->prepare("select * from  where IDENTIFIANT = '$login' AND   MDP = '$mdp'");
+
+						if($reponse = $requete->fetch())
+						{
+
+								echo '<meta http-equiv="refresh" content="0; url=index2.php" />';
+								echo "Vous êtes loggé";
+								$_SESSION['login'] = $reponse['IDENTIFIANT'];
+								$_SESSION['connecte'] = true; //variable de session
+								$_SESSION['id'] = $reponse['ID_USER'];
+								$_SESSION['lvl'] = $reponse['LVL'];
+
+
+
+
+
+						}
+						else
+						{
+							echo "Mauvais identifiants";
+
+						}
+
+
+
+
+
+    }
+
     public function selectAll()
     {
         if($this->pdo == null){
@@ -39,7 +72,28 @@ class Modele
 
         }
     }
+    public function verifmatricule($matricule)
+    {
+        if($this->pdo == null){
 
+            return null;
+
+        }else{
+
+            $requete = "select matricule from tiers where matricule = ".$matricule."  ;";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultats = $select->fetchAll();
+            if(empty($resultats))
+            {
+              return true;
+            }
+            else {
+              return false;
+            }
+        }
+
+    }
 
     public function insert($donnee){
 
@@ -57,7 +111,7 @@ class Modele
 
             //explode : sépare une chaine de caractère en tableau
             //implode : concatène un tableau
-            $matricule = matricule();
+
             $listeChamps = implode(",", $champs);
             $requete = "insert into ".$this->table." values ('$matricule',".$listeChamps.");";
 
@@ -83,28 +137,7 @@ class Modele
      }
 
 
-    public function verifmatricule($matricule)
-    {
-        if($this->pdo == null){
 
-            return null;
-
-        }else{
-
-            $requete = "select matricule from tiers where matricule = ".$matricule."  ;";
-            $select = $this->pdo->prepare($requete);
-            $select->execute();
-            $resultats = $select->fetchAll();
-            if(empty($resultats))
-            {
-              return true;
-            }
-            else {
-              return false;
-            }
-        }
-
-    }
 
     public function getPdo(){
 

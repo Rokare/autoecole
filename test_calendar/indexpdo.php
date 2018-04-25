@@ -1,9 +1,17 @@
 <?php
 session_start();
+
+
 include("dbconn.php");
+$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(!isset($_SESSION['user']))
 {
     $_SESSION['user'] = session_id();
+	
+}
+else
+{
+	echo 'dqd';
 }
 $uid = $_SESSION['user'];  // set your user id settings
 $datetime_string = date('c',time());
@@ -13,47 +21,55 @@ if(isset($_POST['action']) or isset($_GET['view']))
     if(isset($_GET['view']))
     {
         header('Content-Type: application/json');
-        $start = mysqli_real_escape_string($connection,$_GET["start"]);
-        $end = mysqli_real_escape_string($connection,$_GET["end"]);
+        $start = "2018-04-23";
+        $end = "2018-04-23";
 
-        $result = mysqli_query($connection,"SELECT `id`, `start` ,`end` ,`title` FROM  `events` where (DATE(start) >= '$start' AND DATE(start) <= '$end') and uid='".$uid."'");
-        while($row = mysqli_fetch_assoc($result))
+       /*$result =$connection->prepare("SELECT `id`, `start` ,`end` ,`title` FROM  `events` where (date(start) >= :start AND date(start) <= :end) and uid=':uid'");
+		$result->bindValue(":uid",$uid,PDO::PARAM_STR);
+    	$result->bindValue(":end",$end,PDO::PARAM_STR);
+    	$result->bindValue(":start",$start,PDO::PARAM_STR);
+		$result->execute();*/
+		 $result = $connection->query("SELECT `id`, `start` ,`end` ,`title` FROM  `events` where uid='j6svf047q4tj4f6tn37vett7h2'");
+		
+       while($row = $result->fetch(PDO::FETCH_ASSOC))
         {
             $events[] = $row;
         }
+		
+		
         echo json_encode($events);
-        exit;
+        
     }
     elseif($_POST['action'] == "add")
     {
-        mysqli_query($connection,"INSERT INTO `events` (
+        $connection->query("INSERT INTO `events` (
                     `title` ,
                     `start` ,
                     `end` ,
                     `uid`
                     )
                     VALUES (
-                    '".mysqli_real_escape_string($connection,$_POST["title"])."',
-                    '".mysqli_real_escape_string($connection,date('Y-m-d H:i:s',strtotime($_POST["start"])))."',
-                    '".mysqli_real_escape_string($connection,date('Y-m-d H:i:s',strtotime($_POST["end"])))."',
-                    '".mysqli_real_escape_string($connection,$uid)."'
+                    '".$_POST["title"]."',
+                    '".date('Y-m-d H:i:s',strtotime($_POST["start"]))."',
+                    '".date('Y-m-d H:i:s',strtotime($_POST["end"]))."',
+                    '".$uid."'
                     )");
         header('Content-Type: application/json');
-        echo '{"id":"'.mysqli_insert_id($connection).'"}';
+        echo '{"id":"'.$connection->lastInsertId().'"}';
         exit;
     }
     elseif($_POST['action'] == "update")
     {
-        mysqli_query($connection,"UPDATE `events` set
-            `start` = '".mysqli_real_escape_string($connection,date('Y-m-d H:i:s',strtotime($_POST["start"])))."',
-            `end` = '".mysqli_real_escape_string($connection,date('Y-m-d H:i:s',strtotime($_POST["end"])))."'
-            where uid = '".mysqli_real_escape_string($connection,$uid)."' and id = '".mysqli_real_escape_string($connection,$_POST["id"])."'");
+        $connection->query("UPDATE `events` set
+            `start` = '".date('Y-m-d H:i:s',strtotime($_POST["start"]))."',
+            `end` = '".date('Y-m-d H:i:s',strtotime($_POST["end"]))."'
+            where uid = '".$uid."' and id = '".$_POST["id"]."'");
         exit;
     }
     elseif($_POST['action'] == "delete")
     {
-        mysqli_query($connection,"DELETE from `events` where uid = '".mysqli_real_escape_string($connection,$uid)."' and id = '".mysqli_real_escape_string($connection,$_POST["id"])."'");
-        if (mysqli_affected_rows($connection) > 0) {
+        $connection->query("DELETE from `events` where uid = '".$uid."' and id = '".$_POST["id"]."'");
+        if ($connection->rowCount() > 0) {
             echo "1";
         }
         exit;
