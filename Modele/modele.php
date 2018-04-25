@@ -1,5 +1,5 @@
 <?php
-include("./Controleur/function.php");
+
 class Modele
 {
     private $pdo, $table;

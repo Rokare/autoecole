@@ -30,7 +30,7 @@
     
         <?php
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
-                $unControleur = new Controleur("localhost","ppe","root","","tiers");
+                $unControleur = new Controleur("localhost","adlauto","root","","tiers");
                 include "Vue/vueBarreNavigation.php";
             
                 switch($page)

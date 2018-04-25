@@ -1,8 +1,6 @@
 <?php
 session_start();
 include("dbconn.php");
-
-$connection = new PDO("mysql:host='localhost';dbname='adlauto','root',''");
 if(!isset($_SESSION['user']))
 {
     $_SESSION['user'] = session_id();
@@ -18,7 +16,7 @@ if(isset($_POST['action']) or isset($_GET['view']))
         $start = mysqli_real_escape_string($connection,$_GET["start"]);
         $end = mysqli_real_escape_string($connection,$_GET["end"]);
 
-        $result = mysqli_query($connection,"SELECT `id`, `start` ,`end` ,`title` FROM  `events` where (date(start) >= '$start' AND date(start) <= '$end') and uid='".$uid."'");
+        $result = mysqli_query($connection,"SELECT `id`, `start` ,`end` ,`title` FROM  `events` where (DATE(start) >= '$start' AND DATE(start) <= '$end') and uid='".$uid."'");
         while($row = mysqli_fetch_assoc($result))
         {
             $events[] = $row;
