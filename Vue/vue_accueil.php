@@ -1,6 +1,4 @@
-
-
-    <main role="main">
+   <main role="main">
 
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -25,7 +23,7 @@
               <div class="carousel-caption">
                 <h1>Découvrez planning notre en ligne </h1>
                 <p>Grâce à notre planning en ligne, profitez de l'avantage de réservez vos heures depuis chez vous.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Planning</a></p>
+                <p><a class="btn btn-lg btn-primary" href="index.php?page=4" role="button">Planning</a></p>
               </div>
             </div>
           </div>
