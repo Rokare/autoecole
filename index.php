@@ -53,14 +53,15 @@
 
                        }
                     break;
-                    case 2:
+                    case 2: //espace tarif
                         include "Vue/tarif.php";
                     break;
-                    case 3:
+                    case 3: 
                           include "Vue/vueCandidat.php";
                         break;
-                    case 4:
+                    case 4: //accès planning
                         header("Location:Vue/test_calendar/index.php");
+                        break;
                 }
             ?>
     </body>
