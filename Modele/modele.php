@@ -21,6 +21,28 @@ class Modele
 
         }
     }
+    public function verifmatricule($matricule)
+    {
+        if($this->pdo == null){
+
+            return null;
+
+        }else{
+
+            $requete = "select matricule from tiers where matricule = ".$matricule."  ;";
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultats = $select->fetchAll();
+            if(empty($resultats))
+            {
+              return true;
+            }
+            else {
+              return false;
+            }
+        }
+
+    }
 
 
     public function connexion($login, $mdp)
@@ -33,7 +55,7 @@ class Modele
 						{
 								$_SESSION['login'] = $reponse['login'];
 								$_SESSION['matricule'] = $reponse['matricule'];
-							
+
                 return true;
 						}
 						else
@@ -59,55 +81,34 @@ class Modele
 
         }
     }
-    public function verifmatricule($matricule)
-    {
-        if($this->pdo == null){
 
-            return null;
 
-        }else{
+    public function insert($donnee, $matricule){
 
-            $requete = "select matricule from tiers where matricule = ".$matricule."  ;";
-            $select = $this->pdo->prepare($requete);
-            $select->execute();
-            $resultats = $select->fetchAll();
-            if(empty($resultats))
-            {
-              return true;
-            }
-            else {
-              return false;
-            }
-        }
+     if($this->pdo != null){
+         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $donnees = array();
+         $champs = array();
 
-    }
+         //Construction des champs
+         foreach($donnee as $cle => $valeur){
 
-    public function insert($donnee){
+             $champs[] = ":".$cle;
+             $donnees[":".$cle] = $valeur;
+         }
 
-        if($this->pdo != null){
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $donnees = array();
-            $champs = array();
+         //explode : sépare une chaine de caractère en tableau
+         //implode : concatène un tableau
 
-            //Construction des champs
-            foreach($donnee as $cle => $valeur){
+         $listeChamps = implode(",", $champs);
+         $requete = "insert into ".$this->table." values ('$matricule',".$listeChamps.");";
 
-                $champs[] = ":".$cle;
-                $donnees[":".$cle] = $valeur;
-            }
+         $insert = $this->pdo->prepare($requete);
+         $insert->execute($donnees);
 
-            //explode : sépare une chaine de caractère en tableau
-            //implode : concatène un tableau
+     }
 
-            $listeChamps = implode(",", $champs);
-            $requete = "insert into ".$this->table." values ('$matricule',".$listeChamps.");";
-
-            $insert = $this->pdo->prepare($requete);
-            $insert->execute($donnees);
-
-        }
-
-    }
+ }
 
     public function delete ()
      {

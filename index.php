@@ -2,7 +2,8 @@
 
 <?php
     include "controleur/controleur.php";
-    include "controleur/classes/tiers.class.php";
+    include "controleur/function.php";
+    include "controleur/classes/candidat.class.php";
 ?>
 
 <html lang="fr">
@@ -30,7 +31,7 @@
 
         <?php
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
-                $unControleur = new Controleur("localhost","adlauto","root","","etudiant");
+                $unControleur = new Controleur("localhost","adlauto","root","","tiers");
                 include "Vue/vueBarreNavigation.php";
                 if(isset($_POST["submit"]))
                 {
@@ -38,7 +39,7 @@
                   if($unControleur->connexion($login,$mdp) == true)
                   {
                     header("Location:indexTiers.php");
-					  exit;
+
                   }
                   else {
                     echo "mauvais identifiants";
@@ -54,12 +55,16 @@
                         include "Vue/vueinscription.php";
                         if(isset($_POST['inscription'])){
                            //INSERTION D'UN NOUVEAU TIERS
-                           $unTiers = new Tiers();
-                           $unTiers->renseigner($_POST);
-                           $unControleur->insert($unTiers);
+
                            $unCandidat = new Candidat();
                            $unCandidat->renseigner($_POST);
-                           $unControleur->insert($unCandidat);
+                           $test = matricule();
+                           do {
+                             $test = matricule();
+                           }while ($unControleur->verifmatricule($test) == true);
+                            $matricule = $test;
+                           $matricule = matricule();
+                           $unControleur->insert($unCandidat,$matricule);
                            echo "<br> Insertion réussie <br>";
 
                        }

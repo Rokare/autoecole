@@ -1,5 +1,5 @@
 <?php
-
+include("tiers.class.php");
 class Candidat extends Tiers{
 
     private $dateInscription, $modeFacturation;

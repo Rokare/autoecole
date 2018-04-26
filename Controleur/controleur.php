@@ -35,10 +35,15 @@ class Controleur
         $this->unModele->setTable($table);
     }
 
-
-    public function insert($unTiers){
-        $this->unModele->insert($unTiers->serialiser());
+    public function verifmatricule($matricule){
+        $this->unModele->verifmatricule($matricule);
     }
+    
+    public function insert($unTiers,$matricule){
+        $this->unModele->insert($unTiers->serialiser(), $matricule);
+    }
+
+
 
 
     public function delete(){
