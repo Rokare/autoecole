@@ -26,33 +26,20 @@ class Modele
     public function connexion($login, $mdp)
     {
 
-					$requete = $bdd->prepare("select * from  where IDENTIFIANT = '$login' AND   MDP = '$mdp'");
-
-						if($reponse = $requete->fetch())
+					$requete = "select * from  tiers where login = '$login' AND mdp = '$mdp'";
+          $select = $this->pdo->prepare($requete);
+          $select->execute();
+						if($reponse = $select->fetch())
 						{
-
-								echo '<meta http-equiv="refresh" content="0; url=index2.php" />';
-								echo "Vous êtes loggé";
-								$_SESSION['login'] = $reponse['IDENTIFIANT'];
-								$_SESSION['connecte'] = true; //variable de session
-								$_SESSION['id'] = $reponse['ID_USER'];
-								$_SESSION['lvl'] = $reponse['LVL'];
-
-
-
-
-
+								$_SESSION['login'] = $reponse['login'];
+								$_SESSION['matricule'] = $reponse['matricule'];
+							
+                return true;
 						}
 						else
 						{
-							echo "Mauvais identifiants";
-
+              return false;
 						}
-
-
-
-
-
     }
 
     public function selectAll()

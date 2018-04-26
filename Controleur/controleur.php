@@ -23,6 +23,14 @@ class Controleur
 
     }
 
+    public function connexion($login, $mdp){
+
+            return $this->unModele->connexion($login,$mdp);
+
+
+    }
+
+
     public function setTable($table){
         $this->unModele->setTable($table);
     }
