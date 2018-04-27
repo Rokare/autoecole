@@ -76,6 +76,9 @@
                     case 3:
                           include "Vue/vueCandidat.php";
                         break;
+                    case 4:
+                        include "Vue/test_calendar/index.php";
+                        break;
                 }
             ?>
     </body>

@@ -1,4 +1,4 @@
-<?php include "vueBarreNavigation.php" ?>
+<?php include "vueNavBarConnecter.php" ?>
 <!doctype html>
 <html lang="en">
 

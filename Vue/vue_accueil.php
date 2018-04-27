@@ -55,19 +55,19 @@
             <img class="rounded-circle" src="Vue/CLIO-4.png" alt="Generic placeholder image" width="230" height="160">
             <h2>Permis B</h2>
             <p>Enseignement sur véhicule école Clio 4. Initiation préalable sur simulateur de conduite, outil performant utilisé pour vous garantir l’acquisition des manœuvres fondamentales devant être automatisées pour pouvoir vous consacrer à l’environnement. Formations assurées par des formateurs qui vous aiderons à comprendre les règles de sécurité routière, à percevoir les situations à risques, développer des attitudes sécuritaires et positives qui vous permettrons de conduire en toute sérénité.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Plus de détails &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
           </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="Vue/MT_07.png" alt="Generic placeholder image" width="210" height="140">
             <h2>Permis A</h2>
             <p>Permis accessible à partir de 18 ans permettant la conduite d’une moto d’une puissance inférieur ou égal à 35 kW, 47.9 chevaux, d’un rapport puissance/poids ne dépassant pas 0.2 kw/kg et qui n’est pas dérivé d’un véhicule développant plus du double de sa puissance. Cylindrée environ de 400 cm3. A l’issue d’une expérience de 2 ans en permis A2, vous devez effectuer une formation de 7h vous permettant d’accéder au permis A.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Plus de détails &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
           </div>
           <div class="col-lg-4">
             <img class="rounded-circle" src="Vue/femme_conduite.jpg" alt="Generic placeholder image" width="140" height="140">
             <h2>Code de la route</h2>
             <p>Révisez, Avec nos ﬁches pratiques, vidéos et manuel de cours. Entraînez-vous, avec nos 3574 questions thématiques. Évaluez-vous, avec nos tests en conditions d’examen. Passez l'examen du code avec La Poste</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Plus de détails &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
           </div>
         </div>
 

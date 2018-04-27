@@ -21,7 +21,7 @@
               <br>
               <br>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Commencez maintenant !</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" href="index.php?page=1">Commencez maintenant !</button>
           </div>
         </div>
         <div class="card mb-4 box-shadow">
@@ -36,7 +36,7 @@
               <li>Heure de conduite en ville</li>
               <li>Heure sur plateau (Permis A) </li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Commencez maintenant !</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" href="index.php?page=1">Commencez maintenant !</button>
           </div>
         </div>
         <div class="card mb-4 box-shadow">
@@ -51,7 +51,7 @@
               <br>
               <br>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Commencez maintenant !</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" href="index.php?page=1">Commencez maintenant !</button>
           </div>
         </div>
       </div>
