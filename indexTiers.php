@@ -29,15 +29,22 @@
     </div>
 
         <?php
-                $page = (isset($_GET['page']))?$_GET['page'] : 0;
-                $unControleur = new Controleur("localhost","adlauto","root","","etudiant");
+        $statut = $_SESSION['statut'];
+        switch($statut)
+        {
+            case "personnel":
+                include "Vue/vueNavBarPersonnel.php";
+                break;     
+            case "moniteur":
+                include "Vue/vueNavBarPersonnel.php";
+                break;
+            case "candidat":
+                include "Vue/vueNavBarCandidat.php";
+                break;
+        }
                 
 
-                switch($page)
-                {
-                    case 0 : include "Vue/vueCandidat.php";
-                        break;
-                }
+               
             ?>
     </body>
 
