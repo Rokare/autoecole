@@ -1,7 +1,7 @@
 
 
 
-DROP PROCEDURE IF EXISTS satut ;
+DROP PROCEDURE IF EXISTS statut ;
 DELIMITER //
 CREATE PROCEDURE statut
 (log text, mdp text, OUT val text)
@@ -35,8 +35,8 @@ and mdp = mdp;
 	END IF;
 	IF cand = 0 and perso = 0 and moni > 0 THEN
 	set val ='moniteur';
-	END IF; 
-	
+	END IF;
+
 END //
 DELIMITER ;
 

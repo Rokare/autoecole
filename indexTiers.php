@@ -31,11 +31,12 @@
         <?php
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
                 $unControleur = new Controleur("localhost","adlauto","root","","etudiant");
-                include "Vue/vueBarreNavigation.php";
+                
 
                 switch($page)
                 {
-
+                    case 0 : include "Vue/vueCandidat.php";
+                        break;
                 }
             ?>
     </body>
