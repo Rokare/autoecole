@@ -39,6 +39,7 @@
                   if($unControleur->connexion($login,$mdp) == true)
                   {
                     $_SESSION['statut'] = $unControleur->verifstatut($login,$mdp);
+
                     header("Location:indexTiers.php");
 
                   }
