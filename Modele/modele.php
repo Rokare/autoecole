@@ -83,6 +83,29 @@ class Modele
     }
 
 
+    public function verifstatut($login, $mdp)
+    {
+        if($this->pdo == null){
+
+            return null;
+
+        }else{
+
+            $requete = "call statut('$login', '$mdp', @statut)";
+            $req = $this->pdo->exec($requete);
+            $req = $this->pdo->prepare("select @statut");
+            $req->execute();
+            if($reponse = $req->fetch())
+            {
+              $rep = $reponse[0];
+            }
+            return $rep;
+
+        }
+    }
+
+
+
     public function insert($donnee, $matricule){
 
      if($this->pdo != null){

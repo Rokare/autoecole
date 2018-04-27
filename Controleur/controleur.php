@@ -24,12 +24,12 @@ class Controleur
     }
 
     public function connexion($login, $mdp){
-
             return $this->unModele->connexion($login,$mdp);
-
-
     }
 
+    public function verifstatut($login, $mdp){
+            return $this->unModele->verifstatut($login,$mdp);
+    }
 
     public function setTable($table){
         $this->unModele->setTable($table);
@@ -38,7 +38,7 @@ class Controleur
     public function verifmatricule($matricule){
         $this->unModele->verifmatricule($matricule);
     }
-    
+
     public function insert($unTiers,$matricule){
         $this->unModele->insert($unTiers->serialiser(), $matricule);
     }
