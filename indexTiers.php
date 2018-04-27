@@ -29,12 +29,14 @@
     </div>
 
         <?php
+        $unControleur = new Controleur("localhost","adlauto","root","","tiers");
+        session_start ();
         $statut = $_SESSION['statut'];
         switch($statut)
         {
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
-                break;     
+                break;
             case "moniteur":
                 include "Vue/vueNavBarPersonnel.php";
                 break;
@@ -42,9 +44,9 @@
                 include "Vue/vueNavBarCandidat.php";
                 break;
         }
-                
 
-               
+
+
             ?>
     </body>
 

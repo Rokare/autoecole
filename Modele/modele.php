@@ -47,14 +47,14 @@ class Modele
 
     public function connexion($login, $mdp)
     {
-        
+
 
 					$requete = "select * from  tiers where login = '$login' AND mdp = '$mdp'";
           $select = $this->pdo->prepare($requete);
           $select->execute();
 						if($reponse = $select->fetch())
 						{
-                            session_start();
+                session_start();
 								$_SESSION['login'] = $reponse['login'];
 								$_SESSION['matricule'] = $reponse['matricule'];
 
@@ -106,7 +106,7 @@ class Modele
         }
     }
 
-  
+
 
 
     public function insert($donnee, $matricule){
