@@ -78,7 +78,7 @@
                           include "Vue/vueCandidat.php";
                         break;
                     case 4:
-                        include "Vue/test_calendar/index.php";
+                        header ("Location:Vue/test_calendar/index.php");
                         break;
                 }
             ?>

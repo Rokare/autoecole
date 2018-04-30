@@ -22,6 +22,17 @@ class Controleur
         }
 
     }
+    
+     public function rechercher($tab){
+
+        if($this->unModele->getPdo() != null){
+
+            return $this->unModele->rechercher($tab);
+
+        }
+
+    }
+
 
     public function connexion($login, $mdp){
             return $this->unModele->connexion($login,$mdp);

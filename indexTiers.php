@@ -43,6 +43,10 @@
             case "candidat":
                 include "Vue/vueNavBarCandidat.php";
                 include "Vue/vueCandidat.php";
+                if(isset ($_POST['submit'])) {
+                    $resultat = $unControleur->rechercher($_POST);
+                include "Vue/vueResultat.php";
+                }
                 break;
         }
 
