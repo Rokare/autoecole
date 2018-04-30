@@ -11,18 +11,17 @@
     </tr>
   </thead>
   <?php
-     foreach ($resultat as $resultats) {
-         
-     
-     ?>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><?php echo $resultats['nom']?></td>
-      <td><?php echo $resultats['prenom']?></td>
-      <td><?php echo $resultats['email']?></td>
-      <td><?php echo $resultats['login']?></td>
-    </tr>
-  </tbody>
-   <?php } ?>
+     foreach($resultat as $resultats) {
+
+
+
+
+    echo "<tr><td>".$resultats['nom']."</td>
+            <td>".$resultats['prenom']."</td>
+            <td>".$resultats['email']."</td>
+            <td>".$resultats['login']."</td>
+
+            </tr/>";
+  }
+   ?>
 </table>

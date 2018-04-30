@@ -108,19 +108,19 @@ class Modele
 
 
    public function rechercher($tab) {
-       
+
        extract($tab);
             if($this->pdo != null){
-                $requete = "select * from candidat where nom like '".$nom."%' 
-                            and prenom like '".$prenom."%' and email like '".$email."%'
-                            and login like '".$login."%';";
+                $requete = 'select * from candidat where nom like "'.$nom.'%"
+                            and prenom like "'.$prenom.'%" and email like "'.$email.'%"
+                            and login like "'.$login.'%"';
                 $req = $this->pdo->prepare($requete);
                 $req->execute();
             if($reponse = $req->fetch())
             {
                 $rep[] = $reponse;
             }
-            return $rep;
+            return $rep[];
             }
    }
 

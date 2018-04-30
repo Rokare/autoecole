@@ -18,24 +18,22 @@
 						<form  method="post">
 							<div class="form-group">
 								<label>Nom</label>
-								<input type="text" name ="nom" class="form-control" required="required">
+								<input type="text" name ="nom" class="form-control" >
 								<div class="form-group">
 								<div class="clearfix">
 									<label>Prénom</label>
 								</div>
-								<input type="text" name ="prenom" class="form-control" required="required">
+								<input type="text" name ="prenom" class="form-control" >
 							</div>
-							
+
 								<div class="form-group">
 								<label>Login</label>
-								<input type="password" name ="login" class="form-control" required="required">
+								<input type="text" name ="login" class="form-control">
 							</div>
                                 <div class="form-group">
 								<label>E-mail</label>
-								<input type="text" name ="email" class="form-control" required="required">
+								<input type="text" name ="email" class="form-control" >
 							</div>
-
-								
 							</div>
 							<input type="submit" name ="submit" class="btn btn-danger btn-block" value="Rechercher">
 						</form>
