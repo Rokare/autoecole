@@ -36,11 +36,11 @@
         {
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
-                if(isset($_POST)) {
+                if(isset($_POST['submit'])) {
                 $resultat = $unControleur->rechercher($_POST);
 
                     include "Vue/vueResultat.php";
-              
+
                 }
                 break;
             case "moniteur":

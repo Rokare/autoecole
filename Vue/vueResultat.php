@@ -11,6 +11,8 @@
     </tr>
   </thead>
   <?php
+  if(isset($resultat))
+  {
      foreach($resultat as $resultats) {
 
 
@@ -23,5 +25,6 @@
 
             </tr/>";
   }
+}
    ?>
 </table>
