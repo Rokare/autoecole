@@ -42,6 +42,7 @@
                 break;
             case "candidat":
                 include "Vue/vueNavBarCandidat.php";
+                include "Vue/vueCandidat.php";
                 break;
         }
 

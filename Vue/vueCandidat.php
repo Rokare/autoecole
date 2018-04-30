@@ -1,4 +1,3 @@
-<?php include "vueNavBarConnecter.php" ?>
 <!doctype html>
 <html lang="en">
 
