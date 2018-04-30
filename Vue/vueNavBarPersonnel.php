@@ -8,7 +8,8 @@
 
 
       <ul class="nav navbar-nav navbar-right ml-auto">
-      <li class="nav-item">
+       <li class="nav-item">
+          <a type="button" class="btn btn-warning" href ="logout.php">Deconnexion</a>
       </li>
 			<li class="nav-item">
 				<a data-toggle="dropdown" class="nav-link dropdown-toggle btn btn-outline-success  my-2 my-sm-0" href="#">Recherche</a>
