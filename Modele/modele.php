@@ -116,11 +116,9 @@ class Modele
                             and login like "'.$login.'%"';
                 $req = $this->pdo->prepare($requete);
                 $req->execute();
-            if($reponse = $req->fetch())
-            {
-                $rep[] = $reponse;
-            }
-            return $rep[];
+            $reponse = $req->fetchAll();
+
+            return $reponse;
             }
    }
 
