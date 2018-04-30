@@ -18,21 +18,23 @@
 							<div class="form-group">
 								<label>Nom</label>
 								<input type="text" name ="login" class="form-control" required="required">
-							</div>
-							<div class="form-group">
+								<div class="form-group">
 								<div class="clearfix">
 									<label>Prénom</label>
 								</div>
+								<input type="text" name ="login" class="form-control" required="required">
+							</div>
+							
 								<div class="form-group">
 								<label>Login</label>
-								<input type="text" name ="login" class="form-control" required="required">
+								<input type="password" name ="mdp" class="form-control" required="required">
 							</div>
                                 <div class="form-group">
 								<label>E-mail</label>
 								<input type="text" name ="login" class="form-control" required="required">
 							</div>
 
-								<input type="password" name ="mdp" class="form-control" required="required">
+								
 							</div>
 							<input type="submit" name ="submit" class="btn btn-danger btn-block" value="Connexion">
 						</form>
