@@ -8,7 +8,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="" src="Vue/image-2.jpg" alt="First slide">
+            <img class="" src="Vue/asphalte_slim.jpg" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1>Un permis plus facile </h1>
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="Vue/image-2.jpg" alt="Second slide">
+            <img class="second-slide" src="Vue/asphalte_slim.jpg" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
                 <h1>Découvrez planning notre en ligne </h1>
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="Vue/image-2.jpg" alt="Third slide">
+            <img class="third-slide" src="Vue/asphalte_slim.jpg" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
                 <h1>Nos tarifs</h1>
