@@ -35,8 +35,8 @@ and mdp = mdp;
 	END IF;
 	IF cand = 0 and perso = 0 and moni > 0 THEN
 	set val ='moniteur';
-	END IF;
-
+	END IF; 
+	
 END //
 DELIMITER ;
 

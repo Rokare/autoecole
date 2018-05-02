@@ -22,7 +22,7 @@ class Controleur
         }
 
     }
-    
+
      public function rechercher($tab){
 
         if($this->unModele->getPdo() != null){
