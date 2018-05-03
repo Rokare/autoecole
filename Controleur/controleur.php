@@ -23,6 +23,7 @@ class Controleur
 
     }
 
+
      public function rechercher($tab){
 
         if($this->unModele->getPdo() != null){
@@ -55,13 +56,18 @@ class Controleur
     }
 
 
-
-
     public function delete(){
-       return  $this->unModele->delete();
+        $this->unModele->delete();
     }
 
-
+    public function setDelchamp($champ)
+    {
+      $this->unModele->setDelchamp($champ);
+    }
+    public function setDelvaleur($valeur)
+    {
+      $this->unModele->setDelvaleur($valeur);
+    }
 
 
 }

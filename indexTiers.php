@@ -3,6 +3,7 @@
 <?php
     include "controleur/controleur.php";
     include "controleur/classes/tiers.class.php";
+
 ?>
 
 <html lang="fr">
@@ -37,9 +38,22 @@
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
                 if(isset($_POST['submit'])) {
+                $unControleur->setTable('candidat');
                 $resultat = $unControleur->rechercher($_POST);
 
                     include "Vue/vueResultat.php";
+                    if(isset($_GET))
+                    {
+
+                      $unControleur->setDelchamp('matricule');
+                      $unControleur->setDelvaleur("".$_GET['suppr']);
+
+                      if($unControleur->delete() == true)
+                      {
+                        echo "suppression";
+                      }
+
+                    }
 
                 }
                 break;
