@@ -154,8 +154,8 @@ class Modele
        if($this->pdo != null) //si la connexion n'est pas nullle
        {
          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         //$requete = "delete from '.$this->table.' where '.$this->delchamp.' = '.$this->delvaleur.'" ;
-        $requete = "delete from candidat where matricule = ".$this->delvaleur;
+         $requete = "delete from ".$this->table." where ".$this->delchamp." = '".$this->delvaleur."'" ;
+        //$requete = "delete from candidat where matricule = '".$this->delvaleur."'";
          $delete = $this->pdo->prepare($requete);
 
           $delete->execute();
