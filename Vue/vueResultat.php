@@ -14,7 +14,7 @@
       <th scope="col">Date d'inscrition</th>
       <th scope="col">Mode de facturation</th>
       <th scope="col"></th>
-      
+
     </tr>
   </thead>
   <?php
@@ -34,9 +34,10 @@
             <td>".$resultats['id_ville']."</td>
             <td>".$resultats['date_i']."</td>
             <td>".$resultats['mode_fact']."</td>
-            <td><a href = ''  type='button' class='btn btn-danger'>Supprimer</a></td>
+            <td><a href ='indexTiers.php?suppr=".$resultats['matricule']."'  type='button' class='btn btn-danger'>Supprimer</a></td>
             <td><a href = ''  type='button' class='btn btn-info'>Modifier</a></td>
             </tr/>";
+
   }
 }
    ?>

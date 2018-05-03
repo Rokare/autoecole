@@ -111,7 +111,7 @@ class Modele
 
        extract($tab);
             if($this->pdo != null){
-                $requete = 'select * from candidat where nom like "'.$nom.'%"
+                $requete = 'select * from '.$this->table.' where nom like "'.$nom.'%"
                             and prenom like "'.$prenom.'%" and email like "'.$email.'%"
                             and login like "'.$login.'%"';
                 $req = $this->pdo->prepare($requete);
@@ -151,20 +151,29 @@ class Modele
 
     public function delete ()
      {
-         $requete = "delete from ".$this->table." where ".$this->delid." = ".$this->delid2 ;
+       if($this->pdo != null) //si la connexion n'est pas nullle
+       {
+         $requete = "delete from '.$this->table.' where '.$this->delchamp.' = '.$this->delvaleur.'" ;
 
          $select = $this->pdo->prepare($requete);
-         if($this->pdo != null) //si la connexion n'est pas nullle
-         {
+
              $select->execute();
+             return true;
          }
          else{
-             return null;
+             return false;
          }
      }
 
+     public function setDelchamp($champ)
+     {
+       $this->delchamp = $champ;
+     }
 
-
+     public function setDelvaleur($valeur)
+     {
+       $this->delvaleur = $valeur;
+     }
 
     public function getPdo(){
 
