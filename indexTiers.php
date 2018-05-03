@@ -37,29 +37,42 @@
         {
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
-                if(isset($_POST['submit'])) {
+                if(isset($_POST['submit']) || !isset($_SESSION['s_login']))
+                {
                 $unControleur->setTable('candidat');
                 $resultat = $unControleur->rechercher($_POST);
+                extract($_POST);
+                $_SESSION['s_login'] = $login;
+                $_SESSION['s_nom'] = $nom;
+                $_SESSION['s_prenom'] = $prenom;
+                $_SESSION['s_email'] = $email;
+                }
+                elseif(!empty($_SESSION['s_login'])){
+                  $unControleur->setTable('candidat');
+                  $resultat = $unControleur->rechercher2($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email']);
+                }
                 if(empty($resultat))
                 {
                   echo "aucun resultat";
                 }
                 else {
-                  include "Vue/vueResultat.php";
+                  include("Vue/vueResultat.php");
                 }
-                    if(isset($_GET['suppr']))
+
+                    if(isset($_SESSION['suppr']))
                     {
                       $unControleur->setDelchamp('matricule');
-                      $unControleur->setDelvaleur($_GET['suppr']);
+                      $unControleur->setDelvaleur($_SESSION['suppr']);
                       $unControleur->delete();
-<<<<<<< HEAD
+                      unset($_SESSION['suppr']);
+
                       echo '<head>
                         <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php">
                             </head> ';
-=======
+
                     }
->>>>>>> parent of 61288dd... update 1.085
-                }
+
+
                 break;
             case "moniteur":
                 include "Vue/vueNavBarPersonnel.php";
