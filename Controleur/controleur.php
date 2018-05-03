@@ -14,13 +14,9 @@ class Controleur
     }
 
     public function selectAll(){
-
         if($this->unModele->getPdo() != null){
-
             return $this->unModele->selectAll();
-
         }
-
     }
 
 
@@ -69,6 +65,10 @@ class Controleur
     public function setDelvaleur($valeur)
     {
       $this->unModele->setDelvaleur($valeur);
+    }
+
+    public function updateCandidat($tab, $matricule){
+        $this->unModele->updateCandidat($tab, $matricule);
     }
 
 
