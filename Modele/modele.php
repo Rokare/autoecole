@@ -131,30 +131,6 @@ class Modele
             }
    }
 
-   public function rechercher2($login, $nom, $prenom, $email) {
-
-
-
-            if($this->pdo != null && !empty($nom) || !empty($login) || !empty($prenom) || !empty($email)){
-                $requete = 'select * from '.$this->table.' where nom like "'.$nom.'%"
-                            and prenom like "'.$prenom.'%" and email like "'.$email.'%"
-                            and login like "'.$login.'%"';
-                $req = $this->pdo->prepare($requete);
-                $req->execute();
-            $reponse = $req->fetchAll();
-
-            if(empty($reponse))
-            {
-              return false;
-            }
-            else{
-
-              return $reponse;
-            }
-
-            }
-   }
-
     public function insert($donnee, $matricule){
 
      if($this->pdo != null){

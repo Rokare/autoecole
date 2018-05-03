@@ -14,8 +14,8 @@
       <th scope="col">Date d'inscription</th>
       <th scope="col">Mode de facturation</th>
 
-      
-      
+
+
       <th scope="col"></th>
 
 

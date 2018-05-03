@@ -21,16 +21,14 @@ class Controleur
 
 
      public function rechercher($tab){
-        if($this->unModele->getPdo() != null){
-            return $this->unModele->rechercher($tab);
-        }
-     }
 
-     public function rechercher2($login,$nom, $prenom, $email){
         if($this->unModele->getPdo() != null){
-            return $this->unModele->rechercher2($login,$nom, $prenom, $email);
+
+            return $this->unModele->rechercher($tab);
+
         }
-     }
+
+    }
 
 
     public function connexion($login, $mdp){
