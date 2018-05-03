@@ -110,7 +110,8 @@ class Modele
    public function rechercher($tab) {
 
        extract($tab);
-            if($this->pdo != null){
+
+            if($this->pdo != null && !empty($nom) || !empty($login) || !empty($prenom) || !empty($email)){
                 $requete = 'select * from '.$this->table.' where nom like "'.$nom.'%"
                             and prenom like "'.$prenom.'%" and email like "'.$email.'%"
                             and login like "'.$login.'%"';
@@ -118,7 +119,15 @@ class Modele
                 $req->execute();
             $reponse = $req->fetchAll();
 
-            return $reponse;
+            if(empty($reponse))
+            {
+              return false;
+            }
+            else{
+
+              return $reponse;
+            }
+
             }
    }
 

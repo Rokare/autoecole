@@ -40,20 +40,19 @@
                 if(isset($_POST['submit'])) {
                 $unControleur->setTable('candidat');
                 $resultat = $unControleur->rechercher($_POST);
-
-                    include "Vue/vueResultat.php";
-                    if(isset($_GET))
+                if(empty($resultat))
+                {
+                  echo "aucun resultat";
+                }
+                else {
+                  include "Vue/vueResultat.php";
+                }
+                    if(isset($_GET['suppr']))
                     {
-
                       $unControleur->setDelchamp('matricule');
                       $unControleur->setDelvaleur($_GET['suppr']);
-
                       $unControleur->delete();
-                      
-
-
                     }
-
                 }
                 break;
             case "moniteur":
