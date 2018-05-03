@@ -66,7 +66,7 @@
                       $unControleur->setDelvaleur($_GET['suppr']);
                       $unControleur->delete();
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0.5; URL=indexTiers.php">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php">
                             </head> ';
                 }
 
