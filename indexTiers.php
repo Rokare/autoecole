@@ -46,7 +46,7 @@
                     {
 
                       $unControleur->setDelchamp('matricule');
-                      $unControleur->setDelvaleur($_GET['suppr']);
+                      $unControleur->setDelvaleur("".$_GET['suppr']);
 
                       if($unControleur->delete() == true)
                       {
