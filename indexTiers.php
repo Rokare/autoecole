@@ -33,13 +33,26 @@
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
         session_start ();
         $statut = $_SESSION['statut'];
+
         switch($statut)
         {
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
-                if(isset($_POST['submit'])) {
-                $unControleur->setTable('candidat');
+                if(isset($_POST['submit']) && empty($_SESSION['s_login']) && empty($_SESSION['s_nom']) && empty($_SESSION['s_prenom']) && empty($_SESSION['s_login'])) {
+                  $unControleur->setTable('candidat');
                 $resultat = $unControleur->rechercher($_POST);
+                extract($_POST);
+                $_SESSION['s_login'] = $login;
+                $_SESSION['s_email'] = $email;
+                $_SESSION['s_nom'] = $nom;
+                $_SESSION['s_prenom'] = $prenom;
+                }
+                else {
+                    $unControleur->setTable('candidat');
+                  $resultat = $unControleur->rechercher2($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email']);
+                }
+
+
                 if(empty($resultat))
                 {
                   echo "aucun resultat";
@@ -52,8 +65,11 @@
                       $unControleur->setDelchamp('matricule');
                       $unControleur->setDelvaleur($_GET['suppr']);
                       $unControleur->delete();
-                    }
+                      echo '<head>
+                        <META HTTP-EQUIV="Refresh" CONTENT="0.5; URL=indexTiers.php">
+                            </head> ';
                 }
+
                 break;
             case "moniteur":
                 include "Vue/vueNavBarPersonnel.php";
