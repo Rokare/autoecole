@@ -1,7 +1,7 @@
 <?php
 
 ?>
- <table class="table table-bordered">
+ <table class="table table-sm table-dark">
   <thead>
     <tr>
       <th scope="col">Nom</th>
@@ -11,9 +11,9 @@
       <th scope="col">Adresse</th>
       <th scope="col">Téléphone</th>
       <th scope="col">Ville</th>
-      <th scope="col">Date d'inscrition</th>
+      <th scope="col">Date d'inscription</th>
       <th scope="col">Mode de facturation</th>
-      <th scope="col"></th>
+      
       
     </tr>
   </thead>

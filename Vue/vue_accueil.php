@@ -11,8 +11,8 @@
             <img class="" src="Vue/asphalte_slim.jpg" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
-                <h1>Un permis plus facile </h1>
-                <p></p>
+                <h1>Bienvenue chez Castellane </h1>
+                <p>Inscrivez-vous chez nous pour une nouvelle experience et un permis plus facile !</p>
                 <p><a class="btn btn-lg btn-primary" href="index.php?page=1" role="button">Inscrivez-vous !</a></p>
               </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="container">
               <div class="carousel-caption text-right">
                 <h1>Nos tarifs</h1>
-                <p></p>
+                <p>Pour voir nos propositions de tarifs vous pouvez naviguez sur le lien ci-dessous</p>
                 <p><a class="btn btn-lg btn-primary" href="index.php?page=2" role="button">Voir plus</a></p>
               </div>
             </div>
