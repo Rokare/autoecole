@@ -164,7 +164,6 @@ class Modele
 
          //Construction des champs
          foreach($donnee as $cle => $valeur){
-
              $champs[] = ":".$cle;
              $donnees[":".$cle] = $valeur;
          }
@@ -188,9 +187,7 @@ class Modele
        {
          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $requete = "delete from ".$this->table." where ".$this->delchamp." = '".$this->delvaleur."'" ;
-        //$requete = "delete from candidat where matricule = '".$this->delvaleur."'";
          $delete = $this->pdo->prepare($requete);
-
           $delete->execute();
           return true;
          }
@@ -198,6 +195,20 @@ class Modele
              return false;
          }
      }
+
+     public function udpateCandidat($tab, $matricule)
+      {
+        if($this->pdo != null) //si la connexion n'est pas nullle
+        {
+          extract($tab);
+          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $requete = "update ".$this->table." set nom ='".$nom."',prenom ='".$prenom."',
+                        adresse ='".$adresse."',login = '".$login."',email = '".$email."',
+                        telephone='".$telephone."' where matricule = '".$matricule."'" ;
+          $udpate = $this->pdo->prepare($requete);
+          $udpate->execute();
+         }
+      }
 
      public function setDelchamp($champ)
      {
