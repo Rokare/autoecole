@@ -1,6 +1,6 @@
 <?php
     include ("Modele/modele.php");
-
+    include "function.php";
 
 class Controleur
 {

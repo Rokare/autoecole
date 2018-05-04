@@ -26,5 +26,27 @@ function matricule()
 
 
 
+function saveRecherche($login, $nom, $prenom, $email)
+{
+    $_SESSION['s_login'] = $login;
+    $_SESSION['s_nom'] = $nom;
+    $_SESSION['s_prenom'] = $prenom;
+
+}
+
+function getPage($sp,$nbPage)
+{
+  if($sp>0 && $sp<=$nbPage)
+   {
+       return $cPage = $sp;
+   }
+   else
+   {
+       return $cPage = 1;
+   }
+}
+
+
+
 
  ?>

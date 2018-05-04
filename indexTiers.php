@@ -4,6 +4,7 @@
     include "controleur/controleur.php";
     include "controleur/classes/tiers.class.php";
 
+
 ?>
 
 <html lang="fr">
@@ -33,6 +34,13 @@
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
         session_start ();
         $statut = $_SESSION['statut'];
+        if(isset($_GET['sp']))
+        {
+          $sp = $_GET['sp'];
+        }
+        else {
+          $sp = 1;
+        }
         switch($statut)
         {
             case "personnel":
@@ -43,31 +51,13 @@
                 {
                   extract($_POST);
                   $nbPage = $unControleur->pagination($login,$nom,$prenom,$email, $perPage);
-
-                  if(isset($_GET['sp']) && $_GET['sp']>0 && $_GET['sp']<=$nbPage)
-                   {
-                       $cPage = $_GET['sp'];
-                   }
-                   else
-                   {
-                       $cPage=1;
-                   }
+                  $cPage = getPage($sp, $nbPage);
                   $resultat = $unControleur->rechercher($login,$nom,$prenom,$email,$cPage, $perPage);
-                  $_SESSION['s_login'] = $login;
-                  $_SESSION['s_nom'] = $nom;
-                  $_SESSION['s_prenom'] = $prenom;
-                  $_SESSION['s_email'] = $email;
+                  saveRecherche($login,$nom,$prenom,$email);
                 }
                 elseif(isset($_SESSION['s_login']) && isset($_GET['sp'])){
                   $nbPage = $unControleur->pagination($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'], $perPage);
-                 if(isset($_GET['sp']) && $_GET['sp']>0 && $_GET['sp']<=$nbPage)
-                  {
-                      $cPage = $_GET['sp'];
-                  }
-                  else
-                  {
-                      $cPage = 1;
-                  }
+                  $cPage = getPage($sp, $nbPage);
                   $resultat = $unControleur->rechercher($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'],$cPage, $perPage);
                 }
                 if(empty($resultat))
@@ -77,21 +67,16 @@
                 else {
                   include("Vue/vueResultat.php");
                 }
-
                     if(isset($_SESSION['suppr']))
                     {
                       $unControleur->setDelchamp('matricule');
                       $unControleur->setDelvaleur($_SESSION['suppr']);
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
-
                       echo '<head>
                         <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?sp='.$nbPage.'">
                             </head> ';
-
                     }
-
-
                 break;
             case "moniteur":
                 include "Vue/vueNavBarPersonnel.php";
