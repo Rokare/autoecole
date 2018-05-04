@@ -1,6 +1,8 @@
 <?php
 
 ?>
+
+    <div class="col-md-3 col-md-pull-9">
  <table class="table table-sm table-dark">
   <thead>
     <tr>
@@ -29,7 +31,8 @@
 
 
 
-    echo "<tr><td>".$resultats['nom']."</td>
+    echo "
+    <tr><td>".$resultats['nom']."</td>
             <td>".$resultats['prenom']."</td>
             <td>".$resultats['email']."</td>
             <td>".$resultats['login']."</td>
@@ -40,9 +43,13 @@
             <td>".$resultats['mode_fact']."</td>
             <td><a href ='indexTiers.php?suppr=".$resultats['matricule']."'  type='button' class='btn btn-danger'>Supprimer</a></td>
             <td><a href = ''  type='button' class='btn btn-info'>Modifier</a></td>
-            </tr/>";
+            </tr/>
+            ";
 
   }
 }
    ?>
 </table>
+    </div>
+</div>
+
