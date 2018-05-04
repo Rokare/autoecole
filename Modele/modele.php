@@ -43,7 +43,24 @@ class Modele
         }
 
     }
+    public function pagination($login, $nom, $prenom, $email, $perPage)
+    {
 
+      if($this->pdo != null && !empty($nom) || !empty($login) || !empty($prenom) || !empty($email)){
+          $requete = 'select count(matricule) as nbMatricule from '.$this->table.' where nom like "'.$nom.'%"
+                      and prenom like "'.$prenom.'%" and email like "'.$email.'%"
+                      and login like "'.$login.'%"';
+          $req = $this->pdo->prepare($requete);
+          $req->execute();
+          $reponse = $req->fetch();
+          $nbMatricule = $reponse['nbMatricule'];
+          $nbPage = ceil($nbMatricule/$perPage);
+          return $nbPage;
+
+
+
+      }
+    }
 
     public function connexion($login, $mdp)
     {
@@ -106,14 +123,14 @@ class Modele
         }
     }
 
-    public function rechercher($login, $nom, $prenom, $email) {
-
+    public function rechercher($login, $nom, $prenom, $email,$cPage, $perPage) {
+    
              if($this->pdo != null && !empty($nom) || !empty($login) || !empty($prenom) || !empty($email)){
                  $requete = 'select * from '.$this->table.' where nom like "'.$nom.'%"
                              and prenom like "'.$prenom.'%" and email like "'.$email.'%"
-                             and login like "'.$login.'%"';
-                 $req = $this->pdo->prepare($requete);
-                 $req->execute();
+                             and login like "'.$login.'%" limit '.(($cPage-1)*$perPage).",$perPage";
+             $req = $this->pdo->prepare($requete);
+             $req->execute();
              $reponse = $req->fetchAll();
 
              if(empty($reponse))

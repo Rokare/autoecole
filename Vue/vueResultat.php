@@ -52,3 +52,30 @@
 </div>
 
 
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+
+
+      <?php
+    for($i=1;$i<=$nbPage;$i++)
+    {
+
+        if($i==$cPage)
+        {
+         echo '<li class="page-item active">
+          <a class="page-link" href="#">'.$i.'<span class="sr-only">(current)</span></a>
+        ';
+         }
+        else{
+        echo "<li class='page-item'><a class='page-link' href='indexTiers.php?sp=$i'>$i</a></li>";
+
+        }
+    }
+
+    ?>
+    </li>
+
+  </ul>
+</nav>
+
+

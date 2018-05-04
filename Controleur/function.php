@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 function matricule()
 {
 
@@ -27,20 +23,6 @@ function matricule()
     return $mdp;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

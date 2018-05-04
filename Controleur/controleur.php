@@ -19,6 +19,12 @@ class Controleur
         }
     }
 
+    public function pagination($login,$nom, $prenom, $email,$perPage)
+    {
+      if($this->unModele->getPdo() != null){
+          return $this->unModele->pagination($login,$nom, $prenom, $email, $perPage);
+      }
+    }
 
 
     public function connexion($login, $mdp){
@@ -41,9 +47,9 @@ class Controleur
         $this->unModele->insert($unTiers->serialiser(), $matricule);
     }
 
-    public function rechercher($login,$nom, $prenom, $email){
+    public function rechercher($login,$nom, $prenom, $email,$cPage, $perPage){
            if($this->unModele->getPdo() != null){
-               return $this->unModele->rechercher($login,$nom, $prenom, $email);
+               return $this->unModele->rechercher($login,$nom, $prenom, $email,$cPage, $perPage);
            }
         }
 

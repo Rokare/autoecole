@@ -37,20 +37,38 @@
         {
             case "personnel":
                 include "Vue/vueNavBarPersonnel.php";
-                if(isset($_POST['submit']) || !isset($_SESSION['s_login']))
-                {
                 $unControleur->setTable('candidat');
-                extract($_POST);
-                  $resultat = $unControleur->rechercher($login,$nom,$prenom,$email);
+                $perPage = 2;
+                if(isset($_POST['submit']))
+                {
+                  extract($_POST);
+                  $nbPage = $unControleur->pagination($login,$nom,$prenom,$email, $perPage);
 
-                $_SESSION['s_login'] = $login;
-                $_SESSION['s_nom'] = $nom;
-                $_SESSION['s_prenom'] = $prenom;
-                $_SESSION['s_email'] = $email;
+                  if(isset($_GET['sp']) && $_GET['sp']>0 && $_GET['sp']<=$nbPage)
+                   {
+                       $cPage = $_GET['sp'];
+                   }
+                   else
+                   {
+                       $cPage=1;
+                   }
+                  $resultat = $unControleur->rechercher($login,$nom,$prenom,$email,$cPage, $perPage);
+                  $_SESSION['s_login'] = $login;
+                  $_SESSION['s_nom'] = $nom;
+                  $_SESSION['s_prenom'] = $prenom;
+                  $_SESSION['s_email'] = $email;
                 }
-                elseif(!empty($_SESSION['s_login'])){
-                  $unControleur->setTable('candidat');
-                  $resultat = $unControleur->rechercher($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email']);
+                elseif(isset($_GET['sp'])){
+                  $nbPage = $unControleur->pagination($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'], $perPage);
+                 if(isset($_GET['sp']) && $_GET['sp']>0 && $_GET['sp']<=$nbPage)
+                  {
+                      $cPage = $_GET['sp'];
+                  }
+                  else
+                  {
+                      $cPage = 1;
+                  }
+                  $resultat = $unControleur->rechercher($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'],$cPage, $perPage);
                 }
                 if(empty($resultat))
                 {

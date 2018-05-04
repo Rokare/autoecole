@@ -4,6 +4,8 @@
     include "controleur/controleur.php";
     include "controleur/function.php";
     include "controleur/classes/candidat.class.php";
+
+  
 ?>
 
 <html lang="fr">
@@ -12,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-
+    <link href=".\">
     <link href="Vue/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Vue/style/style.css">
     <link href="Vue/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" rel="stylesheet">
