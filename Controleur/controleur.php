@@ -14,13 +14,9 @@ class Controleur
     }
 
     public function selectAll(){
-
         if($this->unModele->getPdo() != null){
-
             return $this->unModele->selectAll();
-
         }
-
     }
 
 
@@ -55,6 +51,11 @@ class Controleur
         $this->unModele->insert($unTiers->serialiser(), $matricule);
     }
 
+    public function rechercher2($login,$nom, $prenom, $email){
+           if($this->unModele->getPdo() != null){
+               return $this->unModele->rechercher2($login,$nom, $prenom, $email);
+           }
+        }
 
     public function delete(){
         $this->unModele->delete();
@@ -67,6 +68,10 @@ class Controleur
     public function setDelvaleur($valeur)
     {
       $this->unModele->setDelvaleur($valeur);
+    }
+
+    public function updateCandidat($tab, $matricule){
+        $this->unModele->updateCandidat($tab, $matricule);
     }
 
 
