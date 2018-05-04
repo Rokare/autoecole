@@ -28,15 +28,10 @@
   {
      foreach($resultat as $resultats) {
 
-<<<<<<< HEAD
 
 
-
-    echo "
-    <tr><td>".$resultats['nom']."</td>
-=======
     echo "<tr><td>".$resultats['nom']."</td>
->>>>>>> 5ae353fb23a7ec629dd1d72e9644c40a1dde6fa4
+
             <td>".$resultats['prenom']."</td>
             <td>".$resultats['email']."</td>
             <td>".$resultats['login']."</td>
@@ -47,16 +42,13 @@
             <td>".$resultats['mode_fact']."</td>
             <td><a href ='indexTiers.php?suppr'  type='button' class='btn btn-danger'>Supprimer</a></td>
             <td><a href = ''  type='button' class='btn btn-info'>Modifier</a></td>
-<<<<<<< HEAD
-            </tr/>
-            ";
-=======
+
             </tr/>";
             if(isset($_GET['suppr']))
             {
               $_SESSION['suppr'] = $resultats['matricule'];
             }
->>>>>>> 5ae353fb23a7ec629dd1d72e9644c40a1dde6fa4
+
 
   }
 }
@@ -64,4 +56,3 @@
 </table>
     </div>
 </div>
-
