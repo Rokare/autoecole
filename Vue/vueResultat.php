@@ -27,10 +27,13 @@
 
 
 
+<<<<<<< HEAD
 
     echo "
     <tr><td>".$resultats['nom']."</td>
 
+=======
+>>>>>>> 03c10fdbb24af72f455b3a966e4a79a505ae24e5
     echo "<tr><td>".$resultats['nom']."</td>
 
             <td>".$resultats['prenom']."</td>
@@ -44,9 +47,12 @@
             <td><a href ='indexTiers.php?suppr'  type='button' class='btn btn-danger'>Supprimer</a></td>
             <td><a href = ''  type='button' class='btn btn-info'>Modifier</a></td>
 
+<<<<<<< HEAD
             </tr/>
             ";
 
+=======
+>>>>>>> 03c10fdbb24af72f455b3a966e4a79a505ae24e5
             </tr/>";
             if(isset($_GET['suppr']))
             {
@@ -59,5 +65,9 @@
    ?>
 </table>
     </div>
+<<<<<<< HEAD
 
 
+=======
+</div>
+>>>>>>> 03c10fdbb24af72f455b3a966e4a79a505ae24e5
