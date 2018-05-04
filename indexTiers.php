@@ -40,8 +40,9 @@
                 if(isset($_POST['submit']) || !isset($_SESSION['s_login']))
                 {
                 $unControleur->setTable('candidat');
-                $resultat = $unControleur->rechercher($_POST);
                 extract($_POST);
+                  $resultat = $unControleur->rechercher($login,$nom,$prenom,$email);
+
                 $_SESSION['s_login'] = $login;
                 $_SESSION['s_nom'] = $nom;
                 $_SESSION['s_prenom'] = $prenom;
@@ -49,7 +50,7 @@
                 }
                 elseif(!empty($_SESSION['s_login'])){
                   $unControleur->setTable('candidat');
-                  $resultat = $unControleur->rechercher2($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email']);
+                  $resultat = $unControleur->rechercher($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email']);
                 }
                 if(empty($resultat))
                 {

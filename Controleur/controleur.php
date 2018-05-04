@@ -20,16 +20,6 @@ class Controleur
     }
 
 
-     public function rechercher($tab){
-
-        if($this->unModele->getPdo() != null){
-
-            return $this->unModele->rechercher($tab);
-
-        }
-
-    }
-
 
     public function connexion($login, $mdp){
             return $this->unModele->connexion($login,$mdp);
@@ -51,9 +41,9 @@ class Controleur
         $this->unModele->insert($unTiers->serialiser(), $matricule);
     }
 
-    public function rechercher2($login,$nom, $prenom, $email){
+    public function rechercher($login,$nom, $prenom, $email){
            if($this->unModele->getPdo() != null){
-               return $this->unModele->rechercher2($login,$nom, $prenom, $email);
+               return $this->unModele->rechercher($login,$nom, $prenom, $email);
            }
         }
 
