@@ -28,7 +28,6 @@
 
     echo "
     <tr><td>".$resultats['nom']."</td>
-    echo "<tr><td>".$resultats['nom']."</td>
 
             <td>".$resultats['prenom']."</td>
             <td>".$resultats['email']."</td>
@@ -45,7 +44,6 @@
             </tr/>
             ";
 
-            </tr/>";
             if(isset($_GET['suppr']))
             {
               $_SESSION['suppr'] = $resultats['matricule'];
