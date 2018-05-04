@@ -58,7 +58,7 @@
                   $_SESSION['s_prenom'] = $prenom;
                   $_SESSION['s_email'] = $email;
                 }
-                elseif(isset($_GET['sp'])){
+                elseif(isset($_SESSION['s_login']) && isset($_GET['sp'])){
                   $nbPage = $unControleur->pagination($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'], $perPage);
                  if(isset($_GET['sp']) && $_GET['sp']>0 && $_GET['sp']<=$nbPage)
                   {
@@ -86,7 +86,7 @@
                       unset($_SESSION['suppr']);
 
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?sp='.$nbPage.'">
                             </head> ';
 
                     }
