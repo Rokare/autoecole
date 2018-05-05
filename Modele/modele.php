@@ -94,14 +94,36 @@ class Modele
             $requete = "select * from ".$this->table." ;";
             $select = $this->pdo->prepare($requete);
             $select->execute();
-            $resultats = $select->fetchAll();
+            $resultats = $select->fetch();
 
             return $resultats;
 
         }
     }
 
+    public function selectAlternative($option)
+    {
+        if($this->pdo == null){
 
+            return null;
+
+        }else{
+            if($option == 1)
+            {
+              $requete = "select * from ".$this->table." ;";
+            }
+            elseif ($option == 2) {
+              $requete = "select * from ".$this->table." where ".$this->champ." = '".$this->valeur."';";
+            }
+
+            $select = $this->pdo->prepare($requete);
+            $select->execute();
+            $resultats = $select->fetch();
+
+            return $resultats;
+
+        }
+    }
     public function verifstatut($login, $mdp)
     {
         if($this->pdo == null){
@@ -124,7 +146,7 @@ class Modele
     }
 
     public function rechercher($login, $nom, $prenom, $email,$cPage, $perPage) {
-    
+
              if($this->pdo != null && !empty($nom) || !empty($login) || !empty($prenom) || !empty($email)){
                  $requete = 'select * from '.$this->table.' where nom like "'.$nom.'%"
                              and prenom like "'.$prenom.'%" and email like "'.$email.'%"
@@ -178,7 +200,7 @@ class Modele
        if($this->pdo != null) //si la connexion n'est pas nullle
        {
          $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $requete = "delete from ".$this->table." where ".$this->delchamp." = '".$this->delvaleur."'" ;
+         $requete = "delete from ".$this->table." where ".$this->champ." = '".$this->valeur."'" ;
          $delete = $this->pdo->prepare($requete);
           $delete->execute();
           return true;
@@ -202,14 +224,14 @@ class Modele
          }
       }
 
-     public function setDelchamp($champ)
+     public function setChamp($champ)
      {
-       $this->delchamp = $champ;
+       $this->champ = $champ;
      }
 
-     public function setDelvaleur($valeur)
+     public function setValeur($valeur)
      {
-       $this->delvaleur = $valeur;
+       $this->valeur = $valeur;
      }
 
     public function getPdo(){

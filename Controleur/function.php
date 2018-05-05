@@ -34,7 +34,7 @@ function saveRecherche($login, $nom, $prenom, $email)
 
 }
 
-function getPage($sp,$nbPage)
+function Page($sp,$nbPage)
 {
   if($sp>0 && $sp<=$nbPage)
    {

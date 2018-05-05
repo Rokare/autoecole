@@ -5,6 +5,7 @@
     include "controleur/classes/tiers.class.php";
 
 
+
 ?>
 
 <html lang="fr">
@@ -34,6 +35,15 @@
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
         session_start ();
         $statut = $_SESSION['statut'];
+        if(!empty($_SESSION['mod']))
+        {
+          $page = 2;
+          $_SESSION['modif'] = $_SESSION['mod'];
+          unset($_SESSION['mod']);
+        }
+        else {
+          $page = 1;
+        }
         if(isset($_GET['sp']))
         {
           $sp = $_GET['sp'];
@@ -44,20 +54,25 @@
         switch($statut)
         {
             case "personnel":
+              switch($page)
+              {
+
+                case 1 :
                 include "Vue/vueNavBarPersonnel.php";
+                include("./Vue/vueRecherche.php");
                 $unControleur->setTable('candidat');
                 $perPage = 2;
                 if(isset($_POST['submit']))
                 {
                   extract($_POST);
                   $nbPage = $unControleur->pagination($login,$nom,$prenom,$email, $perPage);
-                  $cPage = getPage($sp, $nbPage);
+                  $cPage = Page($sp, $nbPage);
                   $resultat = $unControleur->rechercher($login,$nom,$prenom,$email,$cPage, $perPage);
                   saveRecherche($login,$nom,$prenom,$email);
                 }
                 elseif(isset($_SESSION['s_login']) && isset($_GET['sp'])){
                   $nbPage = $unControleur->pagination($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'], $perPage);
-                  $cPage = getPage($sp, $nbPage);
+                  $cPage = Page($sp, $nbPage);
                   $resultat = $unControleur->rechercher($_SESSION['s_login'],$_SESSION['s_nom'],$_SESSION['s_prenom'],$_SESSION['s_email'],$cPage, $perPage);
                 }
                 if(empty($resultat))
@@ -69,14 +84,25 @@
                 }
                     if(isset($_SESSION['suppr']))
                     {
-                      $unControleur->setDelchamp('matricule');
-                      $unControleur->setDelvaleur($_SESSION['suppr']);
+                      $unControleur->setChamp('matricule');
+                      $unControleur->setValeur($_SESSION['suppr']);
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
                       echo '<head>
                         <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?sp='.$nbPage.'">
                             </head> ';
                     }
+                  break;
+                  case 2 :
+                  include "Vue/vueNavBarPersonnel.php";
+                  $unControleur->setChamp('matricule');
+                  $unControleur->setValeur($_SESSION['modif']);
+                  $resultats = $unControleur->selectAlternative(2);
+
+                    include("Vue/vueModification.php");
+
+                  break;
+                  }
                 break;
             case "moniteur":
                 include "Vue/vueNavBarPersonnel.php";

@@ -2,10 +2,9 @@
 
 <?php
     include "controleur/controleur.php";
-    include "controleur/function.php";
     include "controleur/classes/candidat.class.php";
 
-  
+
 ?>
 
 <html lang="fr">

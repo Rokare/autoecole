@@ -19,6 +19,12 @@ class Controleur
         }
     }
 
+    public function selectAlternative($option){
+        if($this->unModele->getPdo() != null){
+            return $this->unModele->selectAlternative($option);
+        }
+    }
+
     public function pagination($login,$nom, $prenom, $email,$perPage)
     {
       if($this->unModele->getPdo() != null){
@@ -57,13 +63,13 @@ class Controleur
         $this->unModele->delete();
     }
 
-    public function setDelchamp($champ)
+    public function setChamp($champ)
     {
-      $this->unModele->setDelchamp($champ);
+      $this->unModele->setChamp($champ);
     }
-    public function setDelvaleur($valeur)
+    public function setValeur($valeur)
     {
-      $this->unModele->setDelvaleur($valeur);
+      $this->unModele->setValeur($valeur);
     }
 
     public function updateCandidat($tab, $matricule){

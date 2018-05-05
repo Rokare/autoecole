@@ -31,7 +31,7 @@
             <td>".$resultats['id_ville']."</td>
             <td>".$resultats['date_i']."</td>
             <td><a href ='indexTiers.php?suppr&sp=".$nbPage."'  type='button' class='btn btn-danger'>Supprimer</a></td>
-            <td><a href = ''  type='button' class='btn btn-info'>Modifier</a></td>
+            <td><a href ='indexTiers.php?mod' type='button' class='btn btn-info'>Modifier</a></td>
 
 
             </tr/>
@@ -40,6 +40,10 @@
             if(isset($_GET['suppr']))
             {
               $_SESSION['suppr'] = $resultats['matricule'];
+            }
+            if(isset($_GET['mod']))
+            {
+              $_SESSION['mod'] = $resultats['matricule'];
             }
 
 
