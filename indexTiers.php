@@ -32,18 +32,11 @@
     </div>
 
         <?php
+        $page = (isset($_GET['p']))?$_GET['p'] : 0;
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
         session_start ();
         $statut = $_SESSION['statut'];
-        if(!empty($_SESSION['mod']))
-        {
-          $page = 2;
-          $_SESSION['modif'] = $_SESSION['mod'];
-          unset($_SESSION['mod']);
-        }
-        else {
-          $page = 1;
-        }
+
         if(isset($_GET['sp']))
         {
           $sp = $_GET['sp'];
@@ -57,7 +50,7 @@
               switch($page)
               {
 
-                case 1 :
+                case 0 :
                 include "Vue/vueNavBarPersonnel.php";
                 include("./Vue/vueRecherche.php");
                 $unControleur->setTable('candidat');
@@ -89,17 +82,27 @@
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?sp='.$nbPage.'">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$page.'&sp='.$nbPage.'">
                             </head> ';
                     }
                   break;
-                  case 2 :
+                  case 1 :
                   include "Vue/vueNavBarPersonnel.php";
                   $unControleur->setChamp('matricule');
                   $unControleur->setValeur($_SESSION['modif']);
                   $resultats = $unControleur->selectAlternative(2);
-
                     include("Vue/vueModification.php");
+                    if(isset($_POST['update']))
+                    {
+                      if($unControleur->updateCandidat($_POST, $_SESSION['modif']) == true)
+                      {
+                        echo "mise à jour reussie : redirection...";
+                        echo '<head>
+                          <META HTTP-EQUIV="Refresh" CONTENT="1; URL=indexTiers.php?p=0">
+                              </head> ';
+
+                      }
+                    }
 
                   break;
                   }

@@ -73,7 +73,9 @@ class Controleur
     }
 
     public function updateCandidat($tab, $matricule){
-        $this->unModele->updateCandidat($tab, $matricule);
+      if($this->unModele->getPdo() != null){
+        return $this->unModele->updateCandidat($tab, $matricule);
+      }
     }
 
 

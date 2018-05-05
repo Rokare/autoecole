@@ -59,7 +59,7 @@ if(isset($resultats))
 
   </div>
 
-  <button type="submit" name="inscription" class="btn btn-primary">S'inscrire</button>
+  <button type="submit" name="update" class="btn btn-primary">S'inscrire</button>
 
   </div>
 </form>

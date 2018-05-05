@@ -210,7 +210,7 @@ class Modele
          }
      }
 
-     public function udpateCandidat($tab, $matricule)
+     public function updateCandidat($tab, $matricule)
       {
         if($this->pdo != null) //si la connexion n'est pas nullle
         {
@@ -218,9 +218,13 @@ class Modele
           $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $requete = "update ".$this->table." set nom ='".$nom."',prenom ='".$prenom."',
                         adresse ='".$adresse."',login = '".$login."',email = '".$email."',
-                        telephone='".$telephone."' where matricule = '".$matricule."'" ;
+                        telephone='".$telephone."', date_n = '".$date_n."', id_ville = '".$id_ville."' where matricule = '".$matricule."'" ;
           $udpate = $this->pdo->prepare($requete);
-          $udpate->execute();
+          if($udpate->execute())
+          {
+            return true;
+          }
+
          }
       }
 
