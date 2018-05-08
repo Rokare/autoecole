@@ -187,9 +187,10 @@ class Modele
 
          $listeChamps = implode(",", $champs);
          $requete = "insert into ".$this->table." values ('$matricule',".$listeChamps.");";
-
          $insert = $this->pdo->prepare($requete);
          $insert->execute($donnees);
+
+  
 
      }
 

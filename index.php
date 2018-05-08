@@ -67,10 +67,29 @@
                            }while ($unControleur->verifmatricule($test) == true);
                             $matricule = $test;
                            $matricule = matricule();
+                           try{
                            $unControleur->insert($unCandidat,$matricule);
-                           echo "<br> Insertion réussie <br>";
+                           }
+                           catch(PDOException $exception)
+                           {
+                              echo "Le login ou l'email entrer est déjà pris par un utilisateur";
+                           }
+                           if(empty($exception))
+                           {
+                             echo "<br> Insertion réussie <br>";
+                             echo "Redirection... <br>";
+                             echo '<head>
+                               <META HTTP-EQUIV="Refresh" CONTENT="1.5; URL=index.php?p=0">
+                                   </head> ';
+                           }
 
-                       }
+
+                         }
+
+
+
+
+
                     break;
                     case 2:
                         include "Vue/tarif.php";
@@ -91,5 +110,3 @@
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="bootstrap-4.0.0-beta.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.min.js"></script>
-    
-<?php include "Vue/footer.php"; ?>
