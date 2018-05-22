@@ -45,9 +45,6 @@ class Controleur
         $this->unModele->setTable($table);
     }
 
-    public function verifmatricule($matricule){
-        $this->unModele->verifmatricule($matricule);
-    }
 
     public function insert($unTiers,$matricule){
         $this->unModele->insert($unTiers->serialiser(), $matricule);
