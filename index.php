@@ -39,7 +39,6 @@
                   extract($_POST);
                   if($unControleur->connexion($login,$mdp) == true)
                   {
-                  
 
                     header("Location:indexTiers.php");
 
