@@ -8,7 +8,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="" src="Vue/asphalte_slim.jpg" alt="First slide">
+            <img class="" src="Vue/image/asphalte_slim.jpg" alt="First slide">
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1>Bienvenue chez Castellane </h1>
@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="second-slide" src="Vue/asphalte_slim.jpg" alt="Second slide">
+            <img class="second-slide" src="Vue/image/asphalte_slim.jpg" alt="Second slide">
             <div class="container">
               <div class="carousel-caption">
                 <h1>Découvrez planning notre en ligne </h1>
@@ -28,7 +28,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="third-slide" src="Vue/asphalte_slim.jpg" alt="Third slide">
+            <img class="third-slide" src="Vue/image/asphalte_slim.jpg" alt="Third slide">
             <div class="container">
               <div class="carousel-caption text-right">
                 <h1>Nos tarifs</h1>
@@ -52,19 +52,19 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Vue/CLIO-4.png" alt="Generic placeholder image" width="230" height="160">
+            <img class="rounded-circle" src="Vue/image/CLIO-4.png" alt="Generic placeholder image" width="230" height="160">
             <h2>Permis B</h2>
             <p>Enseignement sur véhicule école Clio 4. Initiation préalable sur simulateur de conduite, outil performant utilisé pour vous garantir l’acquisition des manœuvres fondamentales devant être automatisées pour pouvoir vous consacrer à l’environnement. Formations assurées par des formateurs qui vous aiderons à comprendre les règles de sécurité routière, à percevoir les situations à risques, développer des attitudes sécuritaires et positives qui vous permettrons de conduire en toute sérénité.</p>
             <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Vue/MT_07.png" alt="Generic placeholder image" width="210" height="140">
+            <img class="rounded-circle" src="Vue/image/MT_07.png" alt="Generic placeholder image" width="210" height="140">
             <h2>Permis A</h2>
             <p>Permis accessible à partir de 18 ans permettant la conduite d’une moto d’une puissance inférieur ou égal à 35 kW, 47.9 chevaux, d’un rapport puissance/poids ne dépassant pas 0.2 kw/kg et qui n’est pas dérivé d’un véhicule développant plus du double de sa puissance. Cylindrée environ de 400 cm3. A l’issue d’une expérience de 2 ans en permis A2, vous devez effectuer une formation de 7h vous permettant d’accéder au permis A.</p>
             <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
           </div>
           <div class="col-lg-4">
-            <img class="rounded-circle" src="Vue/femme_conduite.jpg" alt="Generic placeholder image" width="140" height="140">
+            <img class="rounded-circle" src="Vue/image/femme_conduite.jpg" alt="Generic placeholder image" width="140" height="140">
             <h2>Code de la route</h2>
             <p>Révisez, Avec nos ﬁches pratiques, vidéos et manuel de cours. Entraînez-vous, avec nos 3574 questions thématiques. Évaluez-vous, avec nos tests en conditions d’examen. Passez l'examen du code avec La Poste</p>
             <p><a class="btn btn-secondary" href="index.php?page=2" role="button">Plus de détails &raquo;</a></p>
@@ -84,7 +84,7 @@ Nos apprentissages s’appuient sur le programme de formation, REMC , (matrice G
 Nos équipes pédagogiques compétentes et sympathiques mettront tout en œuvre pour satisfaire vos obligations, vous aider à préparer vos projets et conduire un véhicule de façon autonome et apaisé.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="Vue/image-3.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="Vue/image/image-3.jpg" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -96,7 +96,7 @@ Nos équipes pédagogiques compétentes et sympathiques mettront tout en œuvre 
             <p class="lead">Nous avons maintenant intégré le planning en ligne sur notre site pour que vous puissiez désormais réservez vos heures de conduites directement sur notre platforme </p>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="Vue/smatphone-auto.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="Vue/image/smatphone-auto.jpg" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -108,7 +108,7 @@ Nos équipes pédagogiques compétentes et sympathiques mettront tout en œuvre 
             <p class="lead">Louez nos véhicules auto-école afin de vous entrainer à toute heure et à moindre coût. Autre avantage : vous pourrez vous entrainer sur votre lieu d'examen tout en étant accompagné de la personne de votre choix. Votre parcours n'aura plus aucun secret pour vous le jour J !</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="Vue/amitie-homme-femme.jpg" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" src="Vue/image/amitie-homme-femme.jpg" alt="Generic placeholder image">
           </div>
         </div>
 
