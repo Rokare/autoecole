@@ -37,10 +37,10 @@
                 if(isset($_POST["submit"]))
                 {
                   extract($_POST);
-                  if($unControleur->connexion($login,$mdp) == true)
+                  if($unControleur->connexion($login,sha1($mdp)) == true)
                   {
 
-                    header("Location:indexTiers.php?p=2");
+                    header("Location:indexTiers.php");
 
                   }
                   else {
@@ -66,13 +66,10 @@
                            }while ($unControleur->verifmatricule($test) == true);
                             $matricule = $test;
                            $matricule = matricule();
-                           try{
+
                               $unControleur->insert($unCandidat,$matricule);
-                           }
-                           catch(PDOException $exception)
-                           {
-                              echo "Le login ou l'email entré est déjà pris par un utilisateur";
-                           }
+
+
                            if(empty($exception))
                            {
                              echo "<br> Insertion réussie <br>";
