@@ -74,6 +74,7 @@ class Modele
                 session_start();
 								$_SESSION['login'] = $reponse['login'];
 								$_SESSION['matricule'] = $reponse['matricule'];
+                $_SESSION['niveau'] = $reponse['niveau'];
 
                 return true;
 						}
@@ -190,7 +191,7 @@ class Modele
          $insert = $this->pdo->prepare($requete);
          $insert->execute($donnees);
 
-  
+
 
      }
 

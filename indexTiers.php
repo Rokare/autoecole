@@ -35,7 +35,7 @@
         $page = (isset($_GET['p']))?$_GET['p'] : 0;
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
         session_start ();
-        $statut = $_SESSION['statut'];
+        $niveau = $_SESSION['niveau'];
 
         if(isset($_GET['sp']))
         {
@@ -44,13 +44,13 @@
         else {
           $sp = 1;
         }
-        switch($statut)
+        switch($niveau)
         {
-            case "personnel":
+            case 4 :
               switch($page)
               {
 
-                case 0 :
+                case 2 :
                 include "Vue/vueNavBarPersonnel.php";
                 include("./Vue/vueRecherche.php");
                 $unControleur->setTable('candidat');
@@ -107,10 +107,10 @@
                   break;
                   }
                 break;
-            case "moniteur":
+            case 3 :
                 include "Vue/vueNavBarPersonnel.php";
                 break;
-            case "candidat":
+            case 4:
                 include "Vue/vueNavBarCandidat.php";
                 include "Vue/vueCandidat.php";
 
