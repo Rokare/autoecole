@@ -1,3 +1,4 @@
+--TRIGGERS--
 DROP TRIGGER IF EXISTS insertCandidat;
 
 DELIMITER //
@@ -84,7 +85,7 @@ FOR EACH ROW
         SIGNAL SQLSTATE '42000'
         SET MESSAGE_TEXT = " erreur d'insertion dans la table tiers ";
 	ELSE
-		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.telephone, 4, new.id_ville);
+		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, 4, new.telephone, new.id_ville);
     END IF;
 
 
@@ -121,7 +122,7 @@ FOR EACH ROW
         SIGNAL SQLSTATE '42000'
         SET MESSAGE_TEXT = " erreur d'insertion dans la table moniteur ";
 	ELSE
-		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.telephone, 3, new.id_ville);
+		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, 3, new.telephone, new.id_ville);
     END IF;
 
 
@@ -159,7 +160,7 @@ FOR EACH ROW
         SIGNAL SQLSTATE '42000'
         SET MESSAGE_TEXT = " erreur d'insertion dans la table personnel ";
 	ELSE
-		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.telephone, new.niveau, new.id_ville);
+		insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, new.niveau, new.telephone, new.id_ville);
     END IF;
 
 
