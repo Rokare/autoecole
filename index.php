@@ -40,7 +40,7 @@
                   if($unControleur->connexion($login,$mdp) == true)
                   {
 
-                    header("Location:indexTiers.php?p=2");
+                    header("Location:indexTiers.php");
 
                   }
                   else {

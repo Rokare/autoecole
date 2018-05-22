@@ -50,9 +50,9 @@
               switch($page)
               {
 
-                case 2 :
+                case 0 :
                 include "Vue/vueNavBarPersonnel.php";
-            
+
                 $unControleur->setTable('candidat');
                 $perPage = 2;
                 if(isset($_POST['submit']))
