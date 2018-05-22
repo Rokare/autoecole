@@ -46,7 +46,7 @@
         }
         switch($niveau)
         {
-            case 2 :
+            case ($niveau <= 2) :
               switch($page)
               {
 
