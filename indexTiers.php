@@ -52,7 +52,7 @@
 
                 case 2 :
                 include "Vue/vueNavBarPersonnel.php";
-                include("./Vue/vueRecherche.php");
+            
                 $unControleur->setTable('candidat');
                 $perPage = 2;
                 if(isset($_POST['submit']))
