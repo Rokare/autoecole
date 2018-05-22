@@ -47,7 +47,7 @@ CREATE TABLE tiers(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
+	mdp varchar(64) not null,
 	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
@@ -63,8 +63,8 @@ CREATE TABLE moniteur(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
-	email varchar(128) not null,	
+	mdp varchar(64) not null,
+	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
 	id_ville int(8) not null,
@@ -82,7 +82,7 @@ CREATE TABLE personnel(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
+	mdp varchar(64) not null,
 	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
@@ -101,7 +101,7 @@ CREATE TABLE candidat(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
+	mdp varchar(64) not null,
 	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
@@ -120,7 +120,7 @@ CREATE TABLE etudiant(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
+	mdp varchar(64) not null,
 	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
@@ -141,7 +141,7 @@ CREATE TABLE salarie(
 	date_n date not null,
 	adresse varchar(255) not null,
 	login varchar(32) not null,
-	mdp varchar(32) not null,
+	mdp varchar(64) not null,
 	email varchar(128) not null,
 	niveau int not null,
 	telephone varchar(10) not null,
@@ -289,3 +289,6 @@ SELECT ville_id, ville_code_postal,ville_nom
 FROM villes_france_free;
 
 DROP TABLE villes_france_free;
+
+INSERT INTO PERSONNEL (matricule, nom, prenom, date_n, adresse, login, mdp, email, niveau, telephone, id_ville, date_e, date_fe) VALUES
+('M12345678', 'admin', 'admin', curdate(), 'admin', 'admin',  sha1('123') , 'admin@adlauto.fr', 1, '0181570057', 1, curdate(), null);
