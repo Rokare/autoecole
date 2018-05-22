@@ -68,11 +68,11 @@
                             $matricule = $test;
                            $matricule = matricule();
                            try{
-                           $unControleur->insert($unCandidat,$matricule);
+                              $unControleur->insert($unCandidat,$matricule);
                            }
                            catch(PDOException $exception)
                            {
-                              echo "Le login ou l'email entrer est déjà pris par un utilisateur";
+                              echo "Le login ou l'email entré est déjà pris par un utilisateur";
                            }
                            if(empty($exception))
                            {

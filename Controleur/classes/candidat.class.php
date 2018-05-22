@@ -22,6 +22,7 @@ class Candidat extends Tiers{
         $this->login = $tab['login'];
         $this->mdp = $tab['mdp'];
         $this->email = $tab['email'];
+        $this->niveau = 4;
         $this->telephone = $tab['telephone'];
         $this->id_ville = $tab['id_ville'];
         $this->dateInscription = date("Y-m-d");
@@ -42,6 +43,7 @@ class Candidat extends Tiers{
         $tab['login'] = $this->login;
         $tab['mdp'] = $this->mdp;
         $tab['email'] =$this->email;
+        $tab['niveau']=$this->niveau;
         $tab['telephone'] = $this->telephone;
         $tab['id_ville'] = $this->id_ville;
         $tab['date_i'] = $this->dateInscription;

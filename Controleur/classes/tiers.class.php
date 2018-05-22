@@ -14,8 +14,8 @@ class Tiers
         $this->login = "";
         $this->mdp = "";
         $this->email = "";
-        $this->telephone = "";
         $this->niveau = 0;
+        $this->telephone = "";
         $this->id_ville = 0;
         $this->ville = new Ville;
 
@@ -30,6 +30,7 @@ class Tiers
         $this->login = $tab['login'];
         $this->mdp = $tab['mdp'];
         $this->email = $tab['email'];
+        $this->niveau = 0;
         $this->telephone = $tab['telephone'];
         $this->id_ville = $tab['id_ville'];
 
@@ -49,6 +50,7 @@ class Tiers
         $tab['login'] = $this->login;
         $tab['mdp'] = $this->mdp;
         $tab['email'] =$this->email;
+        $tab['niveau']=$this->niveau;
         $tab['telephone'] = $this->telephone;
         $tab['id_ville'] = $this->id_ville;
         return($tab);

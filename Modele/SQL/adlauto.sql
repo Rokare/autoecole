@@ -49,8 +49,8 @@ CREATE TABLE tiers(
 	login varchar(32) not null,
 	mdp varchar(32) not null,
 	email varchar(128) not null,
-	telephone varchar(10) not null,
 	niveau int not null,
+	telephone varchar(10) not null,
 	id_ville int(8) not null,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
 	PRIMARY KEY(matricule)
@@ -64,9 +64,9 @@ CREATE TABLE moniteur(
 	adresse varchar(255) not null,
 	login varchar(32) not null,
 	mdp varchar(32) not null,
-	email varchar(128) not null,
-	telephone varchar(10) not null,
+	email varchar(128) not null,	
 	niveau int not null,
+	telephone varchar(10) not null,
 	id_ville int(8) not null,
 	date_e date not null,
 	date_fe date,
@@ -272,12 +272,12 @@ CREATE TABLE examen_pratique(
 );
 
 CREATE TABLE h_examen_code AS
-SELECT * 
+SELECT *
 FROM examen_code
 WHERE 1 = 2;
 
 CREATE TABLE h_examen_pratique AS
-SELECT * 
+SELECT *
 FROM examen_pratique
 WHERE 1 = 2;
 
