@@ -20,7 +20,7 @@ class Candidat extends Tiers{
         $this->dateNaissance = $tab['date_n'];
         $this->adresse = $tab['adresse'];
         $this->login = $tab['login'];
-        $this->mdp = $tab['mdp'];
+        $this->mdp = sha1($tab['mdp']);
         $this->email = $tab['email'];
         $this->niveau = 4;
         $this->telephone = $tab['telephone'];
