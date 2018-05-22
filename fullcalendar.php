@@ -29,7 +29,7 @@
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
       $.ajax({
-       url:"/Controleur/fullcalendar/insert.php",
+       url:"./Controleur/fullcalendar/insert.php",
        type:"POST",
        data:{title:title, start:start, end:end},
        success:function()
