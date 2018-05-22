@@ -85,18 +85,16 @@
 
 
                          }
-
-
-
-
-
                     break;
+
                     case 2:
                         include "Vue/tarif.php";
                     break;
+
                     case 3:
                           include "Vue/vueCandidat.php";
                         break;
+
                     case 4:
                         header ("Location:Vue/test_calendar/index.php");
                         break;
