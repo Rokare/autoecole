@@ -10,6 +10,21 @@ class Salarie extends Candidat{
         $this->nomEntreprise = "";
     }
 
+    public function renseigner($tab){
+      parent::renseigner($tab);
+      $this->nomEntreprise = "a completer";
+    }
+
+
+
+    public function serialiser(){
+      parent::serialiser();
+      $tab['nom_entrep'] = $this->nomEntreprise;
+
+    }
+
+
+
     /*GETTERS*/
     public function getNomEntreprise(){
         return $this->nomEntreprise;

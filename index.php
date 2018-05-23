@@ -3,6 +3,8 @@
 <?php
     include "controleur/controleur.php";
     include "controleur/classes/candidat.class.php";
+    include "controleur/classes/salarie.class.php";
+    include "controleur/classes/etudiant.class.php";
 
 
 ?>
@@ -60,12 +62,14 @@
                            if($_POST['statut'] == "salarie")
                            {
                              $unTiers = new Salarie();
-                           }
-                           elseif ($_POST['statut'] == "candidat") {
-                             $unTiers = new Candidat();
+                             $unControleur->setTable("salarie");
                            }
                            elseif ($_POST['statut'] == "etudiant") {
                              $unTiers = new Etudiant();
+                            $unControleur->setTable("etudiant");
+                           }
+                           else {
+                             $unTiers = new Candidat();
                            }
 
                            $unTiers->renseigner($_POST);
@@ -75,13 +79,13 @@
                            }while ($unControleur->verifmatricule($test) == true);
                             $matricule = $test;
                            $matricule = matricule();
-                           try{
+                          // try{
                               $unControleur->insert($unTiers,$matricule);
-                           }
-                           catch(PDOException $exception)
+                          // }
+                           /*catch(PDOException $exception)
                            {
                               echo "Le login ou l'email entré est déjà pris par un utilisateur";
-                           }
+                           }*/
                            if(empty($exception))
                            {
                              echo "<br> Insertion réussie <br>";

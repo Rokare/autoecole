@@ -11,6 +11,23 @@ class Etudiant extends Candidat{
         $this->reduc = 0.0;
     }
 
+
+    public function renseigner($tab){
+      parent::renseigner($tab);
+      $this->nivEtudiant = 0;
+      $this->reduc = 0;
+    }
+
+
+
+    public function serialiser(){
+      parent::serialiser();
+      $tab['niv_etu'] = $this->nivEtudiant;
+      $tab['reduc'] = $this->reduc;
+
+    }
+
+
     /*GETTERS*/
     public function getNivEtudiant(){
         return $this->nivEtudiant;
