@@ -41,15 +41,15 @@ DROP TRIGGER IF EXISTS insertSalarie;
 DELIMITER //
 
 /* TRIGGER QUI INSERE AUTOMATIQUEMENT DANS LA TABLE CANDIDAT AVANT L'INSERTION DANS LA TABLE SALARIE */
-BEFORE INSERT ON insertSalarie
+CREATE TRIGGER insertSalarie
+BEFORE INSERT ON salarie
 FOR EACH ROW
-
 BEGIN
     DECLARE nb int;
     DECLARE nb2 int;
 
     SELECT count(*) int nb
-    FROM tiers
+    FROM salarie
     WHERE email = new.email
     OR login = new.login
     OR matricule = new.matricule;
