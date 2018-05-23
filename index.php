@@ -51,7 +51,6 @@
                 }
                 switch($page)
                 {
-
                     case 0:
                         include "Vue/vue_accueil.php";
                         break;
@@ -59,33 +58,37 @@
                         include "Vue/vueinscription.php";
                         if(isset($_POST['inscription'])){
                            //INSERTION D'UN NOUVEAU TIERS
-                           if($_POST['statut'] == "salarie")
-                           {
-                             $unTiers = new Salarie();
-                             $unControleur->setTable("salarie");
-                           }
-                           elseif ($_POST['statut'] == "etudiant") {
-                             $unTiers = new Etudiant();
-                            $unControleur->setTable("etudiant");
-                           }
-                           else {
-                             $unTiers = new Candidat();
-                           }
+                             if($_POST['statut'] == "salarie")
+                             {
+                               $unTiers = new Salarie();
+                               $unControleur->setTable("salarie");
+                             }
+
+                             elseif ($_POST['statut'] == "etudiant") {
+                               $unTiers = new Etudiant();
+                               $unControleur->setTable("etudiant");
+                             }
+                             else {
+                               $unTiers = new Candidat();
+                             }
 
                            $unTiers->renseigner($_POST);
                            $test = matricule();
                            do {
                              $test = matricule();
                            }while ($unControleur->verifmatricule($test) == true);
-                            $matricule = $test;
+
+                           $matricule = $test;
                            $matricule = matricule();
-                          // try{
+
+                           try{
                               $unControleur->insert($unTiers,$matricule);
-                          // }
-                           /*catch(PDOException $exception)
+                           }
+                           catch(PDOException $exception)
                            {
                               echo "Le login ou l'email entré est déjà pris par un utilisateur";
-                           }*/
+                           }
+
                            if(empty($exception))
                            {
                              echo "<br> Insertion réussie <br>";
@@ -94,8 +97,6 @@
                                <META HTTP-EQUIV="Refresh" CONTENT="1.5; URL=index.php?p=0">
                                    </head> ';
                            }
-
-
                          }
                     break;
 

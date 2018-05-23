@@ -21,10 +21,10 @@ class Etudiant extends Candidat{
 
 
     public function serialiser(){
-      parent::serialiser();
+      $tab = parent::serialiser();
       $tab['niv_etu'] = $this->nivEtudiant;
       $tab['reduc'] = $this->reduc;
-
+      return $tab;
     }
 
 

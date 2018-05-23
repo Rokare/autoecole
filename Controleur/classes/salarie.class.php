@@ -18,9 +18,9 @@ class Salarie extends Candidat{
 
 
     public function serialiser(){
-      parent::serialiser();
+      $tab = parent::serialiser();
       $tab['nom_entrep'] = $this->nomEntreprise;
-
+      return $tab;
     }
 
 
