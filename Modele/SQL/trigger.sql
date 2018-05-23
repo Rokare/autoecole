@@ -39,16 +39,15 @@ DELIMITER ;
 
 DROP TRIGGER IF EXISTS insertSalarie;
 DELIMITER //
-
-/* TRIGGER QUI INSERE AUTOMATIQUEMENT DANS LA TABLE CANDIDAT AVANT L'INSERTION DANS LA TABLE SALARIE */
+CREATE TRIGGER insertSalarie
 BEFORE INSERT ON Salarie
 FOR EACH ROW
-
+/**/
 BEGIN
     DECLARE nb int;
     DECLARE nb2 int;
 
-    SELECT count(*) int nb
+    SELECT count(*) into nb
     FROM Salarie
     WHERE email = new.email
     OR login = new.login
@@ -91,7 +90,7 @@ BEGIN
     IF nb > 0
     THEN
         SIGNAL SQLSTATE '42000'
-        SET MESSAGE_TEXT = " erreur d'insertion dans la table tiers ";
+        SET MESSAGE_TEXT = " erreur d'insertion dans la table tiers TRIGGER CANDIDAT";
 	  ELSE
 		    insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, 4, new.telephone, new.id_ville);
     END IF;

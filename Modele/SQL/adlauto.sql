@@ -130,7 +130,7 @@ CREATE TABLE etudiant(
 	niv_etu int not null,
 	reduc int not null,
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
-	FOREIGN KEY(matricule) REFERENCES tiers(matricule),
+	FOREIGN KEY(matricule) REFERENCES candidat(matricule),
 	PRIMARY KEY(matricule)
 );
 
@@ -150,7 +150,7 @@ CREATE TABLE salarie(
 	mode_fact varchar(32) not null,
 	nom_entrep varchar(128),
 	FOREIGN KEY(id_ville) REFERENCES ville(id_ville),
-	FOREIGN KEY(matricule) REFERENCES tiers(matricule),
+	FOREIGN KEY(matricule) REFERENCES candidat(matricule),
 	PRIMARY KEY(matricule)
 );
 
