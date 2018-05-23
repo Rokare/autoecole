@@ -48,7 +48,7 @@ BEGIN
     DECLARE nb int;
     DECLARE nb2 int;
 
-    SELECT count(*) int nb
+    SELECT count(*) into nb
     FROM salarie
     WHERE email = new.email
     OR login = new.login
