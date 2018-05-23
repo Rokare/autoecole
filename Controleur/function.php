@@ -31,7 +31,7 @@ function saveRecherche($login, $nom, $prenom, $email)
     $_SESSION['s_login'] = $login;
     $_SESSION['s_nom'] = $nom;
     $_SESSION['s_prenom'] = $prenom;
-
+    $_SESSION['s_email'] = $email;
 }
 
 function Page($sp,$nbPage)

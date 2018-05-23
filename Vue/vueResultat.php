@@ -30,7 +30,7 @@
             <td>".$resultats['adresse']."</td>
             <td>".$resultats['id_ville']."</td>
             <td>".$resultats['date_i']."</td>
-            <td><a href ='indexTiers.php?p='.$page.'&suppr&sp=".$nbPage."'  type='button' class='btn btn-danger'>Supprimer</a></td>
+            <td><a href ='indexTiers.php?p=".$page."&suppr&sp=".$nbPage."'  type='button' class='btn btn-danger'>Supprimer</a></td>
             <td><a href ='indexTiers.php?p=1&mod' type='button' class='btn btn-info'>Modifier</a></td>
 
 
@@ -43,7 +43,8 @@
             }
             if(isset($_GET['mod']))
             {
-              $_SESSION['mod'] = $resultats['matricule'];
+              $_SESSION['modif'] = $resultats['matricule'];
+
             }
 
 
@@ -74,7 +75,7 @@
         ';
          }
         else{
-        echo "<li class='page-item'><a class='page-link' href='indexTiers.php?sp=$i'>$i</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='indexTiers.php?p=$page&sp=$i'>$i</a></li>";
 
         }
     }

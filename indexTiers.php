@@ -37,6 +37,7 @@
         session_start ();
         $niveau = $_SESSION['niveau'];
 
+
         if(isset($_GET['sp']))
         {
           $sp = $_GET['sp'];
@@ -52,9 +53,10 @@
 
                 case 0 :
                 include "Vue/vueNavBarPersonnel.php";
+                include("./Vue/VuePersonnel.php");
 
                 $unControleur->setTable('candidat');
-                $perPage = 2;
+                $perPage = 4 ;
                 if(isset($_POST['submit']))
                 {
                   extract($_POST);
@@ -82,15 +84,23 @@
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$page.'&sp='.$nbPage.'">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$Page.'&sp='.$nbPage.'">
                             </head> ';
                     }
                   break;
                   case 1 :
-                  include "Vue/vueNavBarPersonnel.php";
+
+                  include("./Vue/vueNavBarPersonnel.php");
+            
                   $unControleur->setChamp('matricule');
+
                   $unControleur->setValeur($_SESSION['modif']);
+
+
                   $resultats = $unControleur->selectAlternative(2);
+                  unset($_SESSION['modif']);
+                  if(!empty($resultats))
+                  {
                     include("Vue/vueModification.php");
                     if(isset($_POST['update']))
                     {
@@ -103,7 +113,7 @@
 
                       }
                     }
-
+                  }
                   break;
                   }
                 break;
