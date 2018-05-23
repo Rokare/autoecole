@@ -91,10 +91,10 @@
                   case 1 :
 
                   include("./Vue/vueNavBarPersonnel.php");
-            
+
                   $unControleur->setChamp('matricule');
 
-                  $unControleur->setValeur($_SESSION['modif']);
+                  $unControleur->setValeur($_GET['mod']);
 
 
                   $resultats = $unControleur->selectAlternative(2);
@@ -104,7 +104,7 @@
                     include("Vue/vueModification.php");
                     if(isset($_POST['update']))
                     {
-                      if($unControleur->updateCandidat($_POST, $_SESSION['modif']) == true)
+                      if($unControleur->updateCandidat($_POST, $_GET['mod']) == true)
                       {
                         echo "mise à jour reussie : redirection...";
                         echo '<head>
