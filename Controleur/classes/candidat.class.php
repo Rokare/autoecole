@@ -26,7 +26,7 @@ class Candidat extends Tiers{
         $this->telephone = $tab['telephone'];
         $this->id_ville = $tab['id_ville'];
         $this->dateInscription = date("Y-m-d");
-        $this->modeFacturation = "a ajouter";
+        $this->modeFacturation = $tab['mode_fact'];
 
     }
 

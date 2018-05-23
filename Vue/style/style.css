@@ -11,7 +11,7 @@ body{
 }
 .navbar-header.col {
     padding: 0 !important;
-}	
+}
 .navbar {
     background: #fff;
     padding-left: 16px;
@@ -34,7 +34,7 @@ body{
 }
 .navbar .navbar-brand b {
     font-weight: bold;
-    color: #5c6ac4;		
+    color: #5c6ac4;
 }
 .navbar .form-inline {
     display: inline-block;
@@ -47,7 +47,7 @@ body{
 }
 .search-box {
     position: relative;
-}	
+}
 .search-box input {
     padding-right: 35px;
     border-color: #dfe3e8;
@@ -82,7 +82,7 @@ body{
 .navbar .navbar-right li:first-child a {
     padding-right: 30px;
 }
-.navbar .nav .btn-primary:hover, .navbar .nav .btn-primary:focus {		
+.navbar .nav .btn-primary:hover, .navbar .nav .btn-primary:focus {
     color: #fff;
     outline: none;
     background: #5765c1;
@@ -160,4 +160,15 @@ body{
     .navbar .nav .btn-primary, .navbar .nav .btn-primary:active {
         display: block;
     }
+}
+
+
+
+
+.bt_inscription {
+padding: 0.5%;
+color : black;
+border-radius :20%;
+width: 20%;
+
 }

@@ -40,7 +40,7 @@
                   if($unControleur->connexion($login,sha1($mdp)) == true)
                   {
 
-                    header("Location:indexTiers.php");
+                    header("Location:indexTiers.php?");
 
                   }
                   else {
@@ -57,19 +57,31 @@
                         include "Vue/vueinscription.php";
                         if(isset($_POST['inscription'])){
                            //INSERTION D'UN NOUVEAU TIERS
+                           if($_POST['statut'] == "salarie")
+                           {
+                             $unTiers = new Salarie();
+                           }
+                           elseif ($_POST['statut'] == "candidat") {
+                             $unTiers = new Candidat();
+                           }
+                           elseif ($_POST['statut'] == "etudiant") {
+                             $unTiers = new Etudiant();
+                           }
 
-                           $unCandidat = new Candidat();
-                           $unCandidat->renseigner($_POST);
+                           $unTiers->renseigner($_POST);
                            $test = matricule();
                            do {
                              $test = matricule();
                            }while ($unControleur->verifmatricule($test) == true);
                             $matricule = $test;
                            $matricule = matricule();
-
-                              $unControleur->insert($unCandidat,$matricule);
-
-
+                           try{
+                              $unControleur->insert($unTiers,$matricule);
+                           }
+                           catch(PDOException $exception)
+                           {
+                              echo "Le login ou l'email entré est déjà pris par un utilisateur";
+                           }
                            if(empty($exception))
                            {
                              echo "<br> Insertion réussie <br>";
