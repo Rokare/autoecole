@@ -91,7 +91,7 @@
                   case 1 :
 
                   include("./Vue/vueNavBarPersonnel.php");
-            
+
                   $unControleur->setChamp('matricule');
 
                   $unControleur->setValeur($_SESSION['modif']);

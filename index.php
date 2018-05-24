@@ -57,46 +57,54 @@
                     case 1:
                         include "Vue/vueinscription.php";
                         if(isset($_POST['inscription'])){
-                           //INSERTION D'UN NOUVEAU TIERS
-                             if($_POST['statut'] == "salarie")
-                             {
-                               $unTiers = new Salarie();
-                               $unControleur->setTable("salarie");
-                             }
+                          if($_POST['mdp'] == $_POST['confirm_mdp'])
+                          {
 
-                             elseif ($_POST['statut'] == "etudiant") {
-                               $unTiers = new Etudiant();
-                               $unControleur->setTable("etudiant");
-                             }
-                             else {
-                               $unTiers = new Candidat();
-                             }
+                                   //INSERTION D'UN NOUVEAU TIERS
+                                     if($_POST['statut'] == "salarie")
+                                     {
+                                       $unTiers = new Salarie();
+                                       $unControleur->setTable("salarie");
+                                     }
 
-                           $unTiers->renseigner($_POST);
-                           $test = matricule();
-                           do {
-                             $test = matricule();
-                           }while ($unControleur->verifmatricule($test) == true);
+                                     elseif ($_POST['statut'] == "etudiant") {
+                                       $unTiers = new Etudiant();
+                                       $unControleur->setTable("etudiant");
+                                     }
+                                     else {
+                                       $unTiers = new Candidat();
+                                     }
 
-                           $matricule = $test;
-                           $matricule = matricule();
+                                   $unTiers->renseigner($_POST);
+                                   $test = matricule();
+                                   do {
+                                     $test = matricule();
+                                   }while ($unControleur->verifmatricule($test) == true);
 
-                           try{
-                              $unControleur->insert($unTiers,$matricule);
+                                   $matricule = $test;
+                                   $matricule = matricule();
+
+                                   try{
+                                      $unControleur->insert($unTiers,$matricule);
+                                   }
+                                   catch(PDOException $exception)
+                                   {
+                                      echo "Le login ou l'email entré est déjà pris par un utilisateur";
+                                   }
+
+                                   if(empty($exception))
+                                   {
+                                     echo "<br> Insertion réussie <br>";
+                                     echo "Redirection... <br>";
+                                     echo '<head>
+                                       <META HTTP-EQUIV="Refresh" CONTENT="1.5; URL=index.php?p=0">
+                                           </head> ';
+                                   }
+                                 }
+                           else {
+                             echo 'Veuillez entrer le même mot de passe svp';
                            }
-                           catch(PDOException $exception)
-                           {
-                              echo "Le login ou l'email entré est déjà pris par un utilisateur";
-                           }
 
-                           if(empty($exception))
-                           {
-                             echo "<br> Insertion réussie <br>";
-                             echo "Redirection... <br>";
-                             echo '<head>
-                               <META HTTP-EQUIV="Refresh" CONTENT="1.5; URL=index.php?p=0">
-                                   </head> ';
-                           }
                          }
                     break;
 

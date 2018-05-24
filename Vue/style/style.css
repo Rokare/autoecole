@@ -165,10 +165,25 @@ body{
 
 
 
-.bt_inscription {
-padding: 0.5%;
-color : black;
-border-radius :20%;
-width: 20%;
 
+
+td div { width: 50px; overflow: hidden; }
+
+.font-table {
+  font-size: 13px;
+
+}
+
+.resultat {
+  background-color: red;
+  border : 2px solid red;
+  table-layout: fixed;
+  width : 500px;
+
+}
+
+
+.recherche
+{
+  background-color: grey;
 }

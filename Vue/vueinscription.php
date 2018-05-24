@@ -16,7 +16,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Confirmation de Mot de Passe</label>
-      <input type="password" class="form-control" id="inputPrenom4" name="mdp2" placeholder="********" pattern="[a-zA-Z0-9].{6,32}" required>
+      <input type="password" class="form-control" id="inputPrenom4" name="confirm_md" placeholder="********" pattern="[a-zA-Z0-9].{6,32}" required>
     </div><br>
 
      <h3>Informations personnelles</h3><br>
