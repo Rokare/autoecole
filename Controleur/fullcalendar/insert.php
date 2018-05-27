@@ -30,7 +30,6 @@ if(isset($_POST["title"]))
       $nb = $rep2['nb'];
     }
 
-
     if($nb == 0 && !empty($mat_m))
     {
            $query = "
@@ -39,7 +38,7 @@ if(isset($_POST["title"]))
            VALUES (:title, :start_event, :end_event, :matricule, :mat_m)
            ";
            $statement = $connect->prepare($query);
-          $statement->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
           if($statement->execute(
             array(
              ':title'  => $_POST['title'],
@@ -51,13 +50,20 @@ if(isset($_POST["title"]))
            ))
            {
             echo 'ezeaz';
+
            }
            else {
              echo $statement->errorCode();
              echo 'erreur';
              header('Location:iii.php');
+
            }
 
+    }
+    if(empty($mat_m) || $nb > 0)
+    {
+      echo "<script language='javascript'>document.location='index.php'; </script>";
+           header('Location:iii.php');
     }
 
 }

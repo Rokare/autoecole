@@ -58,8 +58,9 @@
         alert("Ajout");
       },
        error: function(xhr, status, error) {
-         alert('sqdsqdqdq');
-        alert("An AJAX error occured: " + status + "\nError: " + error);
+
+        //alert("An AJAX error occured: " + status + "\nError: " + error);
+        alert("le moniteur n'existe pas ou les horaires séléctionner ne sont pas disponible");
         }
       })
      }
@@ -77,7 +78,7 @@
       data:{title:title, start:start, end:end, id:id},
       success:function(){
        calendar.fullCalendar('refetchEvents');
-       alert('Event Update');
+       alert('Evenement mis à jour');
       }
      })
     },
@@ -95,14 +96,14 @@
       success:function()
       {
        calendar.fullCalendar('refetchEvents');
-       alert("évenement mis à jour");
+       alert("Evenement mis à jour");
       }
      });
     },
 
     eventClick:function(event)
     {
-     if(confirm("Etes"))
+     if(confirm("Etes vous sûr ?"))
      {
       var id = event.id;
       $.ajax({
