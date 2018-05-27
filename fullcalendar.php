@@ -44,7 +44,7 @@
     select: function(start, end, allDay, matricule)
     {
      var title = prompt("Entrer Titre");
-     var moniteur = prompt('Entrer moniteur')
+     var moniteur = prompt('Entrer moniteur');
      if(title && moniteur)
      {
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
@@ -82,7 +82,11 @@
       success:function(){
        calendar.fullCalendar('refetchEvents');
        alert('Evenement mis à jour');
-      }
+     },
+      error: function(xhr, status, error) {
+       //alert("An AJAX error occured: " + status + "\nError: " + error);
+       alert("les horaires séléctionner ne sont pas disponible");
+       }
      })
     },
 
@@ -100,7 +104,11 @@
       {
        calendar.fullCalendar('refetchEvents');
        alert("Evenement mis à jour");
-      }
+     },
+      error: function(xhr, status, error) {
+       //alert("An AJAX error occured: " + status + "\nError: " + error);
+       alert("les horaires séléctionner ne sont pas disponible");
+       }
      });
     },
 

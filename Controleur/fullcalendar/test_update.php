@@ -4,8 +4,6 @@
 
 $connect = new PDO('mysql:host=localhost;dbname=adlauto', 'root', '');
 
-if(isset($_POST["id"]))
-{
 
 
   $req ="select * from events2 where id =:id";
@@ -60,6 +58,6 @@ $mat_m = '8584785';
      echo "<script language='javascript'>document.location='index.php'; </script>";
           header('Location:iii.php');
    }
-}
+
 
 ?>
