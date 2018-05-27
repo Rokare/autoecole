@@ -7,7 +7,8 @@ $connect = new PDO('mysql:host=localhost;dbname=adlauto', 'root', '');
 $data = array();
 
 $query = "SELECT * FROM events2 where matricule = :matricule ORDER BY id";
-$mat = "brebe";
+
+$mat = $_GET['matricule'];
 
 $statement = $connect->prepare($query);
 

@@ -124,7 +124,7 @@
                 include "Vue/vueNavBarCandidat.php";
                 include "Vue/vueCandidat.php";
 
-                header("Location:fullcalendar.php");
+                header("Location:fullcalendar.php?matricule=".$_SESSION['matricule']);
 
 
                 break;

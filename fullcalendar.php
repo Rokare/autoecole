@@ -10,6 +10,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
   <script>
 
+
+  function $_GET(param) {
+  	var vars = {};
+  	window.location.href.replace( location.hash, '' ).replace(
+  		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+  		function( m, key, value ) { // callback
+  			vars[key] = value !== undefined ? value : '';
+  		}
+  	);
+
+  	if ( param ) {
+  		return vars[param] ? vars[param] : null;
+  	}
+  	return vars;
+  }
+
+
   $(document).ready(function() {
    var calendar = $('#calendar').fullCalendar({
     editable:true,
@@ -18,25 +35,31 @@
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: './Controleur/fullcalendar/load.php',
+    events: './Controleur/fullcalendar/load.php?matricule='+$_GET('matricule'),
     selectable:true,
     selectHelper:true,
-    select: function(start, end, allDay)
+    select: function(start, end, allDay, matricule)
     {
      var title = prompt("Enter Event Title");
-     if(title)
+     var moniteur = prompt('Entrer moniteur')
+     if(title && moniteur)
      {
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+
+      var matricule = $_GET('matricule');
       $.ajax({
        url:"./Controleur/fullcalendar/insert.php",
        type:"POST",
-       data:{title:title, start:start, end:end},
+       data:{title:title, start:start, end:end,matricule:matricule},
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
-        alert("Added Successfully");
-       }
+        alert("Ajout");
+      },
+       error: function(xhr, status, error) {
+        alert("An AJAX error occured: " + status + "\nError: " + error);
+        }
       })
      }
     },
@@ -71,14 +94,14 @@
       success:function()
       {
        calendar.fullCalendar('refetchEvents');
-       alert("Event Updated");
+       alert("évenement mis à jour");
       }
      });
     },
 
     eventClick:function(event)
     {
-     if(confirm("Are you sure you want to remove it?"))
+     if(confirm("Etes"))
      {
       var id = event.id;
       $.ajax({
@@ -88,7 +111,7 @@
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
-        alert("Event Removed");
+        alert("Evenement supprimé");
        }
       })
      }
