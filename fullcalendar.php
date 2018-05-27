@@ -40,7 +40,7 @@
     selectHelper:true,
     select: function(start, end, allDay, matricule)
     {
-     var title = prompt("Enter Event Title");
+     var title = prompt("Entrer Titre");
      var moniteur = prompt('Entrer moniteur')
      if(title && moniteur)
      {
@@ -51,13 +51,14 @@
       $.ajax({
        url:"./Controleur/fullcalendar/insert.php",
        type:"POST",
-       data:{title:title, start:start, end:end,matricule:matricule},
+       data:{title:title, start:start, end:end,matricule:matricule, moniteur:moniteur},
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
         alert("Ajout");
       },
        error: function(xhr, status, error) {
+         alert('sqdsqdqdq');
         alert("An AJAX error occured: " + status + "\nError: " + error);
         }
       })
