@@ -36,7 +36,7 @@
     header:{
      left:'prev,next today',
      center:'title',
-     right:'month,agenda,agendaDay'
+     right:'month,agendaWeek,agendaDay'
     },
     events: './Controleur/fullcalendar/load.php?matricule='+$_GET('matricule'),
     selectable:true,
