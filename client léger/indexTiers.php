@@ -119,6 +119,7 @@
                 break;
             case 3 :
                 include "Vue/vueNavBarPersonnel.php";
+                header("Location:fullcalendar2.php?matricule=".$_SESSION['matricule']);
                 break;
             case 4:
                 include "Vue/vueNavBarCandidat.php";

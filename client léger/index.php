@@ -42,7 +42,7 @@
                   if($unControleur->connexion($login,sha1($mdp)) == true)
                   {
 
-                    header("Location:indexTiers.php?");
+                    header("Location:indexTiers.php");
 
                   }
                   else {
@@ -116,7 +116,7 @@
                           include "Vue/vueCandidat.php";
                         break;
 
-                  
+
                 }
             ?>
     </body>

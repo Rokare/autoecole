@@ -34,8 +34,11 @@ if(isset($_POST["id"]))
       if($rep2=$requete2->fetch())
       {
         $nb=$rep2['nb'];
-      
-        if($rep2['id'] == $_POST['id'])
+        if($_POST['end'] == $rep2['start_event'] || $_POST['start'] == $rep2['end_event'])
+        {
+          $nb --;
+        }
+        if($rep2['id'] == $_POST['id'] || $_POST['end'] == $rep2['start_event'] || $_POST['start'] == $rep2['end_event'])
         {
           $nb --;
         }
@@ -43,7 +46,6 @@ if(isset($_POST["id"]))
       }
   if( $nb > 0)
    {
-     echo "<script language='javascript'>document.location='index.php'; </script>";
           header('Location:iii.php');
    }
 
@@ -63,6 +65,8 @@ if(isset($_POST["id"]))
        ':id'   => $_POST['id']
       )
      );
+
+
    }
 
 

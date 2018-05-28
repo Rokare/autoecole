@@ -59,9 +59,10 @@
        {
         calendar.fullCalendar('refetchEvents');
         alert("Ajout");
+        calendar.fullCalendar('refetchEvents');
       },
        error: function(xhr, status, error) {
-
+           calendar.fullCalendar('refetchEvents');
         //alert("An AJAX error occured: " + status + "\nError: " + error);
         alert("le moniteur n'existe pas ou les horaires séléctionner ne sont pas disponible");
         }
@@ -84,6 +85,7 @@
        alert('Evenement mis à jour');
      },
       error: function(xhr, status, error) {
+         calendar.fullCalendar('refetchEvents');
        //alert("An AJAX error occured: " + status + "\nError: " + error);
        alert("les horaires séléctionner ne sont pas disponible");
        }
@@ -106,6 +108,7 @@
        alert("Evenement mis à jour");
      },
       error: function(xhr, status, error) {
+         calendar.fullCalendar('refetchEvents');
        //alert("An AJAX error occured: " + status + "\nError: " + error);
        alert("les horaires séléctionner ne sont pas disponible");
        }
