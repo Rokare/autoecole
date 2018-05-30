@@ -25,6 +25,12 @@ public class VueConnexion extends javax.swing.JFrame implements ActionListener,K
      */
     public VueConnexion() {
         initComponents();
+        
+        this.btannuler.addActionListener(this);
+        this.btseconnecter.addActionListener(this);
+        this.txtlogin.addKeyListener(this);
+        this.txtmdp.addKeyListener(this);
+        this.setVisible(true);
     }
 
     /**
@@ -192,9 +198,37 @@ public class VueConnexion extends javax.swing.JFrame implements ActionListener,K
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == this.btannuler)
+		{
+			this.txtlogin.setText("");
+			this.txtmdp.setText("");
+		}else if(e.getSource() == this.btseconnecter)
+		{
+			traitement();
+		}
     }
+    
+    public void traitement()
+{
+	String login = this.txtlogin.getText();
+	String mdp = new String(this.txtmdp.getPassword());   //le password recupere un tableau de caractère donc new string
+	//verification des identifiants dans la bdd
+	String droits = Modele.verifConnexion(login, mdp);
+	if(droits.equals(""))
+	{
+		JOptionPane.showMessageDialog(this, "Veuillez vérifier vos identifiants");
+	}
+	else
+	{
+		JOptionPane.showMessageDialog(this, "Bienvenue !\n "
+				+ "Vos droits sont :"+ droits);
+		
+		//demarage du logiciel
+		new VueGenerale();
+		Main.rendreVisible(false);//methode static
+	}
+}
 
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -202,8 +236,10 @@ public class VueConnexion extends javax.swing.JFrame implements ActionListener,K
     }
 
     @Override
-    public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyPressed(KeyEvent e) {
+       if(e.getKeyChar() == KeyEvent.VK_ENTER) {
+			traitement();
+		}
     }
 
     @Override
