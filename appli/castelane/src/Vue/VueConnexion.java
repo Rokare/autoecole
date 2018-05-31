@@ -30,7 +30,7 @@ public class VueConnexion extends JFrame implements ActionListener,KeyListener {
         
         initComponents();
         
-        
+        this.setBounds(700, 350, 470, 300);
         this.setVisible(true);
     }
 
