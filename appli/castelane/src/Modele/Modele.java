@@ -14,7 +14,7 @@ public class Modele {
 		String requete =" select count(*) as nb, niveau"
 				+" from tiers"
 				+" where login ='" +login+"' and"
-				+" mdp = sha1(" + mdp +");";
+				+" mdp = sha1('" + mdp +"');";
 	
 		Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
 		try {
