@@ -185,16 +185,7 @@ public class VueConnexion extends JFrame implements ActionListener,KeyListener {
 				+ "Administrateur !");
 		
 		//demarage du logiciel
-		new vueAccueil();
-		Main.rendreVisible(false);//methode static
-	}
-        else if(niveau == 3)
-	{
-		JOptionPane.showMessageDialog(this, "Bienvenue !\n "
-				+ "Moniteur !");
-		
-		//demarage du logiciel
-		new vueAccueil();
+		new vueAccueilAdmin();
 		Main.rendreVisible(false);//methode static
 	}
          else if(niveau == 2)
@@ -203,7 +194,7 @@ public class VueConnexion extends JFrame implements ActionListener,KeyListener {
 				+ "Personnel !");
 		
 		//demarage du logiciel
-		new vueAccueil();
+		new vueAccueilPerso();
 		Main.rendreVisible(false);//methode static
 	}
 }

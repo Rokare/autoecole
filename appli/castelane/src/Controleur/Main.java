@@ -26,6 +26,7 @@ public static VueConnexion uneVueConnexion;
 	
 	public static void main(String[] args) {
 		Main.uneVueConnexion = new VueConnexion();
+		
 	}
 
     @Override
