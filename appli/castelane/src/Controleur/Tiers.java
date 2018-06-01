@@ -38,6 +38,49 @@ public class Tiers {
 	public void setUnMatricule(String unMatricule) {
 		this.unMatricule = unMatricule;
 	}
+        
+        public String  matricule()
+        {
+            int complexite = 3;
+            int complexite2= 1;
+            String mdp="";
+            
+             String chaine ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for(int i = 0; i< complexite; i++)
+            {
+                int c1 = (int)(Math.random()*(25-0))+0;
+              mdp += chaine.substring(c1);
+            }
+            for(int i = 0; i< complexite; i++)
+            {
+                int c2 = (int)(Math.random()*(51-26))+26;
+              mdp += chaine.substring(c2);
+            }
+            for(int i = 0; i< complexite2; i++)
+            {
+              int c3 = (int)(Math.random()*(61-52))+52;
+              mdp += chaine.substring(c3);
+            }
+            mdp= shuffle(mdp);//permet de mélanger les caractères,meetre dans le désordre
+            return mdp;
+
+        }
+        
+        
+        public static String shuffle(String string) {
+            StringBuilder sb = new StringBuilder(string.length());
+            double rnd;
+            for (char c: string.toCharArray()) {
+                rnd = Math.random();
+                if (rnd < 0.34)
+                    sb.append(c);
+                else if (rnd < 0.67)
+                    sb.insert(sb.length() / 2, c);
+                else
+                    sb.insert(0, c);
+            }       
+            return sb.toString();
+          }
 
 
 	public String getNom() {
