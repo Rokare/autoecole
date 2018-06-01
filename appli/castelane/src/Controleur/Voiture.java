@@ -7,7 +7,7 @@ public class Voiture extends Vehicule{
 	private int nbPlace;
 	private String conso;
 	
-	public Voiture(int idVehicule, int nbKiloIni, String numImmatriculation, String nomMod, String etat, Year anneeMod,
+	public Voiture(int idVehicule, int nbKiloIni, String numImmatriculation, String nomMod, String etat, String anneeMod,
 			int nbPlace, String conso) {
 		super(idVehicule, nbKiloIni, numImmatriculation, nomMod, etat, anneeMod);
 		this.nbPlace = nbPlace;

@@ -5,11 +5,10 @@ import java.time.Year;
 public class Vehicule {
 	
 	protected int idVehicule, nbKiloIni;
-	protected String numImmatriculation, nomMod, etat;
-	protected Year anneeMod;
+	protected String numImmatriculation, nomMod, etat, anneeMod;
 	
 	public Vehicule(int idVehicule, int nbKiloIni, String numImmatriculation, String nomMod, String etat,
-			Year anneeMod) {
+			String anneeMod) {
 		
 		this.idVehicule = idVehicule;
 		this.nbKiloIni = nbKiloIni;
@@ -59,11 +58,11 @@ public class Vehicule {
 		this.etat = etat;
 	}
 
-	public Year getAnneeMod() {
+	public String getAnneeMod() {
 		return anneeMod;
 	}
 
-	public void setAnneeMod(Year anneeMod) {
+	public void setAnneeMod(String anneeMod) {
 		this.anneeMod = anneeMod;
 	}
 	
