@@ -1,6 +1,7 @@
 package Controleur;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Salarie extends Candidat{
 
@@ -23,5 +24,12 @@ public class Salarie extends Candidat{
 		this.nomEntreprise = nomEntreprise;
 	}
 	
-	
+	@Override
+        public ArrayList<Object> lesValeurs(){
+            
+            ArrayList<Object> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.nomEntreprise);
+            
+            return lesValeurs;
+        }
 }

@@ -1,6 +1,7 @@
 package Controleur;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Candidat extends Tiers{
 
@@ -37,6 +38,14 @@ public class Candidat extends Tiers{
 		this.modeFacturation = modeFacturation;
 	}
 	
-	
+	@Override
+        public ArrayList<Object> lesValeurs(){
+            
+            ArrayList<Object> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.dateInscription);
+            lesValeurs.add(this.modeFacturation);
+            
+            return lesValeurs;
+        }
 	
 }

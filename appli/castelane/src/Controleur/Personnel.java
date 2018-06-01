@@ -1,6 +1,7 @@
 package Controleur;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Personnel extends Tiers{
 
@@ -31,6 +32,14 @@ public class Personnel extends Tiers{
 		this.dateFin = dateFin;
 	}
 	
-	
+        @Override
+        public ArrayList<Object> lesValeurs(){
+            
+            ArrayList<Object> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.dateEmbauche);
+            lesValeurs.add(this.dateFin);
+            
+            return lesValeurs;
+        }
 	
 }

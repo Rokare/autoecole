@@ -1,6 +1,7 @@
 package Controleur;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Etudiant extends Candidat{
 
@@ -33,6 +34,15 @@ public class Etudiant extends Candidat{
 		this.reduc = reduc;
 	}
 	
+        @Override
+        public ArrayList<Object> lesValeurs(){
+            
+            ArrayList<Object> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.nivEtudiant);
+            lesValeurs.add(this.reduc);
+            
+            return lesValeurs;
+        }
 	
 	
 }
