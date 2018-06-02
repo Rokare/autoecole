@@ -6,13 +6,16 @@ public class Planning {
 	private Moniteur unMoniteur;
 	private Lecon uneLecon;
 	private Candidat unCandidat;
+        private Datel dateDebutLecon, dateFinLecon;
 	
 	
-	public Planning(Vehicule unVehicule, Moniteur unMoniteur, Lecon uneLecon, Candidat unCandidat) {
+	public Planning(Vehicule unVehicule, Moniteur unMoniteur, Lecon uneLecon, Candidat unCandidat, Datel dateDebutLecon, Datel dateFinLecon) {
 		this.unVehicule = unVehicule;
 		this.unMoniteur = unMoniteur;
 		this.uneLecon = uneLecon;
 		this.unCandidat = unCandidat;
+                this.dateDebutLecon = dateDebutLecon;
+                this.dateFinLecon = dateFinLecon;
 	}
 
 
@@ -54,7 +57,22 @@ public class Planning {
 	public void setUnCandidat(Candidat unCandidat) {
 		this.unCandidat = unCandidat;
 	}
+        
+        public Datel getDateDebutLecon(){
+            return this.dateDebutLecon;
+        }
 	
+        public void setDateDebutLecon(Datel dateDebutLecon){
+            this.dateDebutLecon = dateDebutLecon;
+        }
+        
+        public Datel getDateFinLecon(){
+            return this.dateFinLecon;
+        }
+	
+        public void setDateFinLecon(Datel dateFinLecon){
+            this.dateFinLecon = dateFinLecon;
+        }
 	
 	
 	

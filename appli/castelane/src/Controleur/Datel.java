@@ -1,22 +1,38 @@
 package Controleur;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Datel {
 
-	private Date dateHeureDepart;
+	private Date date;
+        private Time heure;
 
-	public Datel(Date dateHeureDepart) {
-		this.dateHeureDepart = dateHeureDepart;
+	public Datel(Date date, Time heure) {
+		this.date = date;
+                this.heure = heure;
 	}
 
-	public Date getDateHeureDepart() {
-		return dateHeureDepart;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setDateHeureDepart(Date dateHeureDepart) {
-		this.dateHeureDepart = dateHeureDepart;
+	public void setDate(Date date) {
+		this.date = date;
 	}
+        
+        public Time getHeureDepart(){
+            return this.heure;
+        }
+        
+        public void setHeureDepart(Time heure){
+            this.heure = heure;
+        }
+        
+        @Override
+        public String toString(){
+            return this.date.toString() + " " + this.heure.toString();
+        }
 	
 	
 }

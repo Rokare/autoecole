@@ -1,6 +1,7 @@
 package Modele;
 
 import Controleur.Candidat;
+import Controleur.Datel;
 import Controleur.Etudiant;
 import Controleur.Lecon;
 import Controleur.Moniteur;
@@ -16,10 +17,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Modele.Bdd;
+
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Modele {
 
@@ -145,6 +145,7 @@ public class Modele {
 			System.out.println("Erreur :" + requete);
 		}
             
+                
             return unTiers;
         }
         
@@ -175,6 +176,35 @@ public class Modele {
                 
             return uneVille;
         }
+        public static Ville selectWhereVille(String cp, String ville){
+            
+            Ville uneVille = null;
+            String requete = "select * from ville where cp="+cp+" and ville="+ville+" ;";
+            
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+            
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+			
+			if(unRes.next())
+			{
+                           uneVille = new Ville(unRes.getInt("id_ville"),unRes.getString("cp"),unRes.getString("ville"));	
+			}
+		unStat.close();
+		unRes.close();
+		uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
+                
+            return uneVille;
+        }
+        
+        
         
         public static boolean estEtudiant(String unMatricule){
             boolean resultat = false;
@@ -465,7 +495,7 @@ public class Modele {
                         
                         if(unRes.next()){
                             
-                            uneLecon = new Lecon(idLecon, unRes.getString("intitule"),unRes.getString("duree"),unRes.getDate("date_hd"), unRes.getTime("date_hd"));
+                            uneLecon = new Lecon(idLecon, unRes.getString("intitule"),unRes.getString("duree"));
                         }
                         
 			unStat.close();
@@ -479,16 +509,72 @@ public class Modele {
             return uneLecon;
         }
         
+        public static Planning selectWherePlanning(String dateHeureFin, int idLecon, int idVehicule, String dateHeureDebut, String matriculeMoniteur, String matriculeCandidat ){
+            Planning unPlanning = null;
+            String requete = "select * from planning where date_hf="+dateHeureFin+" and id_lecon="+idLecon+" and id_vehicule="+idVehicule+" and dhd="+dateHeureDebut+" and mat_m="+matriculeMoniteur+" and mat_c="+matriculeCandidat+";";
+            
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+                        
+                        if(unRes.next()){
+                            unPlanning = new Planning(selectWhereVehicule(unRes.getInt("id_vehicule")),(Moniteur) selectWhereTiers(unRes.getString("mat_m")), selectWhereLecon(unRes.getInt("id_lecon")), (Candidat) selectWhereTiers(unRes.getString("mat_c")), new Datel(unRes.getDate("dhd"), unRes.getTime("dhd")), new Datel(unRes.getDate("date_hf"), unRes.getTime("date_hf")));
+                        }
+                        
+			unStat.close();
+			uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
+            
+            return unPlanning;
+        }
+        
         
         public static ArrayList<Planning> selectAllPlanning(){
             ArrayList<Planning> lesPlannings = new ArrayList<Planning>();
+            String requete = "select * from planning";
             
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+			
+			while(unRes.next())
+			{
+                           lesPlannings.add(selectWherePlanning(unRes.getString("date_hf"), unRes.getInt("id_lecon"), unRes.getInt("id_vehicule"), unRes.getString("dhd"), unRes.getString("mat_m"), unRes.getString("mat_c")));
+			}
+		unStat.close();
+		unRes.close();
+		uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
             
             return lesPlannings;
         }
         
+        public static void insertPlanning(Planning unPlanning){
+            
+        }
+        
+        public static void updatePlanning(Planning unPlanning){
+            
+        }
+        
+        public static void deletePlanning(Planning unPlanning){
+            
+        }
+        
         public static Boolean verifMatricule(String matricule)
-    {
+        {
         boolean verif = true;
             String requete = "select * from tiers where matricule="+ matricule+";";
             
@@ -510,13 +596,13 @@ public class Modele {
 		}
 		catch(SQLException exp)
 		{
-			
+			System.out.println("Erreur :" + requete);
 		}
             
             return verif;
-    }
+         }
     
-    public static void InsertTiers(Tiers unTiers){
+        public static void insertTiers(Tiers unTiers){
             
             String table = "tiers";
             
@@ -540,66 +626,19 @@ public class Modele {
             else if(unTiers instanceof Salarie){
                 table = "salarie";
             }
-            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
                         
             String requete = "INSERT INTO "+ table + " VALUES(";
-            ArrayList<Object> lesValeurs = unTiers.lesValeurs();
+         
             
             for(int i = 1; i <= unTiers.lesValeurs().size(); i++){
                 if(i == unTiers.lesValeurs().size()){
-                    requete +=  lesValeurs.get(i) +  ");";
+                    requete +=  unTiers.lesValeurs().get(i) +  ");";
                 }
                 else{
-                    requete += lesValeurs.get(i) + ",";
+                    requete += unTiers.lesValeurs().get(i) + ",";
                 }
             }
             
             execRequete(requete);
         }
-    public static String  matricule()
-        {
-            int complexite = 3;
-            int complexite2= 1;
-            String mdp="";
-            
-             String chaine ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            for(int i = 0; i< complexite; i++)
-            {
-                int c1 = (int)(Math.random()*(25-0))+0;
-              mdp += chaine.charAt(c1);
-            }
-            for(int i = 0; i< complexite; i++)
-            {
-                int c2 = (int)(Math.random()*(51-26))+26;
-              mdp += chaine.charAt(c2);
-            }
-            for(int i = 0; i< complexite2; i++)
-            {
-              int c3 = (int)(Math.random()*(61-52))+52;
-              mdp += chaine.charAt(c3);
-            }
-            mdp= shuffle(mdp);//permet de mélanger les caractères,meetre dans le désordre
-            return mdp;
-
-        }
-        
-        
-        public static String shuffle(String string) {
-            StringBuilder sb = new StringBuilder(string.length());
-            double rnd;
-            for (char c: string.toCharArray()) {
-                rnd = Math.random();
-                if (rnd < 0.34)
-                    sb.append(c);
-                else if (rnd < 0.67)
-                    sb.insert(sb.length() / 2, c);
-                else
-                    sb.insert(0, c);
-            }       
-            return sb.toString();
-          }
-    
-    
-    
-    
 }

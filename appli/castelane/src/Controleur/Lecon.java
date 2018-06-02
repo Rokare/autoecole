@@ -1,22 +1,20 @@
 package Controleur;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Lecon {
 
 	private int idLecon;
 	private String intitule, duree;
-	private Date dateHd;
 	
 	
-	public Lecon(int idLecon, String intitule, String duree, Date dateHd) {
+	public Lecon(int idLecon, String intitule, String duree) {
 
 		this.idLecon = idLecon;
 		this.intitule = intitule;
 		this.duree = duree;
-		this.dateHd = dateHd;
-	}
-
+        }
 
 	public int getIdLecon() {
 		return idLecon;
@@ -48,15 +46,6 @@ public class Lecon {
 	}
 
 
-	public Date getDateHd() {
-		return dateHd;
-	}
-
-
-	public void setDateHd(Date dateHd) {
-		this.dateHd = dateHd;
-	}
-	
 	
 	
 	
