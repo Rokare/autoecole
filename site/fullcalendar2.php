@@ -54,7 +54,7 @@
  </head>
  <body>
   <br />
-  <h2 align="center"><a href="#">Jquery Fullcalandar Integration with PHP and Mysql</a></h2>
+  <h2 align="center"><a href="#">Planning Moniteur</a></h2>
   <br />
   <div class="container">
    <div id="calendar"></div>
