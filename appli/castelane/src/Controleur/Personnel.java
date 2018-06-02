@@ -33,11 +33,11 @@ public class Personnel extends Tiers{
 	}
 	
         @Override
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.dateEmbauche);
-            lesValeurs.add(this.dateFin);
+            ArrayList<String> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.dateEmbauche.toString());
+            lesValeurs.add(this.dateFin.toString());
             
             return lesValeurs;
         }

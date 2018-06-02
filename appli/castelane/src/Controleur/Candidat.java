@@ -39,10 +39,10 @@ public class Candidat extends Tiers{
 	}
 	
 	@Override
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.dateInscription);
+            ArrayList<String> lesValeurs = super.lesValeurs();
+            lesValeurs.add(this.dateInscription.toString());
             lesValeurs.add(this.modeFacturation);
             
             return lesValeurs;

@@ -27,6 +27,7 @@ public class Tiers {
 		this.unNiveau = unNiveau;
 		this.uneVille = uneVille;
 	}
+        
 
 
 	public String getUnMatricule() {
@@ -138,9 +139,9 @@ public class Tiers {
 		this.uneVille = uneVille;
 	}
 	
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = new ArrayList<Object>();
+            ArrayList<String> lesValeurs = new ArrayList<String>();
             lesValeurs.add(this.unMatricule);
             lesValeurs.add(this.nom);
             lesValeurs.add(this.prenom);
@@ -150,11 +151,12 @@ public class Tiers {
             lesValeurs.add(this.email);
             lesValeurs.add(this.telephone);
             lesValeurs.add(this.uneDateNaissance.toString());
-            lesValeurs.add(this.unNiveau);
-            lesValeurs.add(this.uneVille.getIdVille());
+            lesValeurs.add(String.valueOf(this.unNiveau));
+            lesValeurs.add(String.valueOf(this.uneVille.getIdVille()));
             
             return lesValeurs;
         }
+        
 	
 	
 }

@@ -1,7 +1,7 @@
 package Controleur;
 
-import java.sql.Time;
-import java.util.Date;
+import java.util.ArrayList;
+
 
 public class Lecon {
 
@@ -44,6 +44,16 @@ public class Lecon {
 	public void setDuree(String duree) {
 		this.duree = duree;
 	}
+        
+        public ArrayList<String> lesValeurs(){
+            ArrayList<String> lesValeurs = new ArrayList<String>();
+            lesValeurs.add(String.valueOf(this.idLecon));
+            lesValeurs.add(this.intitule);
+            lesValeurs.add(this.duree);
+            
+            return lesValeurs;
+        }
+            
 
 
 	

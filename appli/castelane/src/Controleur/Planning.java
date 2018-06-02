@@ -1,5 +1,7 @@
 package Controleur;
 
+import java.util.ArrayList;
+
 public class Planning {
 
 	private Vehicule unVehicule;
@@ -74,6 +76,16 @@ public class Planning {
             this.dateFinLecon = dateFinLecon;
         }
 	
-	
+	public ArrayList<String> lesValeurs(){
+            ArrayList<String> lesValeurs = new ArrayList<String>();
+            lesValeurs.add(this.dateFinLecon.toString());
+            lesValeurs.add(String.valueOf(this.uneLecon.getIdLecon()));
+            lesValeurs.add(String.valueOf(this.unVehicule.getIdVehicule()));
+            lesValeurs.add(String.valueOf(this.dateDebutLecon.toString()));
+            lesValeurs.add(this.unMoniteur.getUnMatricule());
+            lesValeurs.add(this.unCandidat.getUnMatricule());
+            
+            return lesValeurs;
+        }
 	
 }

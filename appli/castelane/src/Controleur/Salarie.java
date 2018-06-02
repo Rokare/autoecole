@@ -25,9 +25,9 @@ public class Salarie extends Candidat{
 	}
 	
 	@Override
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = super.lesValeurs();
+            ArrayList<String> lesValeurs = super.lesValeurs();
             lesValeurs.add(this.nomEntreprise);
             
             return lesValeurs;

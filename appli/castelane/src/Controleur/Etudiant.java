@@ -35,11 +35,11 @@ public class Etudiant extends Candidat{
 	}
 	
         @Override
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.nivEtudiant);
-            lesValeurs.add(this.reduc);
+            ArrayList<String> lesValeurs = super.lesValeurs();
+            lesValeurs.add(String.valueOf(this.nivEtudiant));
+            lesValeurs.add(String.valueOf(this.reduc));
             
             return lesValeurs;
         }

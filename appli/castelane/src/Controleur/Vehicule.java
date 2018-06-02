@@ -1,14 +1,17 @@
 package Controleur;
 
-import java.time.Year;
+
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Vehicule {
 	
 	protected int idVehicule, nbKiloIni;
 	protected String numImmatriculation, nomMod, etat, anneeMod;
+        protected Date dateAchat;
 	
 	public Vehicule(int idVehicule, int nbKiloIni, String numImmatriculation, String nomMod, String etat,
-			String anneeMod) {
+			String anneeMod, Date dateAchat) {
 		
 		this.idVehicule = idVehicule;
 		this.nbKiloIni = nbKiloIni;
@@ -16,6 +19,7 @@ public class Vehicule {
 		this.nomMod = nomMod;
 		this.etat = etat;
 		this.anneeMod = anneeMod;
+                this.dateAchat = dateAchat;
 	}
 
 	public int getIdVehicule() {
@@ -66,5 +70,17 @@ public class Vehicule {
 		this.anneeMod = anneeMod;
 	}
 	
-	
+	public ArrayList<String> lesValeurs(){
+            ArrayList<String> lesValeurs = new ArrayList<String>();
+            lesValeurs.add(String.valueOf(this.idVehicule));
+            lesValeurs.add(this.numImmatriculation);
+            lesValeurs.add(this.nomMod);
+            lesValeurs.add(this.anneeMod);
+            lesValeurs.add(this.dateAchat.toString());
+            lesValeurs.add(String.valueOf(this.nbKiloIni));
+            lesValeurs.add(this.etat);
+            
+            
+            return lesValeurs;
+        }
 }

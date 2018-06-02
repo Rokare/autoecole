@@ -287,7 +287,7 @@ public class Modele {
             }
             
             
-            String requete = "select * from "+table;
+            String requete = "select * from "+table+";";
             ArrayList<String> lesColonnes = new ArrayList<String>();
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
@@ -312,7 +312,7 @@ public class Modele {
 		}
             
             requete = "UPDATE "+ table + "SET ";
-            ArrayList<Object> lesValeurs = unTiers.lesValeurs();
+            ArrayList<String> lesValeurs = unTiers.lesValeurs();
             
             for(int i = 1; i <= lesColonnes.size(); i++){
                 if(i == lesColonnes.size()){
@@ -442,7 +442,7 @@ public class Modele {
 			
 			if(unRes.next())
 			{
-                           unVehicule = new Moto(idVehicule, unRes.getInt("nb_kilo_ini"), unRes.getString("num_imma"), unRes.getString("nom_mod"), unRes.getString("etat"),unRes.getString("annee"), unRes.getInt("cylindres"),unRes.getInt("puissance"));
+                           unVehicule = new Moto(idVehicule, unRes.getInt("nb_kilo_ini"), unRes.getString("num_imma"), unRes.getString("nom_mod"), unRes.getString("etat"),unRes.getString("annee"), unRes.getDate("date"), unRes.getInt("cylindres"),unRes.getInt("puissance"));
 			}
 		unStat.close();
 		unRes.close();
@@ -466,7 +466,7 @@ public class Modele {
 			
 			if(unRes.next())
 			{
-                           unVehicule = new Voiture(idVehicule, unRes.getInt("nb_kilo_ini"), unRes.getString("num_imma"), unRes.getString("nom_mod"), unRes.getString("etat"),unRes.getString("annee"), unRes.getInt("nb_places"),unRes.getString("conso"));
+                           unVehicule = new Voiture(idVehicule, unRes.getInt("nb_kilo_ini"), unRes.getString("num_imma"), unRes.getString("nom_mod"), unRes.getString("etat"),unRes.getString("annee"), unRes.getDate("date"), unRes.getInt("nb_places"),unRes.getString("conso"));
 			}
 		unStat.close();
 		unRes.close();
@@ -481,6 +481,88 @@ public class Modele {
             
             
             return unVehicule;
+        }
+        
+        public static void insertVehicule(Vehicule unVehicule){
+            String table = "vehicule";
+            
+            if(unVehicule instanceof Moto){
+                table = "moto";
+            }
+            
+            else if(unVehicule instanceof Voiture){
+                table = "voiture";
+            }
+            
+                        
+            String requete = "INSERT INTO "+ table + " VALUES(";
+         
+            
+            for(int i = 1; i <= unVehicule.lesValeurs().size(); i++){
+                if(i == unVehicule.lesValeurs().size()){
+                    requete +=  unVehicule.lesValeurs().get(i) +  ");";
+                }
+                else{
+                    requete += unVehicule.lesValeurs().get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
+        }
+        
+        public static void updateVehicule(Vehicule unVehicule){
+            String table = "vehicule";
+            
+            if(unVehicule instanceof Moto){
+                table = "moto";
+            }
+            
+            else if(unVehicule instanceof Voiture){
+                table = "voiture";
+            }
+            
+            
+            String requete = "select * from "+table+";";
+            ArrayList<String> lesColonnes = new ArrayList<String>();
+            
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+            
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+			ResultSetMetaData rsmd = unRes.getMetaData();
+                        
+                        for (int i = 1; i <= rsmd.getColumnCount(); i++ ) {
+                            lesColonnes.add(rsmd.getColumnName(i));
+                        }
+                        
+		unStat.close();
+		unRes.close();
+		uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
+            
+            requete = "UPDATE "+ table + "SET ";
+            ArrayList<String> lesValeurs = unVehicule.lesValeurs();
+            
+            for(int i = 1; i <= lesColonnes.size(); i++){
+                if(i == lesColonnes.size()){
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE id_vehicule=" + unVehicule.getIdVehicule() + ";";
+                }
+                else{
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
+        }
+        
+        public static void deleteVehicule(Vehicule unVehicule){
+            execRequete("DELETE FROM VEHICULE WHERE id_vehicule="+unVehicule.getIdVehicule());
         }
         
         public static Lecon selectWhereLecon(int idLecon){
@@ -508,6 +590,68 @@ public class Modele {
             
             return uneLecon;
         }
+        
+        public static void insertLecon(Lecon uneLecon){
+            String requete = "INSERT INTO LECON VALUES(";
+         
+            
+            for(int i = 1; i <= uneLecon.lesValeurs().size(); i++){
+                if(i == uneLecon.lesValeurs().size()){
+                    requete +=  uneLecon.lesValeurs().get(i) +  ");";
+                }
+                else{
+                    requete += uneLecon.lesValeurs().get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
+        }
+        
+        public static void updateLecon(Lecon uneLecon){
+            
+            String requete = "select * from  lecon;";
+            ArrayList<String> lesColonnes = new ArrayList<String>();
+            
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+            
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+			ResultSetMetaData rsmd = unRes.getMetaData();
+                        
+                        for (int i = 1; i <= rsmd.getColumnCount(); i++ ) {
+                            lesColonnes.add(rsmd.getColumnName(i));
+                        }
+                        
+		unStat.close();
+		unRes.close();
+		uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
+            
+            requete = "UPDATE LECON SET ";
+            ArrayList<String> lesValeurs = uneLecon.lesValeurs();
+            
+            for(int i = 1; i <= lesColonnes.size(); i++){
+                if(i == lesColonnes.size()){
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE id_lecon=" + uneLecon.getIdLecon()+ ";";
+                }
+                else{
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
+        }
+        
+        public static void deleteLecon(Lecon uneLecon){
+            execRequete("DELETE FROM LECON WHERE id_lecon="+uneLecon.getIdLecon());
+        }
+            
         
         public static Planning selectWherePlanning(String dateHeureFin, int idLecon, int idVehicule, String dateHeureDebut, String matriculeMoniteur, String matriculeCandidat ){
             Planning unPlanning = null;
@@ -537,7 +681,7 @@ public class Modele {
         
         public static ArrayList<Planning> selectAllPlanning(){
             ArrayList<Planning> lesPlannings = new ArrayList<Planning>();
-            String requete = "select * from planning";
+            String requete = "select * from planning order by dhd;";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
 		try {
@@ -562,15 +706,65 @@ public class Modele {
         }
         
         public static void insertPlanning(Planning unPlanning){
+            String requete = "INSERT INTO PLANNING VALUES(";
+         
             
+            for(int i = 1; i <= unPlanning.lesValeurs().size(); i++){
+                if(i == unPlanning.lesValeurs().size()){
+                    requete +=  unPlanning.lesValeurs().get(i) +  ");";
+                }
+                else{
+                    requete += unPlanning.lesValeurs().get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
         }
         
-        public static void updatePlanning(Planning unPlanning){
+        public static void updatePlanning(Planning nouveauPlanning, Planning ancienPlanning){
+            String requete = "select * from planning";
+            ArrayList<String> lesColonnes = new ArrayList<String>();
             
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+            
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnection().createStatement();
+			ResultSet unRes = unStat.executeQuery(requete);
+			ResultSetMetaData rsmd = unRes.getMetaData();
+                        
+                        for (int i = 1; i <= rsmd.getColumnCount(); i++ ) {
+                            lesColonnes.add(rsmd.getColumnName(i));
+                        }
+                        
+		unStat.close();
+		unRes.close();
+		uneBdd.seDeConnecter();
+		}
+		catch(SQLException exp)
+		{
+			System.out.println("Erreur :" + requete);
+		}
+            
+            requete = "UPDATE PLANNING SET ";
+            ArrayList<String> lesValeurs = nouveauPlanning.lesValeurs();
+            
+            for(int i = 1; i <= lesColonnes.size(); i++){
+                if(i == lesColonnes.size()){
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE dhd=" + ancienPlanning.getDateDebutLecon().toString() + "AND date_hf="+ ancienPlanning.getDateFinLecon().toString()+ " AND id_lecon="+ ancienPlanning.getUneLecon().getIdLecon() +" AND id_vehicule="+ ancienPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m="+ ancienPlanning.getUnMoniteur().getUnMatricule()+" AND mat_c="+ ancienPlanning.getUnCandidat().getUnMatricule() +";";
+                }
+                else{
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
+                }
+            }
+            
+            execRequete(requete);
         }
         
         public static void deletePlanning(Planning unPlanning){
+             String requete = "DELETE FROM PLANNING WHERE dhd=" + unPlanning.getDateDebutLecon().toString() + "AND date_hf="+ unPlanning.getDateFinLecon().toString()+ " AND id_lecon="+ unPlanning.getUneLecon().getIdLecon() +" AND id_vehicule="+ unPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m="+ unPlanning.getUnMoniteur().getUnMatricule()+" AND mat_c="+ unPlanning.getUnCandidat().getUnMatricule() +";";
             
+           execRequete(requete);
         }
         
         public static Boolean verifMatricule(String matricule)

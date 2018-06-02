@@ -33,9 +33,9 @@ public class Moniteur extends Tiers{
 	}
 	
         @Override
-        public ArrayList<Object> lesValeurs(){
+        public ArrayList<String> lesValeurs(){
             
-            ArrayList<Object> lesValeurs = super.lesValeurs();
+            ArrayList<String> lesValeurs = super.lesValeurs();
             lesValeurs.add(this.dateEmbauche.toString());
             lesValeurs.add(this.dateFin.toString());
             
