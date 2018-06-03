@@ -28,7 +28,7 @@ public class Salarie extends Candidat{
         public ArrayList<String> lesValeurs(){
             
             ArrayList<String> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.nomEntreprise);
+            lesValeurs.add("'"+this.nomEntreprise+"'");
             
             return lesValeurs;
         }

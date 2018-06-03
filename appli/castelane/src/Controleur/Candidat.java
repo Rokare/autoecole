@@ -42,8 +42,8 @@ public class Candidat extends Tiers{
         public ArrayList<String> lesValeurs(){
             
             ArrayList<String> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.dateInscription.toString());
-            lesValeurs.add(this.modeFacturation);
+            lesValeurs.add("'"+this.dateInscription.toString()+"'");
+            lesValeurs.add("'"+this.modeFacturation+"'");
             
             return lesValeurs;
         }

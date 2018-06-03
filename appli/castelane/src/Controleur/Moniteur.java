@@ -36,8 +36,14 @@ public class Moniteur extends Tiers{
         public ArrayList<String> lesValeurs(){
             
             ArrayList<String> lesValeurs = super.lesValeurs();
-            lesValeurs.add(this.dateEmbauche.toString());
-            lesValeurs.add(this.dateFin.toString());
+            lesValeurs.add("'"+this.dateEmbauche.toString()+"'");
+            
+            if(this.dateFin != null){
+                lesValeurs.add("'"+this.dateFin.toString()+"'");
+            }
+            else{
+                lesValeurs.add("null");
+            }
             
             return lesValeurs;
         }

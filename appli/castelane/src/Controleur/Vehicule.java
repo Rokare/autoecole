@@ -73,12 +73,12 @@ public class Vehicule {
 	public ArrayList<String> lesValeurs(){
             ArrayList<String> lesValeurs = new ArrayList<String>();
             lesValeurs.add(String.valueOf(this.idVehicule));
-            lesValeurs.add(this.numImmatriculation);
-            lesValeurs.add(this.nomMod);
-            lesValeurs.add(this.anneeMod);
-            lesValeurs.add(this.dateAchat.toString());
+            lesValeurs.add("'"+this.numImmatriculation+"'");
+            lesValeurs.add("'"+this.nomMod+"'");
+            lesValeurs.add("'"+this.anneeMod+"'");
+            lesValeurs.add("'"+this.dateAchat.toString()+"'");
             lesValeurs.add(String.valueOf(this.nbKiloIni));
-            lesValeurs.add(this.etat);
+            lesValeurs.add("'"+this.etat+"'");
             
             
             return lesValeurs;

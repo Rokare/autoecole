@@ -88,7 +88,7 @@ public class Modele {
         
         public static Tiers selectWhereTiers(String unMatricule){
             Tiers unTiers = null;
-            String requete = "select * from tiers where matricule="+ unMatricule + ";";
+            String requete = "select * from tiers where matricule='"+ unMatricule + "';";
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
 		try {
 			uneBdd.seConnecter();
@@ -179,7 +179,7 @@ public class Modele {
         public static Ville selectWhereVille(String cp, String ville){
             
             Ville uneVille = null;
-            String requete = "select * from ville where cp="+cp+" and ville="+ville+" ;";
+            String requete = "select * from ville where cp = '"+cp+"' and ville = '"+ville+"' ;";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
             
@@ -200,6 +200,10 @@ public class Modele {
 		{
 			System.out.println("Erreur :" + requete);
 		}
+                catch(NullPointerException exp)
+		{
+			System.out.println("Erreur Connexion BDD non fonctionnelle !");
+		}
                 
             return uneVille;
         }
@@ -208,7 +212,7 @@ public class Modele {
         
         public static boolean estEtudiant(String unMatricule){
             boolean resultat = false;
-            String requete = "select * from etudiant where matricule="+ unMatricule+";";
+            String requete = "select * from etudiant where matricule='"+ unMatricule+"';";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
             
@@ -236,7 +240,7 @@ public class Modele {
         
         public static boolean estSalarie(String unMatricule){
             boolean resultat = false;
-            String requete = "select * from salarie where matricule="+ unMatricule+";";
+            String requete = "select * from salarie where matricule='"+ unMatricule+"';";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
             
@@ -316,7 +320,7 @@ public class Modele {
             
             for(int i = 1; i <= lesColonnes.size(); i++){
                 if(i == lesColonnes.size()){
-                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE matricule=" + unTiers.getUnMatricule() + ";";
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE matricule='" + unTiers.getUnMatricule() + "';";
                 }
                 else{
                     requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
@@ -351,7 +355,7 @@ public class Modele {
                 table = "salarie";
             }
             
-            String requete = "DELETE FROM "+table+" WHERE matricule="+unTiers.getUnMatricule();
+            String requete = "DELETE FROM "+table+" WHERE matricule='"+unTiers.getUnMatricule()+"';";
             
            execRequete(requete);
         }
@@ -655,7 +659,7 @@ public class Modele {
         
         public static Planning selectWherePlanning(String dateHeureFin, int idLecon, int idVehicule, String dateHeureDebut, String matriculeMoniteur, String matriculeCandidat ){
             Planning unPlanning = null;
-            String requete = "select * from planning where date_hf="+dateHeureFin+" and id_lecon="+idLecon+" and id_vehicule="+idVehicule+" and dhd="+dateHeureDebut+" and mat_m="+matriculeMoniteur+" and mat_c="+matriculeCandidat+";";
+            String requete = "select * from planning where date_hf='"+dateHeureFin+"' and id_lecon="+idLecon+" and id_vehicule="+idVehicule+" and dhd='"+dateHeureDebut+"' and mat_m='"+matriculeMoniteur+"' and mat_c='"+matriculeCandidat+"';";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
 		try {
@@ -751,7 +755,7 @@ public class Modele {
             
             for(int i = 1; i <= lesColonnes.size(); i++){
                 if(i == lesColonnes.size()){
-                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE dhd=" + ancienPlanning.getDateDebutLecon().toString() + "AND date_hf="+ ancienPlanning.getDateFinLecon().toString()+ " AND id_lecon="+ ancienPlanning.getUneLecon().getIdLecon() +" AND id_vehicule="+ ancienPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m="+ ancienPlanning.getUnMoniteur().getUnMatricule()+" AND mat_c="+ ancienPlanning.getUnCandidat().getUnMatricule() +";";
+                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE dhd='" + ancienPlanning.getDateDebutLecon().toString() + "' AND date_hf='"+ ancienPlanning.getDateFinLecon().toString()+ "' AND id_lecon="+ ancienPlanning.getUneLecon().getIdLecon() +" AND id_vehicule="+ ancienPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m='"+ ancienPlanning.getUnMoniteur().getUnMatricule()+"' AND mat_c='"+ ancienPlanning.getUnCandidat().getUnMatricule() +"';";
                 }
                 else{
                     requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
@@ -762,7 +766,7 @@ public class Modele {
         }
         
         public static void deletePlanning(Planning unPlanning){
-             String requete = "DELETE FROM PLANNING WHERE dhd=" + unPlanning.getDateDebutLecon().toString() + "AND date_hf="+ unPlanning.getDateFinLecon().toString()+ " AND id_lecon="+ unPlanning.getUneLecon().getIdLecon() +" AND id_vehicule="+ unPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m="+ unPlanning.getUnMoniteur().getUnMatricule()+" AND mat_c="+ unPlanning.getUnCandidat().getUnMatricule() +";";
+             String requete = "DELETE FROM PLANNING WHERE dhd='" + unPlanning.getDateDebutLecon().toString() + "' AND date_hf='"+ unPlanning.getDateFinLecon().toString()+ "' AND id_lecon="+ unPlanning.getUneLecon().getIdLecon() +"' AND id_vehicule="+ unPlanning.getUnVehicule().getIdVehicule()+ " AND mat_m='"+ unPlanning.getUnMoniteur().getUnMatricule()+"' AND mat_c='"+ unPlanning.getUnCandidat().getUnMatricule() +"';";
             
            execRequete(requete);
         }
@@ -770,7 +774,7 @@ public class Modele {
         public static Boolean verifMatricule(String matricule)
         {
         boolean verif = true;
-            String requete = "select * from tiers where matricule="+ matricule+";";
+            String requete = "select * from tiers where matricule='"+ matricule+"';";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
             
@@ -824,8 +828,8 @@ public class Modele {
             String requete = "INSERT INTO "+ table + " VALUES(";
          
             
-            for(int i = 1; i <= unTiers.lesValeurs().size(); i++){
-                if(i == unTiers.lesValeurs().size()){
+            for(int i = 0; i < unTiers.lesValeurs().size(); i++){
+                if(i == unTiers.lesValeurs().size()-1){
                     requete +=  unTiers.lesValeurs().get(i) +  ");";
                 }
                 else{

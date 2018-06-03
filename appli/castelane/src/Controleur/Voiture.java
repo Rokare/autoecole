@@ -37,7 +37,7 @@ public class Voiture extends Vehicule{
         public ArrayList<String> lesValeurs(){
             ArrayList<String> lesValeurs = super.lesValeurs();
             lesValeurs.add(String.valueOf(this.nbPlace));
-            lesValeurs.add(this.conso);
+            lesValeurs.add("'"+this.conso+"'");
             
             return lesValeurs;
         }

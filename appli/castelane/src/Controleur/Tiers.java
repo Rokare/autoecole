@@ -142,16 +142,16 @@ public class Tiers {
         public ArrayList<String> lesValeurs(){
             
             ArrayList<String> lesValeurs = new ArrayList<String>();
-            lesValeurs.add(this.unMatricule);
-            lesValeurs.add(this.nom);
-            lesValeurs.add(this.prenom);
-            lesValeurs.add(this.adresse);
-            lesValeurs.add(this.login);
-            lesValeurs.add(this.mdp );
-            lesValeurs.add(this.email);
-            lesValeurs.add(this.telephone);
-            lesValeurs.add(this.uneDateNaissance.toString());
+            lesValeurs.add("'"+this.unMatricule+"'");
+            lesValeurs.add("'"+this.nom+"'");
+            lesValeurs.add("'"+this.prenom+"'");
+            lesValeurs.add("'"+this.uneDateNaissance.toString()+"'");
+            lesValeurs.add("'"+this.adresse+"'");
+            lesValeurs.add("'"+this.login+"'");
+            lesValeurs.add("sha1('"+this.mdp+"')");
+            lesValeurs.add("'"+this.email+"'");
             lesValeurs.add(String.valueOf(this.unNiveau));
+            lesValeurs.add("'"+this.telephone+"'");
             lesValeurs.add(String.valueOf(this.uneVille.getIdVille()));
             
             return lesValeurs;
