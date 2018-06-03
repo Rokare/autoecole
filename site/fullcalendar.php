@@ -43,7 +43,7 @@
     selectHelper:true,
     select: function(start, end, allDay, matricule)
     {
-     var title = prompt("Entrer Titre");
+     var title = prompt("Entrer le type de Leçon");
      var moniteur = prompt('Entrer moniteur');
      if(title && moniteur)
      {

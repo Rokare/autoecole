@@ -6,6 +6,17 @@ $connect = new PDO('mysql:host=localhost;dbname=adlauto', 'root', '');
 if(isset($_POST["title"]))
 {
 
+
+    $req3 ="select * from lecon where intitule =:titre";
+    $requete3 = $connect->prepare($req3);
+    $requete3->execute(
+      array(
+       ':titre' => $_POST['titre']
+    ));
+    $rep3=$requete3->fetch();
+    $id_lecon = $rep3['id_lecon'];
+
+
     $req ="select * from moniteur where nom =:nom";
     $requete = $connect->prepare($req);
     $requete->execute(
@@ -17,11 +28,11 @@ if(isset($_POST["title"]))
 
 
 
-          $req2 ="SELECT count(*) as nb, id,start_event,end_event
-          FROM events2
+          $req2 ="SELECT count(*) as nb,dhd,dhf
+          FROM planning
           WHERE mat_m=:moniteur
-          AND start_event BETWEEN :start_event and :end_event
-          OR end_event BETWEEN :start_event and :end_event;";
+          AND dhd BETWEEN :start_event and :end_event
+          OR dhf BETWEEN :start_event and :end_event;";
           $requete2 = $connect->prepare($req2);
           $requete2->execute(array(
              ':start_event' => $_POST['start'],
@@ -31,28 +42,30 @@ if(isset($_POST["title"]))
           if($rep2=$requete2->fetch())
           {
             $nb=$rep2['nb'];
-            if($_POST['end'] == $rep2['start_event'] || $_POST['start'] == $rep2['end_event'])
+            if($_POST['end'] == $rep2['dhd'] || $_POST['start'] == $rep2['dhf'])
             {
               $nb --;
             }
           }
 
+
     if($nb == 0 && !empty($mat_m))
     {
            $query = "
-           INSERT INTO events2
-           (title, start_event, end_event, matricule, mat_m)
-           VALUES (:title, :start_event, :end_event, :matricule, :mat_m)
+           INSERT INTO planning
+           (`dhf`, `id_lecon`, `id_vehicule`, `dhd`, `mat_m`, `mat_c`)
+           VALUES (:end_event, :id_lecon, :id_vehicule,:start_event, :mat_m,:mat_c)
            ";
            $statement = $connect->prepare($query);
 
           if($statement->execute(
             array(
-             ':title'  => $_POST['title'],
-             ':start_event' => $_POST['start'],
-             ':end_event' => $_POST['end'],
-             ':matricule' => $_POST['matricule'],
-             ':mat_m' => $mat_m
+              ':end_event' => $_POST['end'],
+              ':id_lecon'  => 1,
+              ':id_vehicule' => 2,
+               ':start_event' => $_POST['start'],
+             ':mat_m' => $mat_m,
+             ':mat_c' => $_POST['matricule']
             )
            ))
            {

@@ -175,3 +175,84 @@ FOR EACH ROW
 
     END //
 DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS deleteCandidat;
+
+DELIMITER //
+
+CREATE TRIGGER deleteCandidat
+BEFORE DELETE ON candidat
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+	declare nb2 int ;
+
+    SELECT count(*) into nb
+	from salarie
+	where matricule = old.matricule;
+
+	SELECT count(*) into nb2
+	from etudiant
+	where matricule = old.matricule;
+
+    IF nb > 0 
+    THEN
+        DELETE FROM salarie where matricule = old.matricule;
+	ELSEIF nb2 > 0
+	THEN
+		DELETE FROM etudiant where matricule = old.matricule;	
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+
+
+DROP TRIGGER IF EXISTS deleteTiers;
+
+DELIMITER //
+
+CREATE TRIGGER deleteTiers
+BEFORE DELETE ON Tiers
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+	declare nb2 int ;
+	declare nb3 int;
+
+    SELECT count(*) into nb
+	from candidat
+	where matricule = old.matricule;
+
+	SELECT count(*) into nb2
+	from moniteur
+	where matricule = old.matricule;
+	
+	SELECT count(*) into nb3
+	from personnel
+	where matricule = old.matricule;
+
+    IF nb > 0 
+    THEN
+        DELETE FROM candidat where matricule = old.matricule;
+	ELSEIF nb2 > 0
+	THEN
+		DELETE FROM moniteur where matricule = old.matricule;
+	ELSEIF nb3 > 0
+	THEN
+		DELETE FROM personnel where matricule = old.matricule;
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+
