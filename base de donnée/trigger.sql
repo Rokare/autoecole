@@ -219,7 +219,7 @@ DROP TRIGGER IF EXISTS deleteTiers;
 DELIMITER //
 
 CREATE TRIGGER deleteTiers
-BEFORE DELETE ON Tiers
+BEFORE DELETE ON tiers
 FOR EACH ROW
     BEGIN
    	declare nb int ;
@@ -255,4 +255,95 @@ DELIMITER ;
 
 
 
+
+
+DROP TRIGGER IF EXISTS udpateMoniteur;
+
+DELIMITER //
+
+CREATE TRIGGER udpateMoniteur
+BEFORE UPDATE ON moniteur
+FOR EACH ROW
+    BEGIN
+   	
+	
+	update tiers
+	set nom = new.nom, prenom = new.prenom, date_n= new.date_n, adresse = new.adresse, login = new.login, mdp = new.mdp, email= new.email, niveau = new.niveau, telephone = new.telephone, id_ville = new.id_ville
+	where matricule = new.matricule;
+
+    END //
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS udpatePersonnel;
+
+DELIMITER //
+
+CREATE TRIGGER udpatePersonnel
+BEFORE UPDATE ON personnel
+FOR EACH ROW
+    BEGIN
+   	
+	
+	update tiers
+	set nom = new.nom, prenom = new.prenom, date_n= new.date_n, adresse = new.adresse, login = new.login, mdp = new.mdp, email= new.email, niveau = new.niveau, telephone = new.telephone, id_ville = new.id_ville
+	where matricule = new.matricule;
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS udpateEtudiant;
+
+DELIMITER //
+
+CREATE TRIGGER udpateEtudiant
+BEFORE UPDATE ON etudiant
+FOR EACH ROW
+    BEGIN
+   	
+	
+	update candidat
+	set nom = new.nom, prenom = new.prenom, date_n= new.date_n, adresse = new.adresse, login = new.login, mdp = new.mdp, email= new.email, niveau = new.niveau, telephone = new.telephone, id_ville = new.id_ville, date_i = new.date_i, mode_fact = new.mode_fact
+	where matricule = new.matricule;
+
+    END //
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS udpateSalarie;
+
+DELIMITER //
+
+CREATE TRIGGER udpateSalarie
+BEFORE UPDATE ON salarie
+FOR EACH ROW
+    BEGIN
+   	
+	
+	update candidat
+	set nom = new.nom, prenom = new.prenom, date_n= new.date_n, adresse = new.adresse, login = new.login, mdp = new.mdp, email= new.email, niveau = new.niveau, telephone = new.telephone, id_ville = new.id_ville, date_i = new.date_i, mode_fact = new.mode_fact
+	where matricule = new.matricule;
+
+    END //
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS udpateCandidat;
+
+DELIMITER //
+
+CREATE TRIGGER udpateCandidat
+BEFORE UPDATE ON candidat
+FOR EACH ROW
+    BEGIN
+   	
+	
+	update tiers
+	set nom = new.nom, prenom = new.prenom, date_n= new.date_n, adresse = new.adresse, login = new.login, mdp = new.mdp, email= new.email, niveau = new.niveau, telephone = new.telephone, id_ville = new.id_ville
+	where matricule = new.matricule;
+
+    END //
+DELIMITER ;
 
