@@ -62,7 +62,7 @@ public class Modele {
         public static ArrayList<Tiers> selectAllTiers(){
             
             ArrayList<Tiers> lesTiers = new ArrayList<Tiers>();
-            String requete = "select * from tiers;";
+            String requete = "select * from tiers ;";
             
             Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
 		try {
@@ -72,7 +72,8 @@ public class Modele {
 			
 			while(unRes.next())
 			{
-                           lesTiers.add(selectWhereTiers(unRes.getString("matricule")));
+                           Tiers unTiers = selectWhereTiers(unRes.getString("matricule"));
+                           lesTiers.add(unTiers);
 			}
 		unStat.close();
 		unRes.close();
@@ -99,37 +100,99 @@ public class Modele {
 			{
                             requete = "select * from ";
                             if(unRes.getInt("niveau") <= 2){
-                                requete += "personnel;";
-                                unRes =  unStat.executeQuery(requete);
-                                unTiers = new Personnel(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_e"), unRes.getDate("date_fe"));
-                                
+                                requete += "personnel where matricule='"+ unMatricule +"';";
+                                    try {
+                                            unRes = unStat.executeQuery(requete);
+
+                                            if(unRes.next())
+                                            {
+                                               unTiers = new Personnel(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("id_ville")), unRes.getDate("date_e"), unRes.getDate("date_fe"));	
+                                               
+                                            }
+                                            
+                                    }
+                                    catch(SQLException exp)
+                                    {
+                                            System.out.println("Erreur :" + requete);
+                                    }
                             }
                             
                             else if(unRes.getInt("niveau") == 3){
-                                requete += "moniteur;";
-                                unRes =  unStat.executeQuery(requete);
-                                unTiers = new Moniteur(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_e"), unRes.getDate("date_fe"));
-                               
+                                requete += "moniteur where matricule='"+ unMatricule +"';";
+                                try {
+                                            unRes = unStat.executeQuery(requete);
+
+                                            if(unRes.next())
+                                            {
+                                               unTiers = new Moniteur(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_e"), unRes.getDate("date_fe"));
+                                               
+                                            }
+                                            
+                                    }
+                                    catch(SQLException exp)
+                                    {
+                                            System.out.println("Erreur :" + requete);
+                                    }
+                                
+ 
                             }
                             
                             else if(unRes.getInt("niveau") == 4){
                                 
                                 if(estEtudiant(unRes.getString("matricule"))){
-                                    requete += "etudiant;";
-                                    unRes =  unStat.executeQuery(requete);
-                                    unTiers = new Etudiant(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"), unRes.getInt("niv_etu"), unRes.getFloat("reduc"));
-                                
+                                    requete += "etudiant where matricule='"+ unMatricule +"';";
+                                    
+                                    try {
+                                            unRes = unStat.executeQuery(requete);
+
+                                            if(unRes.next())
+                                            {
+                                               unTiers = new Etudiant(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"), unRes.getInt("niv_etu"), unRes.getFloat("reduc"));
+                                               
+                                            }
+                                            
+                                    }
+                                    catch(SQLException exp)
+                                    {
+                                            System.out.println("Erreur :" + requete);
+                                    }
                                 }
                                 else if(estSalarie(unRes.getString("matricule"))){
-                                    requete += "salarie;";
-                                    unRes =  unStat.executeQuery(requete);
-                                    unTiers = new Salarie(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"), unRes.getString("nom_entrep"));
+                                    requete += "salarie where matricule='"+ unMatricule +"';";
+                                    
+                                    try {
+                                            unRes = unStat.executeQuery(requete);
+
+                                            if(unRes.next())
+                                            {
+                                               unTiers = new Salarie(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"), unRes.getString("nom_entrep"));
+                                               
+                                            }
+                                            
+                                    }
+                                    catch(SQLException exp)
+                                    {
+                                            System.out.println("Erreur :" + requete);
+                                    }
                                     
                                 }
                                 else{
-                                    requete += "candidat;";
-                                    unRes =  unStat.executeQuery(requete);
-                                    unTiers = new Candidat(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"));
+                                    requete += "candidat where matricule='"+ unMatricule +"';";
+                                    
+                                    try {
+                                            unRes = unStat.executeQuery(requete);
+
+                                            if(unRes.next())
+                                            {
+                                               unTiers = new Candidat(unRes.getString("matricule"),unRes.getString("nom"), unRes.getString("prenom"),unRes.getString("adresse"), unRes.getString("login"), unRes.getString("mdp"), unRes.getString("email"), unRes.getString("telephone"),unRes.getDate("date_n"), unRes.getInt("niveau"), selectWhereVille(unRes.getInt("niveau")), unRes.getDate("date_i"), unRes.getString("mode_fact"));
+                                                
+                                            }
+                                            
+                                    }
+                                    catch(SQLException exp)
+                                    {
+                                            System.out.println("Erreur :" + requete);
+                                    }
                                     
                                 }
                             }
@@ -142,7 +205,7 @@ public class Modele {
 		}
 		catch(SQLException exp)
 		{
-			System.out.println("Erreur :" + requete);
+			System.out.println("Erreur :" + requete+" / Code erreur: "+exp.getErrorCode());
 		}
             
                 
@@ -838,6 +901,19 @@ public class Modele {
             }
             
             execRequete(requete);
+        }
+        
+        public static ArrayList<Moniteur> selectAllMoniteurs(){
+            ArrayList<Moniteur> lesMoniteurs = new ArrayList<Moniteur>();
+            ArrayList<Tiers> lesTiers = Modele.selectAllTiers();
+
+            for(Tiers unTiers : lesTiers){
+                if(unTiers instanceof Moniteur){
+                    lesMoniteurs.add((Moniteur) unTiers);
+                }
+            }
+
+        return lesMoniteurs;
         }
         
         public static String  matricule()
