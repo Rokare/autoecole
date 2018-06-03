@@ -487,7 +487,7 @@ public class Modele {
             return lesPlannings;
         }
         
-        public Boolean verifMatricule(String matricule)
+        public static Boolean verifMatricule(String matricule)
     {
         boolean verif = true;
             String requete = "select * from tiers where matricule="+ matricule+";";
@@ -558,7 +558,7 @@ public class Modele {
         }
     
     
-     public String  matricule()
+     public static String  matricule()
         {
             int complexite = 3;
             int complexite2= 1;
