@@ -796,6 +796,7 @@ public class Modele {
             return verif;
          }
     
+        public static void insertTiers(Tiers unTiers){
             
             String table = "tiers";
             
