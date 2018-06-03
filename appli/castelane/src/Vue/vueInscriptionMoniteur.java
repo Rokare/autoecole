@@ -5,6 +5,21 @@
  */
 package Vue;
 
+import Controleur.*;
+import java.text.ParseException;
+
+import Modele.*;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Locale;
+import java.util.Date;
+
+import java.text.DateFormat;
+import javax.swing.JOptionPane;
+import static sun.security.jgss.GSSUtil.login;
+
 /**
  *
  * @author Maxime
@@ -27,25 +42,30 @@ public class VueInscriptionMoniteur extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLocaleChooserBeanInfo1 = new com.toedter.components.JLocaleChooserBeanInfo();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        nom_moni = new javax.swing.JTextField();
-        prenom_moni = new javax.swing.JTextField();
-        adresse_moni = new javax.swing.JTextField();
-        mail_moni = new javax.swing.JTextField();
+        nom = new javax.swing.JTextField();
+        prenom = new javax.swing.JTextField();
+        adresse = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cp_moni = new javax.swing.JTextField();
-        naissance_moni = new javax.swing.JTextField();
-        telephone_moni = new javax.swing.JTextField();
+        cp = new javax.swing.JTextField();
+        telephone = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ville_moni = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ville = new javax.swing.JTextField();
+        btAnnuler = new javax.swing.JButton();
+        btInscription = new javax.swing.JButton();
+        date_n = new datechooser.beans.DateChooserCombo();
+        login = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        mdp = new javax.swing.JPasswordField();
 
         jLabel1.setText("Nom :");
 
@@ -53,14 +73,14 @@ public class VueInscriptionMoniteur extends javax.swing.JPanel {
 
         jLabel3.setText("Adresse :");
 
-        jLabel4.setText("Mail :");
+        jLabel4.setText("Email :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("INSCRIPTION MONITEUR");
 
-        mail_moni.addActionListener(new java.awt.event.ActionListener() {
+        email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mail_moniActionPerformed(evt);
+                emailActionPerformed(evt);
             }
         });
 
@@ -70,133 +90,254 @@ public class VueInscriptionMoniteur extends javax.swing.JPanel {
 
         jLabel8.setText("Téléphone :");
 
-        telephone_moni.addActionListener(new java.awt.event.ActionListener() {
+        telephone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telephone_moniActionPerformed(evt);
+                telephoneActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Ville :");
 
-        jButton1.setText("Annuler");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAnnuler.setText("Annuler");
+        btAnnuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAnnulerActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Inscription");
+        btInscription.setText("Inscription");
+        btInscription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInscriptionActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(3, 3, 3))
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nom_moni)
-                            .addComponent(prenom_moni)
-                            .addComponent(adresse_moni)
-                            .addComponent(ville_moni, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addGap(43, 43, 43)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(mail_moni, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cp_moni)
-                                        .addComponent(telephone_moni, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
+        try {
+            date_n.setDefaultPeriods(new datechooser.model.multiple.PeriodSet(new datechooser.model.multiple.Period(new java.util.GregorianCalendar(2018, 5, 15),
+                new java.util.GregorianCalendar(2018, 5, 15))));
+    } catch (datechooser.model.exeptions.IncompatibleDataExeption e1) {
+        e1.printStackTrace();
+    }
+
+    login.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            loginActionPerformed(evt);
+        }
+    });
+
+    jLabel10.setText("Mot de passe :");
+
+    jLabel11.setText("Login :");
+
+    mdp.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            mdpActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGap(213, 213, 213)
+            .addComponent(jLabel5)
+            .addGap(0, 0, Short.MAX_VALUE))
+        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel8)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel11))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nom)
+                        .addComponent(adresse)
+                        .addComponent(ville, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                        .addComponent(login)
+                        .addComponent(cp))
+                    .addGap(31, 31, 31)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(naissance_moni, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jLabel5)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel5)
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(nom_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cp_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(prenom_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(mail_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adresse_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(naissance_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(telephone_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(ville_moni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel10))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btInscription, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(mdp, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(telephone, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(date_n, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(prenom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(98, 98, 98)
+                    .addComponent(btAnnuler, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(205, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addGap(35, 35, 35)
+            .addComponent(jLabel5)
+            .addGap(72, 72, 72)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel11)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel10)
+                .addComponent(mdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(27, 27, 27)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
+                .addComponent(prenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2))
+            .addGap(27, 27, 27)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(adresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(date_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(ville, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9)
+                .addComponent(telephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6))
+            .addGap(48, 48, 48)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btAnnuler)
+                .addComponent(btInscription))
+            .addContainerGap(65, Short.MAX_VALUE))
+    );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mail_moniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mail_moniActionPerformed
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mail_moniActionPerformed
+    }//GEN-LAST:event_emailActionPerformed
 
-    private void telephone_moniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telephone_moniActionPerformed
+    private void telephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telephoneActionPerformed
+        
+                
+                
+                
+        
+    }//GEN-LAST:event_telephoneActionPerformed
+
+    private void btAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnnulerActionPerformed
+        this.nom.setText("");
+        this.prenom.setText("");
+        this.login.setText("");
+        this.mdp.setText("");
+        this.cp.setText("");
+        this.ville.setText("");
+        this.email.setText("");
+        this.telephone.setText("");
+        this.date_n.setText("");
+        this.adresse.setText("");
+    }//GEN-LAST:event_btAnnulerActionPerformed
+
+    private void btInscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscriptionActionPerformed
+        String nom = this.nom.getText();
+        String login = this.login.getText();
+        String mdp = this.mdp.getText();
+        String adresse = this.adresse.getText();
+        String prenom = this.prenom.getText();
+        String date_n = this.date_n.getText();
+        String email = this.email.getText();
+        String id_ville = this.cp.getText();
+        int cp = Integer.parseInt(id_ville);
+        String ville = this.ville.getText();
+        String telephone = this.telephone.getText();
+        if (nom.equals("") || adresse.equals(""))
+        {
+                JOptionPane.showMessageDialog( this, "Veuillez remplir les données !");
+        }
+        else
+        {
+        //instanciation du client
+            String matricule = Modele.matricule();
+            
+            do{
+                 matricule = Modele.matricule();
+            }while(Modele.verifMatricule(matricule) == false);
+            
+            
+            SimpleDateFormat formater = null;
+            Date today = new Date();
+            formater = new SimpleDateFormat("dd-MM-yyyy");
+             String embauche = formater.format(today);
+             
+             
+            Date daten = null;
+           
+            try {
+                daten = formater.parse(date_n);
+            } catch(ParseException e)
+            {
+                
+            }
+            
+            java.sql.Date d2 = new java.sql.Date(daten.getTime());
+
+        
+        
+        
+        
+        
+        Moniteur unMoniteur = new Moniteur(matricule,nom, prenom,adresse,login,mdp,email,telephone,d2,3, Modele.selectWhereVille(cp),embauche, null);
+        //appel  du Modele pour inserer un client dans la BDD
+        Modele.InsertTiers(unMoniteur);
+        JOptionPane.showMessageDialog(this, "Insertion reussie !");
+        
+        
+        this.nom.setText("");
+        this.prenom.setText("");
+        this.login.setText("");
+        this.mdp.setText("");
+        this.cp.setText("");
+        this.ville.setText("");
+        this.email.setText("");
+        this.telephone.setText("");
+        this.date_n.setText("");
+         this.adresse.setText("");
+    }//GEN-LAST:event_btInscriptionActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_telephone_moniActionPerformed
+    }//GEN-LAST:event_loginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }//GEN-LAST:event_mdpActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adresse_moni;
-    private javax.swing.JTextField cp_moni;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField adresse;
+    private javax.swing.JButton btAnnuler;
+    private javax.swing.JButton btInscription;
+    private javax.swing.JTextField cp;
+    private datechooser.beans.DateChooserCombo date_n;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -205,11 +346,12 @@ public class VueInscriptionMoniteur extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField mail_moni;
-    private javax.swing.JTextField naissance_moni;
-    private javax.swing.JTextField nom_moni;
-    private javax.swing.JTextField prenom_moni;
-    private javax.swing.JTextField telephone_moni;
-    private javax.swing.JTextField ville_moni;
+    private com.toedter.components.JLocaleChooserBeanInfo jLocaleChooserBeanInfo1;
+    private javax.swing.JTextField login;
+    private javax.swing.JPasswordField mdp;
+    private javax.swing.JTextField nom;
+    private javax.swing.JTextField prenom;
+    private javax.swing.JTextField telephone;
+    private javax.swing.JTextField ville;
     // End of variables declaration//GEN-END:variables
 }
