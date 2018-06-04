@@ -19,6 +19,7 @@ public class Candidat extends Tiers{
 	}
 
 
+
 	public Date getDateInscription() {
 		return dateInscription;
 	}

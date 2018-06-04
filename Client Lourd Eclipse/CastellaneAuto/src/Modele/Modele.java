@@ -916,6 +916,19 @@ public class Modele {
         return lesMoniteurs;
         }
         
+        public static ArrayList<Candidat> selectAllCandidats(){
+            ArrayList<Candidat> lesCandidats = new ArrayList<Candidat>();
+            ArrayList<Tiers> lesTiers = Modele.selectAllTiers();
+
+            for(Tiers unTiers : lesTiers){
+                if(unTiers instanceof Candidat){
+                    lesCandidats.add((Candidat) unTiers);
+                }
+            }
+
+        return lesCandidats;
+        }
+        
         public static String  matricule()
         {
             int complexite = 3;

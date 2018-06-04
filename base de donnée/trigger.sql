@@ -257,7 +257,7 @@ DELIMITER ;
 
 
 
-DROP TRIGGER IF EXISTS udpateMoniteur;
+DROP TRIGGER IF EXISTS updateMoniteur;
 
 DELIMITER //
 
@@ -275,7 +275,7 @@ FOR EACH ROW
 DELIMITER ;
 
 
-DROP TRIGGER IF EXISTS udpatePersonnel;
+DROP TRIGGER IF EXISTS updatePersonnel;
 
 DELIMITER //
 
@@ -294,11 +294,11 @@ DELIMITER ;
 
 
 
-DROP TRIGGER IF EXISTS udpateEtudiant;
+DROP TRIGGER IF EXISTS updateEtudiant;
 
 DELIMITER //
 
-CREATE TRIGGER udpateEtudiant
+CREATE TRIGGER updateEtudiant
 BEFORE UPDATE ON etudiant
 FOR EACH ROW
     BEGIN
@@ -349,11 +349,11 @@ DELIMITER ;
 
 
 
-DROP TRIGGER IF EXISTS DeleteCandidat;
+DROP TRIGGER IF EXISTS DeletePlanningCandidat;
 
 DELIMITER //
 
-CREATE TRIGGER DeleteCandidat
+CREATE TRIGGER DeletePlanningCandidat
 BEFORE Delete ON candidat
 FOR EACH ROW
     BEGIN
@@ -366,11 +366,11 @@ FOR EACH ROW
 DELIMITER ;
 
 
-DROP TRIGGER IF EXISTS DeleteMoniteur;
+DROP TRIGGER IF EXISTS DeletePlanningMoniteur;
 
 DELIMITER //
 
-CREATE TRIGGER DeleteMoniteur
+CREATE TRIGGER DeletePlanningMoniteur
 BEFORE Delete ON moniteur
 FOR EACH ROW
     BEGIN
