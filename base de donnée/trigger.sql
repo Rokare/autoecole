@@ -399,3 +399,158 @@ FOR EACH ROW
 DELIMITER ;
 
 
+
+DROP TRIGGER IF EXISTS insertMoto;
+
+DELIMITER //
+
+CREATE TRIGGER insertMoto
+BEFORE INSERT ON moto
+FOR EACH ROW
+    BEGIN
+   	declare nb int;
+	
+
+    SELECT count(*) into nb
+	from vehicule
+	where id_vehicule = new.id_vehicule;
+
+
+    IF nb > 0 
+    THEN
+        SIGNAL SQLSTATE '42000'
+        SET MESSAGE_TEXT = " erreur d'insertion dans la table vehicule ";
+	ELSE
+		insert into vehicule values(new.id_vehicule, new.num_imma, new.nom_mod, new.annee, new.date_achat, new.nb_kilo_ini, new.etat);
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS insertVoiture;
+
+DELIMITER //
+
+CREATE TRIGGER insertVoiture
+BEFORE INSERT ON voiture
+FOR EACH ROW
+    BEGIN
+   	declare nb int;
+	
+
+    SELECT count(*) into nb
+	from vehicule
+	where id_vehicule = new.id_vehicule;
+
+
+    IF nb > 0 
+    THEN
+        SIGNAL SQLSTATE '42000'
+        SET MESSAGE_TEXT = " erreur d'insertion dans la table vehicule ";
+	ELSE
+		insert into vehicule values(new.id_vehicule, new.num_imma, new.nom_mod, new.annee, new.date_achat, new.nb_kilo_ini, new.etat);
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS deleteMoto;
+
+DELIMITER //
+
+CREATE TRIGGER deleteMoto
+BEFORE DELETE ON moto
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+	
+
+    SELECT count(*) into nb
+	from vehicule
+	where id_vehicule = old.id_vehicule;
+
+
+    IF nb > 0 
+    THEN
+        DELETE FROM vehicule where id_vehicule = old.id_vehicule;
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS deleteVoiture;
+
+DELIMITER //
+
+CREATE TRIGGER deleteVoiture
+BEFORE DELETE ON voiture
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+	
+
+    SELECT count(*) into nb
+	from vehicule
+	where id_vehicule = old.id_vehicule;
+
+
+    IF nb > 0 
+    THEN
+        DELETE FROM vehicule where id_vehicule = old.id_vehicule;
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+
+DROP TRIGGER IF EXISTS deleteVehicule;
+
+DELIMITER //
+
+CREATE TRIGGER deleteVehicule
+BEFORE DELETE ON vehicule
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+	declare nb2 int ;
+	
+
+    SELECT count(*) into nb
+	from moto
+	where id_vehicule = old.id_vehicule;
+
+	SELECT count(*) into nb2
+	from voiture
+	where id_vehicule = old.id_vehicule;
+	
+
+
+    IF nb > 0 
+    THEN
+        DELETE FROM moto where id_vehicule = old.id_vehicule;
+	ELSEIF nb2 > 0
+	THEN
+		DELETE FROM voiture where id_vehicule = old.id_vehicule;
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+
