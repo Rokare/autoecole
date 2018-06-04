@@ -347,3 +347,55 @@ FOR EACH ROW
     END //
 DELIMITER ;
 
+
+
+DROP TRIGGER IF EXISTS DeleteCandidat;
+
+DELIMITER //
+
+CREATE TRIGGER DeleteCandidat
+BEFORE Delete ON candidat
+FOR EACH ROW
+    BEGIN
+   	
+	
+	delete from planning
+	where mat_c = old.matricule;
+
+    END //
+DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS DeleteMoniteur;
+
+DELIMITER //
+
+CREATE TRIGGER DeleteMoniteur
+BEFORE Delete ON moniteur
+FOR EACH ROW
+    BEGIN
+   	
+	
+	delete from planning
+	where mat_m = old.matricule;
+
+    END //
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS DeleteLecon;
+
+DELIMITER //
+
+CREATE TRIGGER DeleteLecon
+BEFORE Delete ON lecon
+FOR EACH ROW
+    BEGIN
+   	
+	
+	delete from planning
+	where id_lecon = old.id_lecon;
+
+    END //
+DELIMITER ;
+
+
