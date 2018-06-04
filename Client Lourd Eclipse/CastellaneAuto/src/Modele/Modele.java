@@ -916,6 +916,19 @@ public class Modele {
         return lesMoniteurs;
         }
         
+        public static ArrayList<Personnel> selectAllPersonnel(){
+            ArrayList<Personnel> lePersonnel = new ArrayList<Personnel>();
+            ArrayList<Tiers> lesTiers = Modele.selectAllTiers();
+
+            for(Tiers unTiers : lesTiers){
+                if(unTiers instanceof Personnel){
+                    lePersonnel.add((Personnel) unTiers);
+                }
+            }
+
+        return lePersonnel;
+        }
+        
         public static ArrayList<Candidat> selectAllCandidats(){
             ArrayList<Candidat> lesCandidats = new ArrayList<Candidat>();
             ArrayList<Tiers> lesTiers = Modele.selectAllTiers();
