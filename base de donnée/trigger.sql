@@ -525,7 +525,7 @@ AFTER DELETE ON candidat
 FOR EACH ROW
     BEGIN
    	declare nb int ;
-	declare nb2 int ;
+
 
     SELECT count(*) into nb
 	from tiers
