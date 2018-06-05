@@ -54,6 +54,8 @@
                 case 0 :
                 include "Vue/vueNavBarPersonnel.php";
                 include("./Vue/VuePersonnel.php");
+                try{
+
 
                 $unControleur->setTable('candidat');
                 $perPage = 4 ;
@@ -77,16 +79,26 @@
                 else {
                   include("Vue/vueResultat.php");
                 }
-                    if(isset($_SESSION['suppr']))
+
+                    if(isset($_GET['suppr']))
                     {
                       $unControleur->setChamp('matricule');
-                      $unControleur->setValeur($_SESSION['suppr']);
+                      $unControleur->setValeur($_GET['suppr']);
+                      $unControleur->setTable('tiers');
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$Page.'&sp='.$nbPage.'">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$page.'&sp='.$nbPage.'">
                             </head> ';
+
                     }
+
+                
+                }
+                catch(Exception $e)
+                {
+
+                }
                   break;
                   case 1 :
 
@@ -94,7 +106,7 @@
 
                   $unControleur->setChamp('matricule');
 
-                  $unControleur->setValeur($_SESSION['modif']);
+                  $unControleur->setValeur($_GET['mod']);
 
 
                   $resultats = $unControleur->selectAlternative(2);
@@ -104,7 +116,7 @@
                     include("Vue/vueModification.php");
                     if(isset($_POST['update']))
                     {
-                      if($unControleur->updateCandidat($_POST, $_SESSION['modif']) == true)
+                      if($unControleur->updateCandidat($_POST, $_GET['mod']) == true)
                       {
                         echo "mise à jour reussie : redirection...";
                         echo '<head>

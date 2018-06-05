@@ -30,7 +30,7 @@
             <td>".$resultats['adresse']."</td>
             <td>".$resultats['id_ville']."</td>
             <td>".$resultats['date_i']."</td>
-            <td><a href ='indexTiers.php?p=".$page."&suppr&sp=".$nbPage."'  type='button' class='btn btn-danger btn-sm'>Supprimer</a></td>
+            <td><a href ='indexTiers.php?p=".$page."&suppr=".$resultats['matricule']."&sp=".$nbPage."'  type='button' class='btn btn-danger btn-sm'>Supprimer</a></td>
             <td><a href ='indexTiers.php?p=1&mod=".$resultats['matricule']."' type='button' class='btn btn-info btn-sm'>Modifier</a></td>
 
 
