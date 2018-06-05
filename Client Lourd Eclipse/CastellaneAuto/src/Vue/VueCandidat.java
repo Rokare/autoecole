@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +25,6 @@ import Controleur.Candidat;
 import Controleur.Tableau;
 
 import datechooser.beans.DateChooserCombo;
-import javafx.scene.control.PasswordField;
 import Modele.*;
 import Controleur.*;
 
@@ -64,21 +66,6 @@ public class VueCandidat extends JPanel implements ActionListener{
 	private DateChooserCombo dccDateNaissance = new DateChooserCombo();
 	private JComboBox txtTypeCandidat = new JComboBox();
 	
-	
-	
-	
-	private JLabel tabMatricule = new JLabel("Matricule :");
-	private JLabel tabNom = new JLabel("Nom :");
-	private JLabel tabPrenom = new JLabel("Prenom :");
-	private JLabel tabEmail= new JLabel("Email:");
-	private JLabel tabTelephone= new JLabel("Telephone:");
-	
-	
-	private JTextField editNomCandidat = new JTextField();
-	private JTextField editPrenomCandidat = new JTextField();
-	private JTextField editTelephoneCandidat = new JTextField();
-	private JTextField editEmailCandidat = new JTextField();
-	private JTextField editMatriculeCandidat = new JTextField();
 	
 	private JPanel unPanelForm = new JPanel();
 	private JPanel unPanelTab = new JPanel();
@@ -167,12 +154,16 @@ public class VueCandidat extends JPanel implements ActionListener{
 		unPanelForm.add(txtMdpCandidat);
 		unPanelForm.add(txtModePaiement);
 		unPanelForm.add(txtTypeCandidat);
+		
+		txtModePaiement.addItem("Especes");
+		txtModePaiement.addItem("CB");
+		txtModePaiement.addItem("");
+		txtTypeCandidat.addItem("Salarie");
+		txtTypeCandidat.addItem("Etudiant");
+		txtTypeCandidat.addItem("Autre");
 	
-		
+		this.txtMatricule.setEditable(false);
 		// ----------- PANEL TABLEAU ----------//
-		
-		
-		
 		
 		this.btAjouter.addActionListener(this);
 		this.btEditer.addActionListener(this);
@@ -187,40 +178,6 @@ public class VueCandidat extends JPanel implements ActionListener{
 		this.btEditer.setBounds(250, 500, 100, 30);
 		this.btAjouter.setBounds(370, 500, 100, 30);
 		
-		// JTextFiel
-		
-		editMatriculeCandidat.setBounds(20, 450, 80, 20);
-		editNomCandidat.setBounds(110, 450, 80, 20);
-		editPrenomCandidat.setBounds(200, 450, 80, 20);
-		editEmailCandidat.setBounds(290, 450, 80, 20);
-		editTelephoneCandidat.setBounds(380, 450, 80, 20);
-		this.editMatriculeCandidat.setEditable(false);
-		// JLabel
-		
-		tabMatricule.setBounds(20, 420, 80, 30);
-		tabNom.setBounds(110, 420, 80, 20);
-		tabPrenom.setBounds(200, 420, 80, 20);
-		tabEmail.setBounds(290, 420, 80, 20);
-		tabTelephone.setBounds(380, 420, 80, 20);
-		
-		
-		
-		// ajout Jlabel
-		unPanelTab.add(tabMatricule);
-		unPanelTab.add(tabNom);
-		unPanelTab.add(tabPrenom);
-		unPanelTab.add(tabEmail);
-		unPanelTab.add(tabTelephone);
-		
-		
-		// ajout JTextField
-		
-		unPanelTab.add(editMatriculeCandidat);
-		unPanelTab.add(editNomCandidat);
-		unPanelTab.add(editPrenomCandidat);
-		unPanelTab.add(editEmailCandidat);
-		unPanelTab.add(editTelephoneCandidat);
-		
 		
 		
 		// ajout button
@@ -232,6 +189,7 @@ public class VueCandidat extends JPanel implements ActionListener{
 		
 		String entetes [] = {"Matricule","Nom","Prenom","Email","Telephone"} ;
 		Object donnees [] [] = this.remplirDonnees();//object elle n'a pass de type, peut etre n'importe quoi
+		
 		//instaciation de la classe Tableau
 		this.unTableau = new Tableau(donnees,entetes);
 		//instanciaton de la jtable avec l'objet modele de table
@@ -267,20 +225,20 @@ public class VueCandidat extends JPanel implements ActionListener{
 				
 			}
 			
+			
+			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				int ligne = tableCandidats.getSelectedRow();
-				editMatriculeCandidat.setText(tableCandidats.getValueAt(ligne, 0).toString());
-				editNomCandidat.setText(tableCandidats.getValueAt(ligne, 1).toString());
-				editPrenomCandidat.setText(tableCandidats.getValueAt(ligne, 2).toString());
-				editEmailCandidat.setText(tableCandidats.getValueAt(ligne, 3).toString());
-				editTelephoneCandidat.setText(tableCandidats.getValueAt(ligne, 4).toString());
-				
+				String matricule = tableCandidats.getValueAt(ligne, 0).toString();
+				ArrayList<Candidat> lesCandidats = Modele.selectAllCandidats();
+				Candidat unCandidat = candidatSelectionne(matricule, lesCandidats);
+				remplirFormulaire(unCandidat);
 			}
 		});
 		
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == this.btAjouter)
@@ -304,48 +262,61 @@ public class VueCandidat extends JPanel implements ActionListener{
 		
 			String cp = this.txtCpCandidat.getText();
 			String adresse = this.txtAdresseCandidat.getText();
-			String ville =this.txtVilleCandidat.getName();
+			String ville =this.txtVilleCandidat.getSelectedItem().toString();
 			
 			Ville uneVille = Modele.selectWhereVille(cp, ville);
-			String modePaiement = this.txtModePaiement.getName();
-			if (nom.equals("") || prenom.equals("") || email.equals("") || telephone.equals(""))
+			String modePaiement = this.txtModePaiement.getSelectedItem().toString();
+			if (nom.equals("") || prenom.equals("") || email.equals("") || telephone.equals("") || login.equals("") || mdp.equals(""))
 			{
-				JOptionPane.showMessageDialog( this, "Veuillez remplir les données !");
+				JOptionPane.showMessageDialog( this, "Veuillez remplir les donnees !");
 			}
 			else
 			{
-			//instanciation du client
-			Candidat unCandidat = new Candidat(matricule,nom,prenom,adresse,login,mdp,email,telephone,dateNaissance,4,uneVille,dateInscription,modePaiement);
-			//appel  du Modele pour inserer un client dans la BDD
-			Modele.insertTiers(unCandidat);
-			JOptionPane.showMessageDialog(this, "Insertion reussie !");
-			unCandidat = (Candidat) Modele.selectWhereTiers(matricule);
-			Object uneLigne[] = {unCandidat.getUnMatricule(), unCandidat.getNom(), unCandidat.getPrenom(), unCandidat.getEmail(),unCandidat.getTelephone()};
-			this.unTableau.add(uneLigne);
-			txtMatricule.setText("");
-			txtNomCandidat.setText("");
-			txtPrenomCandidat.setText("");
-			dccDateNaissance.setText("");
-			txtAdresseCandidat.setText("");
-			txtCpCandidat.setText("");
-			txtVilleCandidat.setSelectedIndex(0);
-			txtEmailCandidat.setText("");
-			txtTelephoneCandidat.setText("");
-			txtLoginCandidat.setText("");
-			txtMdpCandidat.setText("");
-			txtModePaiement.setSelectedIndex(0);
-			txtTypeCandidat.setSelectedIndex(0);
+				if(txtTypeCandidat.getSelectedItem().toString().equals("Etudiant")) {
+					Etudiant unEtudiant = new Etudiant(matricule,nom,prenom,adresse,login,mdp,email,telephone,dateNaissance,4,uneVille,dateInscription,modePaiement, 1, 0.15);
+					
+					Modele.insertTiers(unEtudiant);
+					JOptionPane.showMessageDialog(this, "Insertion reussie !");
+					unEtudiant = (Etudiant) Modele.selectWhereTiers(matricule);
+					Object uneLigne[] = {unEtudiant.getUnMatricule(), unEtudiant.getNom(), unEtudiant.getPrenom(), unEtudiant.getEmail(),unEtudiant.getTelephone()};
+					this.unTableau.add(uneLigne);
+					viderFormulaire();
+				}
+				
+				else if(txtTypeCandidat.getSelectedItem().toString().equals("Salarie")) {
+					Salarie unSalarie = new Salarie(matricule,nom,prenom,adresse,login,mdp,email,telephone,dateNaissance,4,uneVille,dateInscription,modePaiement,"A definir");
+				
+					Modele.insertTiers(unSalarie);
+					JOptionPane.showMessageDialog(this, "Insertion reussie !");
+					unSalarie = (Salarie) Modele.selectWhereTiers(matricule);
+					Object uneLigne[] = {unSalarie.getUnMatricule(), unSalarie.getNom(), unSalarie.getPrenom(), unSalarie.getEmail(),unSalarie.getTelephone()};
+					this.unTableau.add(uneLigne);
+					viderFormulaire();
+				}
+				else {
+					
+					//instanciation du client
+					Candidat unCandidat = new Candidat(matricule,nom,prenom,adresse,login,mdp,email,telephone,dateNaissance,4,uneVille,dateInscription,modePaiement);
+					//appel  du Modele pour inserer un client dans la BDD
+					Modele.insertTiers(unCandidat);
+					JOptionPane.showMessageDialog(this, "Insertion reussie !");
+					unCandidat = (Candidat) Modele.selectWhereTiers(matricule);
+					Object uneLigne[] = {unCandidat.getUnMatricule(), unCandidat.getNom(), unCandidat.getPrenom(), unCandidat.getEmail(),unCandidat.getTelephone()};
+					this.unTableau.add(uneLigne);
+					viderFormulaire();
+				}
+				
 			}
 		}else if(e.getSource() == this.btSupprimer)
 		{
 			
-			if(editMatriculeCandidat.getText().equals(""))
+			if(txtMatricule.getText().equals(""))
 			{
 				JOptionPane.showMessageDialog(this, "Veuillez renseigner d'Id Client");
 			}
 			else {
 				
-			String matriculeCandidat = this.editMatriculeCandidat.getText();
+			String matriculeCandidat = this.txtMatricule.getText();
 			Candidat unCandidat = (Candidat) Modele.selectWhereTiers(matriculeCandidat);
 			
 			//appel  du Modele pour inserer un client dans la BDD
@@ -356,55 +327,46 @@ public class VueCandidat extends JPanel implements ActionListener{
             int ligne = this.tableCandidats.getSelectedRow();
             this.unTableau.delete(ligne);
 
-            //Selectionne la ligne au dessus de celle supprimée et préremplit le formulaire
+            //Selectionne la ligne au dessus de celle supprimï¿½e et prï¿½remplit le formulaire
             this.selectLigne(ligne--);
 			}
 			
 		}else if(e.getSource() == this.btEditer)
 		{
+			char[] password = this.txtMdpCandidat.getPassword();
+			String mdp = new String(password);
 			
-			
-			if(editMatriculeCandidat.getText().equals(""))
+			if(nom.equals("") || prenom.equals("") || email.equals("") || mdp.equals("") || telephone.equals("") || login.equals("") || mdp.equals(""))
 			{
-				JOptionPane.showMessageDialog(this, "Veuillez renseigner le Matricule");
+				JOptionPane.showMessageDialog(this, "Veuillez renseigner le formulaire");
 			}
 			else {
-				
-			String matricule = this.editMatriculeCandidat.getText();
-			String nom = this.editNomCandidat.getText();
-			String prenom = this.editPrenomCandidat.getText();
-			String email = this.editEmailCandidat.getText();
-			String telephone = this.editTelephoneCandidat.getText();
 			
-			Candidat unCandidat = (Candidat) Modele.selectWhereTiers(matricule);
-			unCandidat.setNom(nom);
-			unCandidat.setPrenom(prenom);
-			unCandidat.setEmail(email);
-			unCandidat.setTelephone(telephone);
+			
 			//instanciation du client
-			
-			Modele.updateTiers(unCandidat);
-			JOptionPane.showMessageDialog(this, "Mise à jour reussie !");
+			//Modele.updateTiers(unCandidat);
+			JOptionPane.showMessageDialog(this, "Mise a jour reussie !");
 			}
 		}else if(e.getSource() == this.btAnnuler)
 		{
-			this.editMatriculeCandidat.setText("");
-			this.editNomCandidat.setText("");
-			this.editPrenomCandidat.setText("");
-			this.editTelephoneCandidat.setText("");
-			this.editEmailCandidat.setText("");
+			viderFormulaire();
+		}
+		else if(e.getSource() == this.btRechercheVille) {
+			rechercheVille(txtCpCandidat.getText());
 		}
 		
 	}
-	//Méthode sélectionnant la ligne et préremplissant le formulaire
+	//Mï¿½thode sï¿½lectionnant la ligne et prï¿½remplissant le formulaire
     public void selectLigne(int ligne) {
-        this.tableCandidats.setRowSelectionInterval(ligne, ligne);
-        editMatriculeCandidat.setText(tableCandidats.getValueAt(ligne, 0).toString());
-        editNomCandidat.setText(tableCandidats.getValueAt(ligne, 1).toString());
-        editPrenomCandidat.setText(tableCandidats.getValueAt(ligne, 2).toString());
-        editEmailCandidat.setText(tableCandidats.getValueAt(ligne, 3).toString());
-        editTelephoneCandidat.setText(tableCandidats.getValueAt(ligne, 3).toString());
+    	
+    	this.tableCandidats.setRowSelectionInterval(ligne, ligne);
+        String matricule = tableCandidats.getValueAt(ligne, 0).toString();
+		ArrayList<Candidat> lesCandidats = Modele.selectAllCandidats();
+		Candidat unCandidat = candidatSelectionne(matricule, lesCandidats);
+		remplirFormulaire(unCandidat);
+        
     }
+    
 	public Object [] [] remplirDonnees()
 	{
 		ArrayList<Candidat> lesCandidats = Modele.selectAllCandidats();
@@ -422,5 +384,101 @@ public class VueCandidat extends JPanel implements ActionListener{
 		}
 		return donnees;
 	}
-
+	
+	public Candidat candidatSelectionne(String matricule, ArrayList<Candidat> lesCandidats) {
+		Candidat unCandidat = null;
+		for(Candidat leCandidat : lesCandidats) {
+			if(leCandidat.getUnMatricule().equals(matricule)) {
+				return leCandidat;
+			}
+		}
+		
+		return unCandidat;
+	}
+	
+	public void remplirFormulaire(Candidat unCandidat) {
+		
+		txtMatricule.setText(unCandidat.getUnMatricule());
+		txtNomCandidat.setText(unCandidat.getNom());
+		txtPrenomCandidat.setText(unCandidat.getPrenom());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		try {
+			c.setTime(sdf.parse(unCandidat.getUneDateNaissance().toString()));
+		}catch(ParseException exp) {
+			System.out.println("Erreur parse de la date naissance");
+		}
+		dccDateNaissance.setSelectedDate(c);
+		txtAdresseCandidat.setText(unCandidat.getAdresse());
+		txtCpCandidat.setText(unCandidat.getUneVille().getCp());
+		
+		if(txtVilleCandidat.getItemCount() > 0) {
+			for(int i=0; i < txtVilleCandidat.getItemCount(); i++) {
+				if(!txtVilleCandidat.getItemAt(i).equals(unCandidat.getUneVille().getNomVille())){
+					txtVilleCandidat.addItem(unCandidat.getUneVille().getNomVille());
+					break;
+				}
+			}
+		}
+		else {
+			txtVilleCandidat.addItem(unCandidat.getUneVille().getNomVille());
+		}
+		
+		txtVilleCandidat.setSelectedItem(unCandidat.getUneVille().getNomVille());
+		txtEmailCandidat.setText(unCandidat.getEmail());
+		txtTelephoneCandidat.setText(unCandidat.getTelephone());
+		txtLoginCandidat.setText(unCandidat.getLogin());
+		txtMdpCandidat.setText("");
+		if(!unCandidat.getModeFacturation().equals("CB") && !unCandidat.getModeFacturation().equals("Especes")){
+			txtModePaiement.setSelectedIndex(2);
+		}
+		else {
+			txtModePaiement.setSelectedItem(unCandidat.getModeFacturation());
+		}
+		if(unCandidat instanceof Salarie) {
+			txtTypeCandidat.setSelectedIndex(0);
+		}
+		else if(unCandidat instanceof Etudiant) {
+			txtTypeCandidat.setSelectedIndex(1);
+		}
+		else {
+			txtTypeCandidat.setSelectedIndex(2);
+		}
+	}
+	
+	public void viderFormulaire() {
+		txtMatricule.setText("");
+		txtNomCandidat.setText("");
+		txtPrenomCandidat.setText("");
+		Calendar c = Calendar.getInstance();
+		dccDateNaissance.setSelectedDate(c);
+		txtAdresseCandidat.setText("");
+		txtCpCandidat.setText("");
+		txtVilleCandidat.removeAllItems();
+		txtEmailCandidat.setText("");
+		txtTelephoneCandidat.setText("");
+		txtLoginCandidat.setText("");
+		txtMdpCandidat.setText("");
+		txtModePaiement.setSelectedIndex(0);
+		txtModePaiement.setSelectedIndex(0);
+		txtTypeCandidat.setSelectedIndex(0);
+		
+	}
+	
+	public void rechercheVille(String cp) {
+		ArrayList<String> lesNomsVilles = Modele.selectWhereVille(cp);
+		
+		if(lesNomsVilles.size() > 0) {
+			txtVilleCandidat.removeAllItems();
+			for(String unNom : lesNomsVilles) {
+				txtVilleCandidat.addItem(unNom);
+			}
+		}
+		else {
+			txtVilleCandidat.removeAllItems();
+			JOptionPane.showMessageDialog(this, "Veuillez mettre un Code Postal valide.");
+		}
+		
+	}
+ 
 }

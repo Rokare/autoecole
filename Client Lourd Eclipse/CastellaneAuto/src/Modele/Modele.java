@@ -226,7 +226,8 @@ public class Modele {
 			
 			if(unRes.next())
 			{
-                           uneVille = new Ville(unRes.getInt("id_ville"),unRes.getString("cp"),unRes.getString("ville"));	
+                           uneVille = new Ville(unRes.getInt("id_ville"),unRes.getString("cp"),unRes.getString("ville"));
+             
 			}
 		unStat.close();
 		unRes.close();
@@ -236,9 +237,40 @@ public class Modele {
 		{
 			System.out.println("Erreur :" + requete);
 		}
+		
                 
             return uneVille;
         }
+        
+        public static ArrayList<String> selectWhereVille(String cp){
+        	ArrayList<String> lesNomsVilles = new ArrayList<String>();
+            String requete = "select ville from ville where cp='"+cp+"' order by ville;";
+            
+            Bdd uneBdd = new Bdd("localhost", "adlauto", "root", "");
+            
+			try {
+				uneBdd.seConnecter();
+				Statement unStat = uneBdd.getMaConnection().createStatement();
+				ResultSet unRes = unStat.executeQuery(requete);
+				
+				while(unRes.next())
+				{
+						
+						lesNomsVilles.add(unRes.getString("ville"));
+						
+				}
+				unStat.close();
+				unRes.close();
+				uneBdd.seDeConnecter();
+			}
+			catch(SQLException exp)
+			{
+				System.out.println("Erreur :" + requete);
+			}
+        	
+        	return lesNomsVilles;
+        }
+        
         public static Ville selectWhereVille(String cp, String ville){
             
             Ville uneVille = null;
@@ -343,15 +375,15 @@ public class Modele {
             
             else if(unTiers instanceof Candidat){
                 table = "candidat";
+                if(unTiers instanceof Etudiant){
+                    table = "etudiant";
+                }
+                
+                else if(unTiers instanceof Salarie){
+                    table = "salarie";
+                }
             }
             
-            else if(unTiers instanceof Etudiant){
-                table = "etudiant";
-            }
-            
-            else if(unTiers instanceof Salarie){
-                table = "salarie";
-            }
             
             
             String requete = "select * from "+table+";";
@@ -378,18 +410,18 @@ public class Modele {
 			System.out.println("Erreur :" + requete);
 		}
             
-            requete = "UPDATE "+ table + "SET ";
+            requete = "UPDATE "+ table + " SET ";
             ArrayList<String> lesValeurs = unTiers.lesValeurs();
             
-            for(int i = 1; i <= lesColonnes.size(); i++){
-                if(i == lesColonnes.size()){
-                    requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + " WHERE matricule='" + unTiers.getUnMatricule() + "';";
+            for(int i = 0; i < lesColonnes.size(); i++){
+            	if(i == lesColonnes.size() - 1){
+                	requete += lesColonnes.get(i) + "=" + lesValeurs.get(i);
                 }
                 else{
                     requete += lesColonnes.get(i) + "=" + lesValeurs.get(i) + ",";
                 }
             }
-            
+            requete += " WHERE matricule='" + unTiers.getUnMatricule() + "';";
             execRequete(requete);
         }
         
@@ -878,15 +910,15 @@ public class Modele {
             
             else if(unTiers instanceof Candidat){
                 table = "candidat";
+                if(unTiers instanceof Etudiant){
+                    table = "etudiant";
+                }
+                
+                else if(unTiers instanceof Salarie){
+                    table = "salarie";
+                }
             }
             
-            else if(unTiers instanceof Etudiant){
-                table = "etudiant";
-            }
-            
-            else if(unTiers instanceof Salarie){
-                table = "salarie";
-            }
                         
             String requete = "INSERT INTO "+ table + " VALUES(";
          
@@ -914,19 +946,6 @@ public class Modele {
             }
 
         return lesMoniteurs;
-        }
-        
-        public static ArrayList<Personnel> selectAllPersonnel(){
-            ArrayList<Personnel> lePersonnel = new ArrayList<Personnel>();
-            ArrayList<Tiers> lesTiers = Modele.selectAllTiers();
-
-            for(Tiers unTiers : lesTiers){
-                if(unTiers instanceof Personnel){
-                    lePersonnel.add((Personnel) unTiers);
-                }
-            }
-
-        return lePersonnel;
         }
         
         public static ArrayList<Candidat> selectAllCandidats(){
