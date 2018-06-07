@@ -61,6 +61,43 @@ class Modele
 
       }
     }
+    public function statistique($matricule, $option, $critère)
+    {
+      if($this->pdo == null){
+
+          return null;
+
+      }else{
+
+          if($option == 0)
+          {
+              $requete = "select count(*)
+              from planning ;";
+          }
+          elseif ($option == 1) {
+            $year = $critere;
+            $requete = "select count(mat_c)
+              from planning
+              where mat_c = '.$matricule.'
+              and year(dhd) = '.$year.'
+              or year(dhf) = '.$year.'";
+          }
+          elseif ($option == 2) {
+            $month = $critere;
+            $requete = "select count(mat_c)
+            from planning
+            where mat_c = '.$matricule.'
+            and month(dhd) = '.$month.'
+            or month(dhf) ='.$month.'";
+          }
+
+          $select = $this->pdo->prepare($requete);
+          $select->execute();
+          $resultats = $select->fetchAll();
+          return $resultats;
+      }
+
+    }
 
     public function connexion($login, $mdp)
     {

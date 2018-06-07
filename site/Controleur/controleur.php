@@ -33,6 +33,13 @@ class Controleur
     }
 
 
+    public function statistique($matricule,$option, $critre)
+    {
+      if($this->unModele->getPdo() != null){
+          return $this->unModele->statistique($matricule,$option, $critre);
+      }
+    }
+
     public function connexion($login, $mdp){
             return $this->unModele->connexion($login,$mdp);
     }

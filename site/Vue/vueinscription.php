@@ -39,6 +39,10 @@
       <label for="inputEmail4">Email</label>
       <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="jean@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
     </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Confirmation Email</label>
+      <input type="email" class="form-control" id="inputEmail4" name="email2" placeholder="jean@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+    </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">

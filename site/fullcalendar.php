@@ -1,4 +1,18 @@
-<?php session_start(); ?>
+<?php session_start();
+include "controleur/controleur.php";
+include "controleur/classes/candidat.class.php";
+include "controleur/classes/salarie.class.php";
+include "controleur/classes/etudiant.class.php";
+$unControleur = new Controleur("localhost","adlauto","root","","candidat");
+$unControleur->setChamp('matricule');
+$unControleur->setValeur($_GET['matricule']);
+$unControleur->setTable('candidat');
+$resultat = $unControleur->selectAlternative(2);
+include './Vue/vueNavBarPersonnel2.php';
+
+
+
+?>
 <!DOCTYPE html>
 <html>
  <head>
@@ -143,7 +157,7 @@
   });
 
   </script>
-   <?php include "./Vue/vueNavBarPersonnel.php"; ?>
+
  </head>
  <body>
   <br />
