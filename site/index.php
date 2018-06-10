@@ -33,15 +33,13 @@
     </div>
 
         <?php
+
+
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
                 $unControleur = new Controleur("localhost","adlauto","root","","candidat");
-                if(isset($_GET['c']))
-                {
-                  include "Vue/vueNavBarPersonnel.php";
-                }
-                else {
+
                   include "Vue/vueBarreNavigation.php";
-                }
+                
 
                 if(isset($_POST["submit"]))
                 {
@@ -50,6 +48,7 @@
                   {
 
                     header("Location:indexTiers.php");
+
 
                   }
                   else

@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
  <head>
@@ -53,7 +53,7 @@
   });
 
   </script>
-     <?php include "./Vue/vueNavBarPersonnel.php"; ?>
+     <?php include "./Vue/vueNavBarCandidat.php"; ?>
  </head>
  <body>
   <br />
