@@ -81,16 +81,20 @@ FOR EACH ROW
 BEGIN
   DECLARE nb int;
 
-  SELECT count(*) into nb
+	SELECT count(*) into nb
 	from tiers
 	where email = new.email
 	or login = new.login
 	or matricule = new.matricule;
+	
 
     IF nb > 0
     THEN
         SIGNAL SQLSTATE '42000'
         SET MESSAGE_TEXT = " erreur d'insertion dans la table tiers TRIGGER CANDIDAT";
+	ELSEIF
+	THEN
+		
 	  ELSE
 		    insert into tiers values(new.matricule, new.nom, new.prenom, new.date_n, new.adresse, new.login, new.mdp, new.email, 4, new.telephone, new.id_ville);
     END IF;
@@ -515,5 +519,84 @@ FOR EACH ROW
 DELIMITER ;
 
 
+
+DROP TRIGGER IF EXISTS deleteCandidat2;
+
+DELIMITER //
+
+CREATE TRIGGER deleteCandidat2
+AFTER DELETE ON candidat
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+
+
+    SELECT count(*) into nb
+	from tiers
+	where matricule = old.matricule;
+
+    IF nb > 0 
+    THEN
+        DELETE FROM tiers where matricule = old.matricule;
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS deleteMoniteur2;
+
+DELIMITER //
+
+CREATE TRIGGER deleteMoniteur2
+AFTER DELETE ON moniteur
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+
+
+    SELECT count(*) into nb
+	from tiers
+	where matricule = old.matricule;
+
+    IF nb > 0 
+    THEN
+        DELETE FROM tiers where matricule = old.matricule;
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
+
+
+
+DROP TRIGGER IF EXISTS deletePersonnel2;
+
+DELIMITER //
+
+CREATE TRIGGER deletePersonnel2
+AFTER DELETE ON personnel
+FOR EACH ROW
+    BEGIN
+   	declare nb int ;
+
+
+    SELECT count(*) into nb
+	from tiers
+	where matricule = old.matricule;
+
+    IF nb > 0 
+    THEN
+        DELETE FROM tiers where matricule = old.matricule;
+	
+    END IF;
+
+
+    END //
+DELIMITER ;
 
 

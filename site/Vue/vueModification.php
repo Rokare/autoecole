@@ -43,7 +43,7 @@ if(isset($resultats))
 
    <div class="form-group col-md-6">
      <label for="inputEmail4">Adresse</label>
-     <textarea type="text" class="form-control" id="inputNom4" name="adresse" value="<?php echo $resultats['adresse'];?>" pattern="[a-zA-Z0-9].{8,256}" required></textarea>
+     <textarea type="text" class="form-control" id="inputNom4" name="adresse" pattern="[a-zA-Z0-9].{8,256}" required><?php echo $resultats['adresse'];?></textarea>
    </div>
 
   </div>

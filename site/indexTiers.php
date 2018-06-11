@@ -15,14 +15,15 @@
 
 
 
-
+    <link href="Vue/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Vue/style/style.css">
     <link href="Vue/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="Vue/carousel.css" rel="stylesheet">
-
+    <link href="Vue/pricing.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
    </head>
 
@@ -32,9 +33,10 @@
     </div>
 
         <?php
+        session_start ();
         $page = (isset($_GET['p']))?$_GET['p'] : 0;
         $unControleur = new Controleur("localhost","adlauto","root","","tiers");
-        session_start ();
+
         $niveau = $_SESSION['niveau'];
 
 
@@ -45,15 +47,28 @@
         else {
           $sp = 1;
         }
+          if($niveau <= 2)
+          {
+            include "Vue/vueNavBarPersonnel.php";
+          }
+          else {
+            include "Vue/vueNavBarCandidat.php";
+          }
+
+
         switch($niveau)
         {
+
             case ($niveau <= 2) :
               switch($page)
               {
-
                 case 0 :
-                include "Vue/vueNavBarPersonnel.php";
-                include("./Vue/VuePersonnel.php");
+                include("Vue/vue_accueil2.php");
+                break;
+                case 3 :
+
+                try{
+                include "Vue/VuePersonnel.php";
 
                 $unControleur->setTable('candidat');
                 $perPage = 4 ;
@@ -77,24 +92,33 @@
                 else {
                   include("Vue/vueResultat.php");
                 }
-                    if(isset($_SESSION['suppr']))
+
+                    if(isset($_GET['suppr']))
                     {
                       $unControleur->setChamp('matricule');
-                      $unControleur->setValeur($_SESSION['suppr']);
+                      $unControleur->setValeur($_GET['suppr']);
+                      $unControleur->setTable('tiers');
                       $unControleur->delete();
                       unset($_SESSION['suppr']);
                       echo '<head>
-                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$Page.'&sp='.$nbPage.'">
+                        <META HTTP-EQUIV="Refresh" CONTENT="0; URL=indexTiers.php?p='.$page.'&sp='.$nbPage.'">
                             </head> ';
+
                     }
+
+
+                }
+                catch(Exception $e)
+                {
+
+                }
                   break;
-                  case 1 :
+                  case 2 :
 
-                  include("./Vue/vueNavBarPersonnel.php");
-
+                
                   $unControleur->setChamp('matricule');
 
-                  $unControleur->setValeur($_SESSION['modif']);
+                  $unControleur->setValeur($_GET['mod']);
 
 
                   $resultats = $unControleur->selectAlternative(2);
@@ -104,7 +128,7 @@
                     include("Vue/vueModification.php");
                     if(isset($_POST['update']))
                     {
-                      if($unControleur->updateCandidat($_POST, $_SESSION['modif']) == true)
+                      if($unControleur->updateCandidat($_POST, $_GET['mod']) == true)
                       {
                         echo "mise à jour reussie : redirection...";
                         echo '<head>
@@ -118,17 +142,30 @@
                   }
                 break;
             case 3 :
-                include "Vue/vueNavBarPersonnel.php";
-                header("Location:fullcalendar2.php?matricule=".$_SESSION['matricule']);
-                break;
-            case 4:
-                include "Vue/vueNavBarCandidat.php";
-                include "Vue/vueCandidat.php";
-
-                header("Location:fullcalendar.php?matricule=".$_SESSION['matricule']);
-
+              switch($page)
+              {
+                case 0 :
+                  include("Vue/vue_accueil2.php");
 
                 break;
+                case 4 :
+                  header("Location:fullcalendar2.php?matricule=".$_SESSION['matricule']);
+                  break;
+              }
+                break;
+                case 4 :
+                switch($page)
+                {
+                  case 0 :
+                    include("Vue/vue_accueil2.php");
+
+                  break;
+                  case 4 :
+                  header("Location:fullcalendar.php?matricule=".$_SESSION['matricule']);
+                  break;
+                }
+                break;
+
         }
 
 

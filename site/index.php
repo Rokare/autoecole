@@ -33,9 +33,14 @@
     </div>
 
         <?php
+
+
                 $page = (isset($_GET['page']))?$_GET['page'] : 0;
                 $unControleur = new Controleur("localhost","adlauto","root","","candidat");
-                include "Vue/vueBarreNavigation.php";
+
+                  include "Vue/vueBarreNavigation.php";
+                
+
                 if(isset($_POST["submit"]))
                 {
                   extract($_POST);
@@ -44,9 +49,15 @@
 
                     header("Location:indexTiers.php");
 
+
                   }
-                  else {
-                    echo "mauvais identifiants";
+                  else
+                  {
+                  echo'
+                  <script>
+                  alert("mauvais identifiants");
+                  </script>';
+
                   }
                 }
                 switch($page)
@@ -114,6 +125,13 @@
 
                     case 3:
                           include "Vue/vueCandidat.php";
+                        break;
+                    case 4 :
+                    echo "<br> Pour utiliser le planning vous devez être connecter <br>";
+                    echo "Redirection... <br>";
+                    echo '<head>
+                      <META HTTP-EQUIV="Refresh" CONTENT="1.5; URL=index.php?p=0">
+                          </head> ';
                         break;
 
 
