@@ -113,10 +113,9 @@
 
                 }
                   break;
-                  case 1 :
+                  case 2 :
 
-                  include("./Vue/vueNavBarPersonnel.php");
-
+                
                   $unControleur->setChamp('matricule');
 
                   $unControleur->setValeur($_GET['mod']);
