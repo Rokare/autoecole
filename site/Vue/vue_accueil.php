@@ -13,7 +13,7 @@
               <div class="carousel-caption text-left">
                 <h1>Bienvenue chez Castellane </h1>
                 <p>Inscrivez-vous chez nous pour une nouvelle experience et un permis plus facile !</p>
-                <p><a class="btn btn-lg btn-primary" href="index.php?page=1" role="button">Inscrivez-vous !</a></p>
+                <p><a class="btn btn-lg btn-primary" href="index.php?page=4" role="button">Inscrivez-vous !</a></p>
               </div>
             </div>
           </div>
